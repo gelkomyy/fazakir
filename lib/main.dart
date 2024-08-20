@@ -26,7 +26,7 @@ class Fazakir extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      title: S.current.app_name,
+      // title: S.of(context).app_name,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(

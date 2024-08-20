@@ -17,15 +17,18 @@ class IntroViewBody extends StatelessWidget {
         children: [
           Text(
             txt.light_journey_begins_here,
-            // textAlign: TextAlign.center,
+            textAlign: TextAlign.center,
             style: AppFontStyles.styleBold14(context).copyWith(
               color: AppColors.greyColor,
             ),
           ),
           const SizedBox(height: 100),
-          CustomTextButton(
-            text: txt.app_name,
-            onPressed: () {},
+          SizedBox(
+            width: double.infinity,
+            child: CustomTextButton(
+              text: txt.app_name,
+              onPressed: () {},
+            ),
           ),
         ],
       ),
