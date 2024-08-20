@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/home/presentation/views/home_view.dart';
+import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
 import 'package:fazakir/core/utils/func/on_generate_routes.dart';
@@ -17,7 +17,7 @@ class Fazakir extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: onGenerateRoutes,
-      initialRoute: HomeView.routeName,
+      initialRoute: IntroView.routeName,
       locale: const Locale('en'),
       localizationsDelegates: const [
         S.delegate,

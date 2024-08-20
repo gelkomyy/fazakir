@@ -59,6 +59,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The journey of light begins here, be the first to discover our new spiritual app`
+  String get light_journey_begins_here {
+    return Intl.message(
+      'The journey of light begins here, be the first to discover our new spiritual app',
+      name: 'light_journey_begins_here',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
