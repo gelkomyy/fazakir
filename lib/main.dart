@@ -1,12 +1,17 @@
+import 'package:fazakir/Features/home/presentation/views/home_view.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
+import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:fazakir/core/utils/func/on_generate_routes.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await getItSetup();
   runApp(const Fazakir());
 }
 
@@ -17,7 +22,9 @@ class Fazakir extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: onGenerateRoutes,
-      initialRoute: IntroView.routeName,
+      initialRoute: getIt<SharedPreferences>().getBool('seen_intro') == true
+          ? HomeView.routeName
+          : IntroView.routeName,
       locale: const Locale('ar'),
       localizationsDelegates: const [
         S.delegate,
