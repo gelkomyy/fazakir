@@ -11,7 +11,7 @@ class IntroViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final S txt = S.of(context);
     return Padding(
-      padding: const EdgeInsets.all(52),
+      padding: const EdgeInsets.all(62),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -20,15 +20,17 @@ class IntroViewBody extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppFontStyles.styleBold14(context).copyWith(
               color: AppColors.greyColor,
+              fontFamily: 'Almarai',
             ),
           ),
-          const SizedBox(height: 100),
-          SizedBox(
-            width: double.infinity,
-            child: CustomTextButton(
-              text: txt.app_name,
-              onPressed: () {},
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.13),
+          CustomTextButton(
+            text: txt.app_name,
+            textStyle: AppFontStyles.styleBold14(context).copyWith(
+              color: Colors.white,
+              fontFamily: 'Almarai',
             ),
+            onPressed: () {},
           ),
         ],
       ),

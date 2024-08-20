@@ -13,6 +13,7 @@ class CustomTextButton extends StatelessWidget {
       ),
     ),
     this.padding = const EdgeInsets.all(12),
+    this.minimumSize = const Size(double.infinity, 24),
     required this.onPressed,
     this.textStyle,
   });
@@ -22,6 +23,7 @@ class CustomTextButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
   final void Function() onPressed;
   final TextStyle? textStyle;
+  final Size? minimumSize;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -29,6 +31,7 @@ class CustomTextButton extends StatelessWidget {
         backgroundColor: backgroundColor,
         shape: shape,
         padding: padding,
+        minimumSize: minimumSize,
       ),
       onPressed: onPressed,
       child: Text(

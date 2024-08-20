@@ -78,6 +78,11 @@ flutter:
         - asset: assets/fonts/Scheherazade-Regular.ttf
         - asset: assets/fonts/Scheherazade-Bold.ttf
           weight: 700
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/Almarai-Regular.ttf
+        - asset: assets/fonts/Almarai-Bold.ttf
+          weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

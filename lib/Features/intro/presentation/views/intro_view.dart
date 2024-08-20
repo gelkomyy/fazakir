@@ -15,9 +15,18 @@ class IntroView extends StatelessWidget {
           alignment: Alignment.topCenter,
         ),
       ),
-      child: const Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(child: IntroViewBody()),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(-0.00, -1.00),
+            end: Alignment(0, 1),
+            colors: [Colors.transparent, Colors.black],
+          ),
+        ),
+        child: const Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(child: IntroViewBody()),
+        ),
       ),
     );
   }

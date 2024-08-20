@@ -18,7 +18,7 @@ class Fazakir extends StatelessWidget {
     return MaterialApp(
       onGenerateRoute: onGenerateRoutes,
       initialRoute: IntroView.routeName,
-      locale: const Locale('en'),
+      locale: const Locale('ar'),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -26,7 +26,7 @@ class Fazakir extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      // title: S.of(context).app_name,
+      title: 'فذكر',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
