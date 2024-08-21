@@ -45,11 +45,11 @@ class Fazakir extends StatelessWidget {
         primarySwatch: AppColors.primarySwatch,
         primaryColor: AppColors.primaryColor,
         scaffoldBackgroundColor: AppColors.secondaryColor,
-        fontFamily: 'Scheherazade',
+        fontFamily: 'Almarai',
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: AppColors.textBlackColor,
               displayColor: AppColors.textBlackColor,
-              fontFamily: 'Scheherazade',
+              fontFamily: 'Almarai',
             ),
         buttonTheme: const ButtonThemeData(
           buttonColor: AppColors.primaryColor,
