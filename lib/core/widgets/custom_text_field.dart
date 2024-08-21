@@ -11,9 +11,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: AppColors.primaryColor,
-      style: AppFontStyles.styleRegular11(context).copyWith(
-        fontFamily: 'Almarai',
-      ),
+      style: AppFontStyles.styleRegular11(context).copyWith(),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,
@@ -22,7 +20,6 @@ class CustomTextField extends StatelessWidget {
         hintText: hintText,
         hintStyle: AppFontStyles.styleRegular11(context).copyWith(
           color: AppColors.greyColor,
-          fontFamily: 'Almarai',
         ),
         filled: true,
         fillColor: Colors.white,

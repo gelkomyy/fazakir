@@ -23,7 +23,6 @@ class IntroViewBody extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppFontStyles.styleBold14(context).copyWith(
               color: AppColors.greyColor,
-              fontFamily: 'Almarai',
             ),
           ),
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.13),
@@ -31,7 +30,6 @@ class IntroViewBody extends StatelessWidget {
             text: txt.app_name,
             textStyle: AppFontStyles.styleBold14(context).copyWith(
               color: Colors.white,
-              fontFamily: 'Almarai',
             ),
             onPressed: () {
               final SharedPreferences prefs = getIt<SharedPreferences>();

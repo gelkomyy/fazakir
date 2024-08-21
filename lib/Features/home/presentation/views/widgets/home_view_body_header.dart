@@ -13,7 +13,7 @@ class HomeViewBodyHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       alignment: AlignmentDirectional.bottomStart,
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: Clip.none,
       children: [
         SvgPicture.asset(
           Assets.assetsImagesHomeHeaderShapeSvg,
@@ -40,7 +40,6 @@ class HomeViewBodyHeader extends StatelessWidget {
                       'اهلا بيك',
                       textAlign: TextAlign.right,
                       style: AppFontStyles.styleBold16(context).copyWith(
-                        fontFamily: 'Almarai',
                         color: Colors.white,
                       ),
                     ),
