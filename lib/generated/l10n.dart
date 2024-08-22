@@ -129,6 +129,16 @@ class S {
       args: [],
     );
   }
+
+  /// `About Religion`
+  String get about_religion {
+    return Intl.message(
+      'About Religion',
+      name: 'about_religion',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
