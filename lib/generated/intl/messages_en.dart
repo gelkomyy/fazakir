@@ -25,15 +25,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_religion":
             MessageLookupByLibrary.simpleMessage("About Religion"),
         "app_name": MessageLookupByLibrary.simpleMessage("Fazakir"),
+        "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "holy_quran": MessageLookupByLibrary.simpleMessage("The Holy Quran"),
         "light_journey_begins_here": MessageLookupByLibrary.simpleMessage(
             "The journey of light begins here, be the first to discover our new spiritual app"),
         "mention_of_the_day":
             MessageLookupByLibrary.simpleMessage("Mention of the Day from.."),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "prayer_times": MessageLookupByLibrary.simpleMessage("Prayer Times"),
         "search_mention_or_reciter": MessageLookupByLibrary.simpleMessage(
             "Search for a mention or reciter..."),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("Shortcuts"),
         "show_all": MessageLookupByLibrary.simpleMessage("Show All"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Welcome")
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+        "your_home": MessageLookupByLibrary.simpleMessage("Your Home")
       };
 }

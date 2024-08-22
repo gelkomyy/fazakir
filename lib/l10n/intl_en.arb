@@ -8,5 +8,10 @@
     "search_mention_or_reciter": "Search for a mention or reciter...",
     "shortcuts": "Shortcuts",
     "mention_of_the_day": "Mention of the Day from..",
-    "about_religion": "About Religion"
+    "about_religion": "About Religion",
+    "favorites": "Favorites",
+    "notifications": "Notifications",
+    "your_home": "Your Home",
+    "prayer_times": "Prayer Times",
+    "settings": "Settings"
 }

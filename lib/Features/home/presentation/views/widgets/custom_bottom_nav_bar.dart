@@ -4,6 +4,7 @@ import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_n
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -42,33 +43,13 @@ class CustomBottomNavBar extends StatelessWidget {
   List<PersistentBottomNavBarItem> get buildNavBarItems {
     return [
       PersistentBottomNavBarItem(
-        svgAsset: Assets.assetsImagesHeartBlackIconSvg,
-        icon: SvgPicture.asset(
-          Assets.assetsImagesHeartBlackIconSvg,
-        ),
-        activeColorPrimary: AppColors.primaryColor,
-        inactiveColorPrimary: AppColors.greyColor,
-        title: 'favorite',
-        iconSize: 26,
-      ),
-      PersistentBottomNavBarItem(
-        svgAsset: Assets.assetsImagesNotificationIconSvg,
-        icon: SvgPicture.asset(
-          Assets.assetsImagesNotificationIconSvg,
-        ),
-        activeColorPrimary: AppColors.primaryColor,
-        inactiveColorPrimary: AppColors.greyColor,
-        title: 'Notifications',
-        iconSize: 22,
-      ),
-      PersistentBottomNavBarItem(
         svgAsset: Assets.assetsImagesHomeIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesHomeIconSvg,
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
-        title: 'Home',
+        title: S.current.your_home,
         iconSize: 26,
       ),
       PersistentBottomNavBarItem(
@@ -78,8 +59,28 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
-        title: 'Timeline',
+        title: S.current.prayer_times,
         iconSize: 28,
+      ),
+      PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesHeartBlackIconSvg,
+        icon: SvgPicture.asset(
+          Assets.assetsImagesHeartBlackIconSvg,
+        ),
+        activeColorPrimary: AppColors.primaryColor,
+        inactiveColorPrimary: AppColors.greyColor,
+        title: S.current.favorites,
+        iconSize: 26,
+      ),
+      PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesNotificationIconSvg,
+        icon: SvgPicture.asset(
+          Assets.assetsImagesNotificationIconSvg,
+        ),
+        activeColorPrimary: AppColors.primaryColor,
+        inactiveColorPrimary: AppColors.greyColor,
+        title: S.current.notifications,
+        iconSize: 22,
       ),
       PersistentBottomNavBarItem(
         svgAsset: Assets.assetsImagesSettingsIconSvg,
@@ -88,7 +89,7 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
-        title: 'Settings',
+        title: S.current.settings,
         iconSize: 22,
       ),
     ];

@@ -139,6 +139,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Favorites`
+  String get favorites {
+    return Intl.message(
+      'Favorites',
+      name: 'favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Home`
+  String get your_home {
+    return Intl.message(
+      'Your Home',
+      name: 'your_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prayer Times`
+  String get prayer_times {
+    return Intl.message(
+      'Prayer Times',
+      name: 'prayer_times',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

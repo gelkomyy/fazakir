@@ -24,15 +24,20 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about_religion": MessageLookupByLibrary.simpleMessage("عن الدين"),
         "app_name": MessageLookupByLibrary.simpleMessage("فذكر"),
+        "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "holy_quran": MessageLookupByLibrary.simpleMessage("القران الكريم"),
         "light_journey_begins_here": MessageLookupByLibrary.simpleMessage(
             "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد"),
         "mention_of_the_day":
             MessageLookupByLibrary.simpleMessage("ذكر اليوم من.."),
+        "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
+        "prayer_times": MessageLookupByLibrary.simpleMessage("أوقات الصلاة"),
         "search_mention_or_reciter":
             MessageLookupByLibrary.simpleMessage("ابحث عن ذكر أو قارئ ..."),
+        "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("الاختصارات"),
         "show_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
-        "welcome": MessageLookupByLibrary.simpleMessage("اهلا بيك")
+        "welcome": MessageLookupByLibrary.simpleMessage("اهلا بيك"),
+        "your_home": MessageLookupByLibrary.simpleMessage("بيتك")
       };
 }
