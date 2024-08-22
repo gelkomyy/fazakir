@@ -1,5 +1,11 @@
 {
     "@@locale": "en",
     "app_name": "Fazakir",
-    "light_journey_begins_here": "The journey of light begins here, be the first to discover our new spiritual app"
+    "light_journey_begins_here": "The journey of light begins here, be the first to discover our new spiritual app",
+    "show_all": "Show All",
+    "holy_quran": "The Holy Quran",
+    "welcome": "Welcome",
+    "search_mention_or_reciter": "Search for a mention or reciter...",
+    "shortcuts": "Shortcuts",
+    "mention_of_the_day": "Mention of the Day from.."
 }

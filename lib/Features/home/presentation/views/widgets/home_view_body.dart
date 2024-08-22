@@ -4,6 +4,7 @@ import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/widgets/row_label_with_show_more.dart';
+import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,6 +13,7 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S txt = S.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
@@ -39,8 +41,8 @@ class HomeViewBody extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 42),
-              const RowLabelWithShowMore(
-                labelText: 'الاختصارات',
+              RowLabelWithShowMore(
+                labelText: txt.shortcuts,
               ),
             ],
           ),
@@ -70,7 +72,7 @@ class HomeViewBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'ذكر اليوم من..',
+                    txt.mention_of_the_day,
                     style: AppFontStyles.styleRegular11(context).copyWith(
                       color: AppColors.greyColor,
                     ),

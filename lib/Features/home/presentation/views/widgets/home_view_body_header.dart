@@ -1,6 +1,7 @@
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/widgets/custom_text_field.dart';
+import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,6 +12,7 @@ class HomeViewBodyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S txt = S.of(context);
     return Stack(
       alignment: AlignmentDirectional.bottomStart,
       clipBehavior: Clip.none,
@@ -37,7 +39,7 @@ class HomeViewBodyHeader extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'اهلا بيك',
+                      txt.welcome,
                       textAlign: TextAlign.right,
                       style: AppFontStyles.styleBold16(context).copyWith(
                         color: Colors.white,
@@ -50,8 +52,8 @@ class HomeViewBodyHeader extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: 36,
-                  child: const CustomTextField(
-                    hintText: 'ابحث عن ذكر أو قارئ ...',
+                  child: CustomTextField(
+                    hintText: txt.search_mention_or_reciter,
                   ),
                 ),
               ],

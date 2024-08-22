@@ -69,6 +69,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Show All`
+  String get show_all {
+    return Intl.message(
+      'Show All',
+      name: 'show_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Holy Quran`
+  String get holy_quran {
+    return Intl.message(
+      'The Holy Quran',
+      name: 'holy_quran',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome`
+  String get welcome {
+    return Intl.message(
+      'Welcome',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for a mention or reciter...`
+  String get search_mention_or_reciter {
+    return Intl.message(
+      'Search for a mention or reciter...',
+      name: 'search_mention_or_reciter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shortcuts`
+  String get shortcuts {
+    return Intl.message(
+      'Shortcuts',
+      name: 'shortcuts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mention of the Day from..`
+  String get mention_of_the_day {
+    return Intl.message(
+      'Mention of the Day from..',
+      name: 'mention_of_the_day',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

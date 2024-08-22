@@ -1,5 +1,11 @@
 {
     "@@locale": "ar",
     "app_name": "فذكر",
-    "light_journey_begins_here": "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد"
+    "light_journey_begins_here": "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد",
+    "show_all": "عرض الكل",
+    "holy_quran": "القران الكريم",
+    "welcome": "اهلا بيك",
+    "search_mention_or_reciter": "ابحث عن ذكر أو قارئ ...",
+    "shortcuts": "الاختصارات",
+    "mention_of_the_day": "ذكر اليوم من.."
 }

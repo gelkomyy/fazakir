@@ -23,7 +23,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("فذكر"),
+        "holy_quran": MessageLookupByLibrary.simpleMessage("القران الكريم"),
         "light_journey_begins_here": MessageLookupByLibrary.simpleMessage(
-            "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد")
+            "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد"),
+        "mention_of_the_day":
+            MessageLookupByLibrary.simpleMessage("ذكر اليوم من.."),
+        "search_mention_or_reciter":
+            MessageLookupByLibrary.simpleMessage("ابحث عن ذكر أو قارئ ..."),
+        "shortcuts": MessageLookupByLibrary.simpleMessage("الاختصارات"),
+        "show_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "welcome": MessageLookupByLibrary.simpleMessage("اهلا بيك")
       };
 }
