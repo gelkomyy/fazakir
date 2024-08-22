@@ -58,6 +58,7 @@ class HomeViewBody extends StatelessWidget {
           const ContainerZikrOfTheDay(),
           const SizedBox(height: 35),
           const AboutReligionColumn(),
+          const SizedBox(height: 24),
         ],
       ),
     );
