@@ -16,10 +16,10 @@ class CustomBottomNavBar extends StatelessWidget {
       navBarEssentials: NavBarEssentials(
         navBarHeight: 90,
         items: buildNavBarItems,
-        selectedIndex: 2,
+        selectedIndex: 3,
         backgroundColor: Colors.white,
         itemAnimationProperties: const ItemAnimationSettings(
-          duration: Duration(milliseconds: 400),
+          duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         ),
         onItemSelected: (int index) {
@@ -42,11 +42,9 @@ class CustomBottomNavBar extends StatelessWidget {
   List<PersistentBottomNavBarItem> get buildNavBarItems {
     return [
       PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesHeartBlackIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesHeartBlackIconSvg,
-          width: 26,
-          colorFilter:
-              const ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
@@ -54,9 +52,9 @@ class CustomBottomNavBar extends StatelessWidget {
         iconSize: 26,
       ),
       PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesNotificationIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesNotificationIconSvg,
-          width: 22,
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
@@ -64,9 +62,9 @@ class CustomBottomNavBar extends StatelessWidget {
         iconSize: 22,
       ),
       PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesHomeIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesHomeIconSvg,
-          width: 26,
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
@@ -74,9 +72,9 @@ class CustomBottomNavBar extends StatelessWidget {
         iconSize: 26,
       ),
       PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesAlarmIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesAlarmIconSvg,
-          width: 28,
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,
@@ -84,9 +82,9 @@ class CustomBottomNavBar extends StatelessWidget {
         iconSize: 28,
       ),
       PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesSettingsIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesSettingsIconSvg,
-          width: 22,
         ),
         activeColorPrimary: AppColors.primaryColor,
         inactiveColorPrimary: AppColors.greyColor,

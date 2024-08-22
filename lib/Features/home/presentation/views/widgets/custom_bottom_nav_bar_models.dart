@@ -67,6 +67,7 @@ class PersistentBottomNavBarItem {
       this.inactiveColorSecondary = CupertinoColors.systemGrey,
       this.opacity = 1.0,
       this.filter,
+      this.svgAsset,
       this.textStyle,
       this.iconSize = 26.0,
       this.onSelectedTabPressWhenNoScreensPushed,
@@ -139,6 +140,9 @@ class PersistentBottomNavBarItem {
 
   ///If an already selected navigation bar is tapped again, the scroll controller provided in `PersistentBottomNavBarItem` will animate to top.
   final bool scrollToTopOnNavBarItemPress;
+
+  ///SVG asset for the icon.
+  final String? svgAsset;
 }
 
 class NavBarEssentials {
