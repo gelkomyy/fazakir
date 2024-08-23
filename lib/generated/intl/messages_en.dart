@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mention_of_the_day":
             MessageLookupByLibrary.simpleMessage("Mention of the Day from.."),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "podcast": MessageLookupByLibrary.simpleMessage("Podcast: "),
         "prayer_times": MessageLookupByLibrary.simpleMessage("Prayer Times"),
         "search_mention_or_reciter": MessageLookupByLibrary.simpleMessage(
             "Search for a mention or reciter..."),
