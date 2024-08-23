@@ -1,30 +1,30 @@
-import 'dart:developer';
-
+import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar_models.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({super.key});
-
+  const CustomBottomNavBar({super.key, required this.selectedIndex});
+  final int selectedIndex;
   @override
   Widget build(BuildContext context) {
     return CustomNavBar(
       navBarEssentials: NavBarEssentials(
         navBarHeight: 90,
         items: buildNavBarItems,
-        selectedIndex: 3,
+        selectedIndex: selectedIndex,
         backgroundColor: Colors.white,
         itemAnimationProperties: const ItemAnimationSettings(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         ),
         onItemSelected: (int index) {
-          log('index: $index');
+          context.read<NavigationCubit>().navigationIndexView(index);
         },
         padding: const EdgeInsets.symmetric(
           horizontal: 10,

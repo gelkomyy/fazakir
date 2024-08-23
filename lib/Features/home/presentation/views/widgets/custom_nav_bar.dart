@@ -117,10 +117,13 @@ class CustomNavBar extends StatelessWidget {
                         navBarEssentials.onItemSelected?.call(index);
                       }
                     },
-                    child: _buildItem(
-                      context,
-                      item,
-                      navBarEssentials.selectedIndex == index,
+                    child: ColoredBox(
+                      color: Colors.transparent,
+                      child: _buildItem(
+                        context,
+                        item,
+                        navBarEssentials.selectedIndex == index,
+                      ),
                     ),
                   ),
                 );

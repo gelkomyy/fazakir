@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/home/presentation/views/home_view.dart';
+import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
@@ -23,7 +23,7 @@ class Fazakir extends StatelessWidget {
     return MaterialApp(
       onGenerateRoute: onGenerateRoutes,
       initialRoute: getIt<SharedPreferences>().getBool('seen_intro') == true
-          ? HomeView.routeName
+          ? NavigationPage.routeName
           : IntroView.routeName,
       locale: const Locale('ar'),
       localizationsDelegates: const [

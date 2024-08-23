@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/home/presentation/views/home_view.dart';
+import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
@@ -34,7 +34,7 @@ class IntroViewBody extends StatelessWidget {
             onPressed: () {
               final SharedPreferences prefs = getIt<SharedPreferences>();
               prefs.setBool('seen_intro', true);
-              Navigator.pushReplacementNamed(context, HomeView.routeName);
+              Navigator.pushReplacementNamed(context, NavigationPage.routeName);
             },
           ),
         ],
