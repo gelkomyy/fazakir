@@ -6,9 +6,21 @@ class Assets {
   /// assets/images/alarm_icon_svg.svg
   static const String assetsImagesAlarmIconSvg = "assets/images/alarm_icon_svg.svg";
 
+  /// Assets for assetsImagesAsrIconSvg
+  /// assets/images/asr_icon_svg.svg
+  static const String assetsImagesAsrIconSvg = "assets/images/asr_icon_svg.svg";
+
   /// Assets for assetsImagesCopyIconSvg
   /// assets/images/copy_icon_svg.svg
   static const String assetsImagesCopyIconSvg = "assets/images/copy_icon_svg.svg";
+
+  /// Assets for assetsImagesDhuhrIconSvg
+  /// assets/images/dhuhr_icon_svg.svg
+  static const String assetsImagesDhuhrIconSvg = "assets/images/dhuhr_icon_svg.svg";
+
+  /// Assets for assetsImagesFajrIconSvg
+  /// assets/images/fajr_icon_svg.svg
+  static const String assetsImagesFajrIconSvg = "assets/images/fajr_icon_svg.svg";
 
   /// Assets for assetsImagesHeartBlackIconSvg
   /// assets/images/heart_black_icon_svg.svg
@@ -26,13 +38,29 @@ class Assets {
   /// assets/images/intro_background.jpg
   static const String assetsImagesIntroBackground = "assets/images/intro_background.jpg";
 
+  /// Assets for assetsImagesIshaIconSvg
+  /// assets/images/isha_icon_svg.svg
+  static const String assetsImagesIshaIconSvg = "assets/images/isha_icon_svg.svg";
+
   /// Assets for assetsImagesLayersShapeSvg
   /// assets/images/layers_shape_svg.svg
   static const String assetsImagesLayersShapeSvg = "assets/images/layers_shape_svg.svg";
 
+  /// Assets for assetsImagesMaghribIconSvg
+  /// assets/images/maghrib_icon_svg.svg
+  static const String assetsImagesMaghribIconSvg = "assets/images/maghrib_icon_svg.svg";
+
+  /// Assets for assetsImagesMuslimWomen
+  /// assets/images/muslim_women.jpg
+  static const String assetsImagesMuslimWomen = "assets/images/muslim_women.jpg";
+
   /// Assets for assetsImagesNotificationIconSvg
   /// assets/images/notification_icon_svg.svg
   static const String assetsImagesNotificationIconSvg = "assets/images/notification_icon_svg.svg";
+
+  /// Assets for assetsImagesPrayerTimesBackgroundShapeSvg
+  /// assets/images/prayer_times_background_shape_svg.svg
+  static const String assetsImagesPrayerTimesBackgroundShapeSvg = "assets/images/prayer_times_background_shape_svg.svg";
 
   /// Assets for assetsImagesQuranImage
   /// assets/images/quran_image.jpg
