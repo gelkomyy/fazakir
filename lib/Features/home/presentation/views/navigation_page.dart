@@ -1,6 +1,7 @@
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/home_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
+import 'package:fazakir/Features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,7 +48,7 @@ class NavigationPage extends StatelessWidget {
       case 0:
         return const HomeView();
       case 1:
-        return const HomeView();
+        return const PrayerTimesView();
       case 2:
         return const HomeView();
       case 3:
