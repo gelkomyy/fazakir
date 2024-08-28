@@ -1,3 +1,4 @@
+import 'package:adhan/adhan.dart';
 import 'package:fazakir/Features/prayer_times/presentation/manager/cubits/prayer_times_cubit/prayer_times_cubit.dart';
 import 'package:fazakir/core/enums/prayer_enum.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -13,6 +14,8 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PrayerTimesCubit, PrayerTimesState>(
       builder: (context, state) {
+        final PrayerTimes prayerTimes =
+            context.read<PrayerTimesCubit>().getPrayerTimes;
         final PrayerEnum? nextPrayer = getPrayerEnumByName(
           context.read<PrayerTimesCubit>().nextPrayerName,
         );
@@ -21,7 +24,19 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
             .nextPrayerTime
             ?.difference(DateTime.now());
         if (remainTime == null) {
-          return const SizedBox();
+          context.read<PrayerTimesCubit>().editPrayerTimes(
+                PrayerTimes(
+                  prayerTimes.coordinates,
+                  DateComponents.from(DateTime.now().add(
+                    const Duration(days: 1),
+                  )),
+                  prayerTimes.calculationParameters,
+                ),
+              );
+          return Text(
+            'لم يتم معرفة الصلاة القادمة.',
+            style: AppFontStyles.styleRegular14(context),
+          );
         }
         final int hours = remainTime.inHours;
         final int minutes = remainTime.inMinutes.remainder(60);

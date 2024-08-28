@@ -20,13 +20,16 @@ class PrayerTimesViewBody extends StatelessWidget {
           ),
         ),
         const Padding(
-          padding: EdgeInsets.all(24),
+          padding: EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 6,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 42,
+                height: 32,
               ),
               PrayerTimesViewBodyHeader(),
               SizedBox(

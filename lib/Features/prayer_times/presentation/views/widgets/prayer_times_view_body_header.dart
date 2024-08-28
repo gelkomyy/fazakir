@@ -12,7 +12,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * 0.25,
+      height: MediaQuery.sizeOf(context).height * 0.26,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(14)),
         image: DecorationImage(
@@ -22,7 +22,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
       ),
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(14)),
           gradient: LinearGradient(
@@ -39,7 +39,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             GestureDetector(
               onTap: () async {
                 final Uri googleMapsUrl = Uri.parse(
@@ -64,7 +64,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, QiblahView.routeName);

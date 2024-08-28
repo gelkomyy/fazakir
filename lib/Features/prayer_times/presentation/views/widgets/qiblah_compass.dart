@@ -119,12 +119,14 @@ class QiblahCompassWidget extends StatelessWidget {
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Transform.rotate(
-              angle: (qiblahDirection.direction * (pi / 180) * -1),
+            AnimatedRotation(
+              turns: (qiblahDirection.direction * (pi / 180) * -1),
+              duration: const Duration(seconds: 1),
               child: _compassSvg,
             ),
-            Transform.rotate(
-              angle: (qiblahDirection.qiblah * (pi / 180) * -1),
+            AnimatedRotation(
+              turns: (qiblahDirection.qiblah * (pi / 180) * -1),
+              duration: const Duration(seconds: 1),
               alignment: Alignment.center,
               child: _needleSvg,
             ),
