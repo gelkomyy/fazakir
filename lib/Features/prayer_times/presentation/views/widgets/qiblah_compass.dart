@@ -28,56 +28,115 @@ class QiblahCompass extends StatelessWidget {
               if (state is QiblahCompassUpdated) {
                 double direction = state.heading;
                 return Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Expanded(
-                      child: AnimatedRotation(
-                        //  turns:
-                        //     ((direction - qiblahDirection) * pi / 180) * -1,
-                        turns: -2 * pi * (direction / 360),
-                        duration: const Duration(seconds: 1),
+                      child: Stack(
                         alignment: Alignment.center,
-                        child: Transform(
-                          alignment: FractionalOffset.center,
-                          transform:
-                              Matrix4.rotationZ(qiblahDirection * pi / 180),
-                          origin: Offset.zero,
-                          child: SvgPicture.asset(
-                            Assets.assetsImagesCompassShapeSvg,
-                            fit: BoxFit.contain,
+                        children: [
+                          AnimatedRotation(
+                            //  turns:
+                            //     ((direction - qiblahDirection) * pi / 180) * -1,
+                            turns: -2 * pi * (direction / 360),
+                            duration: const Duration(seconds: 1),
                             alignment: Alignment.center,
-                          ),
-                        ),
-                      ),
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      foregroundColor: Colors.transparent,
-                      radius: 140,
-                      child: Transform.rotate(
-                        angle: -2 * pi * (direction / 360),
-                        child: Transform(
-                          alignment: FractionalOffset.center,
-                          transform:
-                              Matrix4.rotationZ(qiblahDirection * pi / 180),
-                          origin: Offset.zero,
-                          child: Align(
-                            alignment: Alignment.topCenter,
-                            child: Image.asset(
-                              Assets.assetsImagesKaaba,
+                            child: Transform(
+                              alignment: FractionalOffset.center,
+                              transform:
+                                  Matrix4.rotationZ(qiblahDirection * pi / 180),
+                              origin: Offset.zero,
+                              child: SvgPicture.asset(
+                                Assets.assetsImagesCompassShapeSvg,
+                                fit: BoxFit.contain,
+                                alignment: Alignment.center,
+                              ),
                             ),
                           ),
-                        ),
+                          CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            foregroundColor: Colors.transparent,
+                            radius: 140,
+                            child: Transform.rotate(
+                              angle: -2 * pi * (direction / 360),
+                              child: Transform(
+                                alignment: FractionalOffset.center,
+                                transform: Matrix4.rotationZ(
+                                    qiblahDirection * pi / 180),
+                                origin: Offset.zero,
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Image.asset(
+                                    Assets.assetsImagesKaaba,
+                                    width: 24,
+                                    alignment: Alignment.topCenter,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Align(
-                      alignment: const Alignment(0, 0.45),
-                      child: Text(
-                        showHeading(direction, qiblahDirection),
-                        style: AppFontStyles.styleBold14(context).copyWith(
-                          color: AppColors.primaryColor,
-                        ),
+                    const Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'تحرك مع السهم ',
+                            style: TextStyle(
+                              color: Color(0xFF1E201E),
+                              fontSize: 16,
+                              fontFamily: 'Almarai',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'الاحمر',
+                            style: TextStyle(
+                              color: Color(0xFFB90000),
+                              fontSize: 16,
+                              fontFamily: 'Almarai',
+                              fontWeight: FontWeight.w700,
+                              height: 0,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ' لتعرف زاوية قبلة الصلاة',
+                            style: TextStyle(
+                              color: Color(0xFF1E201E),
+                              fontSize: 16,
+                              fontFamily: 'Almarai',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'زاوية القبلة : ${qiblahDirection.toInt()}°',
+                          style: AppFontStyles.styleRegular14(context),
+                        ),
+                        Container(
+                          margin: const EdgeInsetsDirectional.symmetric(
+                              horizontal: 8),
+                          color: AppColors.greyColor,
+                          height: 10,
+                          width: 1,
+                        ),
+                        Text(
+                          showHeading(direction, qiblahDirection),
+                          style: AppFontStyles.styleBold16(context).copyWith(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
                   ],
                 );
               } else {
@@ -94,7 +153,7 @@ class QiblahCompass extends StatelessWidget {
 
   String showHeading(double direction, double qiblaDirection) {
     return qiblaDirection.toInt() != direction.toInt()
-        ? '${direction.toStringAsFixed(0)}°'
+        ? 'الزاوية الحالية :  ${direction.toStringAsFixed(0)}°'
         : "You're facing Makkah!";
   }
 }
