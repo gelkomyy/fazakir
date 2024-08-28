@@ -9,7 +9,7 @@ class PrayerTimesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PrayerTimesCubit(),
+      create: (context) => PrayerTimesCubit()..initPrayerTime(),
       child: const SafeArea(
         child: PrayerTimesViewBody(),
       ),

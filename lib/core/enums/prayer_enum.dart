@@ -54,3 +54,22 @@ extension PrayerEnumExtension on PrayerEnum {
     }
   }
 }
+
+PrayerEnum getPrayerEnumByName(String name) {
+  switch (name.toLowerCase()) {
+    case 'sunrise':
+      return PrayerEnum.sunrise;
+    case 'fajr':
+      return PrayerEnum.fajr;
+    case 'dhuhr':
+      return PrayerEnum.dhuhr;
+    case 'asr':
+      return PrayerEnum.asr;
+    case 'maghrib':
+      return PrayerEnum.maghrib;
+    case 'isha':
+      return PrayerEnum.isha;
+    default:
+      throw ArgumentError('Unknown prayer name: $name');
+  }
+}

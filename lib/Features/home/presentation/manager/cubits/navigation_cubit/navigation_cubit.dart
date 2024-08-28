@@ -27,6 +27,6 @@ class NavigationCubit extends Cubit<int> {
   void resetToHome() {
     _navigationStack.clear();
     _navigationStack.add(0); // Reset stack to only include index 0
-    emit(0);
+    safeEmit(0);
   }
 }

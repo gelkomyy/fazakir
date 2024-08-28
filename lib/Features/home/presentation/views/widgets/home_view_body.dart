@@ -1,9 +1,9 @@
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_column.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_of_the_day.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/home_view_body_header.dart';
+import 'package:fazakir/Features/home/presentation/views/widgets/remain_time_for_next_prayer_text.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/short_cut_items_list_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
-import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/widgets/row_label_with_show_more.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +36,7 @@ class HomeViewBody extends StatelessWidget {
                     const SizedBox(
                       width: 6,
                     ),
-                    Text(
-                      'صلاة المغرب بعد ساعة و ٥ دقائق',
-                      style: AppFontStyles.styleRegular14(context),
-                    ),
+                    const RemainTimeForNextPrayerText(),
                   ],
                 ),
                 const SizedBox(height: 42),
