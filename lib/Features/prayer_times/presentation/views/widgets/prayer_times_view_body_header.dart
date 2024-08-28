@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
@@ -64,11 +65,16 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(
-                Icons.explore,
-                color: Colors.black,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, QiblahView.routeName);
+              },
+              child: const CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(
+                  Icons.explore,
+                  color: Colors.black,
+                ),
               ),
             ),
           ],

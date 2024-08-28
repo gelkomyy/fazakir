@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
+import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -8,6 +9,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const NavigationPage());
     case IntroView.routeName:
       return MaterialPageRoute(builder: (context) => const IntroView());
+    case QiblahView.routeName:
+      return MaterialPageRoute(builder: (context) => const QiblahView());
     default:
       return MaterialPageRoute(builder: (context) => const NavigationPage());
   }

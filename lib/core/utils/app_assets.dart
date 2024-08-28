@@ -10,6 +10,10 @@ class Assets {
   /// assets/images/asr_icon_svg.svg
   static const String assetsImagesAsrIconSvg = "assets/images/asr_icon_svg.svg";
 
+  /// Assets for assetsImagesCompass
+  /// assets/images/compass.svg
+  static const String assetsImagesCompass = "assets/images/compass.svg";
+
   /// Assets for assetsImagesCopyIconSvg
   /// assets/images/copy_icon_svg.svg
   static const String assetsImagesCopyIconSvg = "assets/images/copy_icon_svg.svg";
@@ -53,6 +57,10 @@ class Assets {
   /// Assets for assetsImagesMuslimWomen
   /// assets/images/muslim_women.jpg
   static const String assetsImagesMuslimWomen = "assets/images/muslim_women.jpg";
+
+  /// Assets for assetsImagesNeedle
+  /// assets/images/needle.svg
+  static const String assetsImagesNeedle = "assets/images/needle.svg";
 
   /// Assets for assetsImagesNotificationIconSvg
   /// assets/images/notification_icon_svg.svg
