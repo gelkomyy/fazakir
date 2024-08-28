@@ -46,7 +46,7 @@ class QiblahCompass extends StatelessWidget {
                                   Matrix4.rotationZ(qiblahDirection * pi / 180),
                               origin: Offset.zero,
                               child: SvgPicture.asset(
-                                Assets.assetsImagesCompassShapeSvg,
+                                Assets.assetsImagesCompassShapeWithKaabaSvg,
                                 fit: BoxFit.contain,
                                 alignment: Alignment.center,
                               ),
@@ -63,12 +63,12 @@ class QiblahCompass extends StatelessWidget {
                                 transform: Matrix4.rotationZ(
                                     qiblahDirection * pi / 180),
                                 origin: Offset.zero,
-                                child: Align(
+                                child: const Align(
                                   alignment: Alignment.topCenter,
-                                  child: Image.asset(
-                                    Assets.assetsImagesKaaba,
-                                    width: 24,
-                                    alignment: Alignment.topCenter,
+                                  child: Icon(
+                                    Icons.expand_less_outlined,
+                                    color: AppColors.primaryColor,
+                                    size: 32,
                                   ),
                                 ),
                               ),

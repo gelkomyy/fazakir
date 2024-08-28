@@ -14,6 +14,10 @@ class Assets {
   /// assets/images/compass_shape_svg.svg
   static const String assetsImagesCompassShapeSvg = "assets/images/compass_shape_svg.svg";
 
+  /// Assets for assetsImagesCompassShapeWithKaabaSvg
+  /// assets/images/compass_shape_with_kaaba_svg.svg
+  static const String assetsImagesCompassShapeWithKaabaSvg = "assets/images/compass_shape_with_kaaba_svg.svg";
+
   /// Assets for assetsImagesCopyIconSvg
   /// assets/images/copy_icon_svg.svg
   static const String assetsImagesCopyIconSvg = "assets/images/copy_icon_svg.svg";
