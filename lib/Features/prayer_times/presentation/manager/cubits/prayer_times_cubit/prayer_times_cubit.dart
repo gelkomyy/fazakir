@@ -56,6 +56,8 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
 
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 30), (timer) {
+      nextPrayer = prayerTimes.nextPrayer();
+      nextPrayerTime = prayerTimes.timeForPrayer(nextPrayer);
       safeEmit(PrayerTimesInitial()); // Emit the updated state every minute
     });
   }

@@ -36,7 +36,7 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
         } */
 
         if (hours > 0) {
-          formattedTime += '${getArabicHourString(hours)} ';
+          formattedTime += '${getArabicHourString(hours)} , ';
         }
 
         if (minutes > 0) {
@@ -44,9 +44,17 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
         }
 
         if (formattedTime.isEmpty) {
-          formattedTime = 'الصلاة الآن.';
+          if (nextPrayer == PrayerEnum.sunrise) {
+            formattedTime = 'الشروق الآن.';
+          } else {
+            formattedTime = 'الصلاة الآن.';
+          }
         } else {
-          formattedTime = 'صلاة ${nextPrayer.arabicName} بعد $formattedTime.';
+          if (nextPrayer == PrayerEnum.sunrise) {
+            formattedTime = '${nextPrayer.arabicName} بعد $formattedTime.';
+          } else {
+            formattedTime = 'صلاة ${nextPrayer.arabicName} بعد $formattedTime.';
+          }
         }
         return Text(
           formattedTime,
