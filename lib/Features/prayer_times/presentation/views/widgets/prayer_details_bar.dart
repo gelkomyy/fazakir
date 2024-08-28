@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/prayer_times/presentation/domain/entities/prayer_entity.dart';
+import 'package:fazakir/Features/prayer_times/domain/entities/prayer_entity.dart';
 import 'package:fazakir/core/enums/prayer_enum.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';

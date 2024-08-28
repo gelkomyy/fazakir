@@ -1,10 +1,12 @@
 import 'package:fazakir/core/utils/app_assets.dart';
 
-enum PrayerEnum { fajr, dhuhr, asr, maghrib, isha }
+enum PrayerEnum { sunrise, fajr, dhuhr, asr, maghrib, isha }
 
 extension PrayerEnumExtension on PrayerEnum {
   String get arabicName {
     switch (this) {
+      case PrayerEnum.sunrise:
+        return 'الشروق';
       case PrayerEnum.fajr:
         return 'الفجر';
       case PrayerEnum.dhuhr:
@@ -20,6 +22,8 @@ extension PrayerEnumExtension on PrayerEnum {
 
   String get englishName {
     switch (this) {
+      case PrayerEnum.sunrise:
+        return 'Sunrise';
       case PrayerEnum.fajr:
         return 'Fajr';
       case PrayerEnum.dhuhr:
@@ -35,6 +39,8 @@ extension PrayerEnumExtension on PrayerEnum {
 
   String get iconSVGPath {
     switch (this) {
+      case PrayerEnum.sunrise:
+        return Assets.assetsImagesFajrIconSvg;
       case PrayerEnum.fajr:
         return Assets.assetsImagesFajrIconSvg;
       case PrayerEnum.dhuhr:
