@@ -25,6 +25,8 @@ class PrayerTimesCubit extends Cubit<PrayerTimesState> {
 
   String get nextPrayerName => nextPrayer.name;
 
+  PrayerTimes get getPrayerTimes => prayerTimes;
+
   List<PrayerEntity> prayerList = [
     PrayerEntity(
       prayer: PrayerEnum.fajr,

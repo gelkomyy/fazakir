@@ -55,7 +55,7 @@ extension PrayerEnumExtension on PrayerEnum {
   }
 }
 
-PrayerEnum getPrayerEnumByName(String name) {
+PrayerEnum? getPrayerEnumByName(String name) {
   switch (name.toLowerCase()) {
     case 'sunrise':
       return PrayerEnum.sunrise;
@@ -70,6 +70,6 @@ PrayerEnum getPrayerEnumByName(String name) {
     case 'isha':
       return PrayerEnum.isha;
     default:
-      throw ArgumentError('Unknown prayer name: $name');
+      return null;
   }
 }

@@ -13,7 +13,7 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PrayerTimesCubit, PrayerTimesState>(
       builder: (context, state) {
-        final PrayerEnum nextPrayer = getPrayerEnumByName(
+        final PrayerEnum? nextPrayer = getPrayerEnumByName(
           context.read<PrayerTimesCubit>().nextPrayerName,
         );
         final Duration? remainTime = context
@@ -36,9 +36,11 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
         } */
 
         if (hours > 0) {
-          formattedTime += '${getArabicHourString(hours)} و ';
+          formattedTime += getArabicHourString(hours);
         }
-
+        if (hours > 0 && minutes > 0) {
+          formattedTime += ' و ';
+        }
         if (minutes > 0) {
           formattedTime += getArabicMinuteString(minutes);
         }
@@ -50,7 +52,9 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
             formattedTime = 'الصلاة الآن.';
           }
         } else {
-          if (nextPrayer == PrayerEnum.sunrise) {
+          if (nextPrayer == null) {
+            formattedTime = 'لم يتم معرفة الصلاة القادمة.';
+          } else if (nextPrayer == PrayerEnum.sunrise) {
             formattedTime = '${nextPrayer.arabicName} بعد $formattedTime.';
           } else {
             formattedTime = 'صلاة ${nextPrayer.arabicName} بعد $formattedTime.';

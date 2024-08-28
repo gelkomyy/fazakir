@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/prayer_times/presentation/views/widgets/date_time_now_text_with_arrows.dart';
 import 'package:fazakir/Features/prayer_times/presentation/views/widgets/prayer_times_column.dart';
 import 'package:fazakir/Features/prayer_times/presentation/views/widgets/prayer_times_view_body_header.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
@@ -25,17 +26,18 @@ class PrayerTimesViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 62,
+                height: 42,
               ),
               PrayerTimesViewBodyHeader(),
+              SizedBox(
+                height: 12,
+              ),
+              DateTimeNowTextWithArrows(),
               SizedBox(
                 height: 24,
               ),
               Expanded(
                 child: PrayerTimesColumn(),
-              ),
-              SizedBox(
-                height: 24,
               ),
             ],
           ),
