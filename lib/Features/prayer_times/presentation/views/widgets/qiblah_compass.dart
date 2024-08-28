@@ -50,7 +50,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
             switch (snapshot.data!.status) {
               case LocationPermission.always:
               case LocationPermission.whileInUse:
-                return QiblahCompassWidget();
+                return const QiblahCompassWidget();
 
               case LocationPermission.denied:
                 return LocationErrorWidget(
@@ -95,15 +95,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  final _compassSvg = SvgPicture.asset(Assets.assetsImagesCompass);
-  final _needleSvg = SvgPicture.asset(
-    Assets.assetsImagesNeedle,
-    fit: BoxFit.contain,
-    height: 300,
-    alignment: Alignment.center,
-  );
-
-  QiblahCompassWidget({super.key});
+  const QiblahCompassWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -122,18 +114,22 @@ class QiblahCompassWidget extends StatelessWidget {
             AnimatedRotation(
               turns: (qiblahDirection.direction * (pi / 180) * -1),
               duration: const Duration(seconds: 1),
-              child: _compassSvg,
+              child: SvgPicture.asset(
+                Assets.assetsImagesCompass,
+                width: MediaQuery.sizeOf(context).width * 0.95,
+              ),
             ),
             AnimatedRotation(
               turns: (qiblahDirection.qiblah * (pi / 180) * -1),
               duration: const Duration(seconds: 1),
               alignment: Alignment.center,
-              child: _needleSvg,
+              child: SvgPicture.asset(
+                Assets.assetsImagesNeedle,
+                fit: BoxFit.contain,
+                height: 300,
+                alignment: Alignment.center,
+              ),
             ),
-            Positioned(
-              bottom: 8,
-              child: Text("${qiblahDirection.offset.toStringAsFixed(3)}°"),
-            )
           ],
         );
       },

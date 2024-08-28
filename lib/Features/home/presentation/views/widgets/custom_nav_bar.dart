@@ -146,7 +146,7 @@ class CustomNavBar extends StatelessWidget {
                     curve: navBarEssentials.itemAnimationProperties.curve,
                     color: Colors.transparent,
                     width: (itemWidth * navBarEssentials.selectedIndex) +
-                        (32 * 0.4),
+                        (26 * 0.4),
                     height: 2,
                   ),
                   Flexible(
@@ -154,7 +154,7 @@ class CustomNavBar extends StatelessWidget {
                       duration:
                           navBarEssentials.itemAnimationProperties.duration,
                       curve: navBarEssentials.itemAnimationProperties.curve,
-                      width: 32,
+                      width: 26,
                       height: 2,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(

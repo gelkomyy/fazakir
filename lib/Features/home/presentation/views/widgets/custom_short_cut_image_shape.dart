@@ -56,10 +56,13 @@ class CustomShortCutImageShape extends StatelessWidget {
                   Radius.circular(5),
                 ),
               ),
-              child: Text(
-                'القران الكريم',
-                style: AppFontStyles.styleBold10(context).copyWith(
-                  color: Colors.white,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  'القران الكريم',
+                  style: AppFontStyles.styleBold10(context).copyWith(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
