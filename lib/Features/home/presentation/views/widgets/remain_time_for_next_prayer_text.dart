@@ -36,7 +36,7 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
         } */
 
         if (hours > 0) {
-          formattedTime += '${getArabicHourString(hours)} , ';
+          formattedTime += '${getArabicHourString(hours)} و ';
         }
 
         if (minutes > 0) {
