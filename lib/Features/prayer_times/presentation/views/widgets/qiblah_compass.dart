@@ -1,138 +1,100 @@
-import 'dart:async';
-import 'dart:math' show pi;
+import 'dart:math';
 
-import 'package:fazakir/Features/prayer_times/presentation/views/widgets/location_error_widget.dart';
+import 'package:fazakir/Features/prayer_times/presentation/manager/cubits/qiblah_cubit/qiblah_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_qiblah/flutter_qiblah.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // Adjust the import according to your directory
 
-class QiblahCompass extends StatefulWidget {
+class QiblahCompass extends StatelessWidget {
   const QiblahCompass({super.key});
 
   @override
-  State<QiblahCompass> createState() => _QiblahCompassState();
-}
-
-class _QiblahCompassState extends State<QiblahCompass> {
-  final _locationStreamController =
-      StreamController<LocationStatus>.broadcast();
-
-  Stream<LocationStatus> get stream => _locationStreamController.stream;
-
-  @override
-  void initState() {
-    super.initState();
-    _checkLocationStatus();
-  }
-
-  @override
-  void dispose() {
-    _locationStreamController.close();
-    FlutterQiblah().dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(8.0),
-      child: StreamBuilder(
-        stream: stream,
-        builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator.adaptive());
-          }
+    return BlocBuilder<QiblahCubit, QiblahState>(
+      builder: (context, state) {
+        if (state is QiblahLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is QiblahError) {
+          return Center(child: Text(state.message));
+        } else if (state is QiblahLocationUpdated ||
+            state is QiblahCompassUpdated) {
+          double qiblahDirection = context.read<QiblahCubit>().qiblahDirection;
 
-          if (snapshot.data!.enabled == true) {
-            switch (snapshot.data!.status) {
-              case LocationPermission.always:
-              case LocationPermission.whileInUse:
-                return const QiblahCompassWidget();
-
-              case LocationPermission.denied:
-                return LocationErrorWidget(
-                  error: "Location service permission denied",
-                  callback: _checkLocationStatus,
+          return BlocBuilder<QiblahCubit, QiblahState>(
+            builder: (context, state) {
+              if (state is QiblahCompassUpdated) {
+                double direction = state.heading;
+                return Column(
+                  children: [
+                    Expanded(
+                      child: AnimatedRotation(
+                        //  turns:
+                        //     ((direction - qiblahDirection) * pi / 180) * -1,
+                        turns: -2 * pi * (direction / 360),
+                        duration: const Duration(seconds: 1),
+                        alignment: Alignment.center,
+                        child: Transform(
+                          alignment: FractionalOffset.center,
+                          transform:
+                              Matrix4.rotationZ(qiblahDirection * pi / 180),
+                          origin: Offset.zero,
+                          child: SvgPicture.asset(
+                            Assets.assetsImagesCompassShapeSvg,
+                            fit: BoxFit.contain,
+                            alignment: Alignment.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: Colors.transparent,
+                      radius: 140,
+                      child: Transform.rotate(
+                        angle: -2 * pi * (direction / 360),
+                        child: Transform(
+                          alignment: FractionalOffset.center,
+                          transform:
+                              Matrix4.rotationZ(qiblahDirection * pi / 180),
+                          origin: Offset.zero,
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Image.asset(
+                              Assets.assetsImagesKaaba,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: const Alignment(0, 0.45),
+                      child: Text(
+                        showHeading(direction, qiblahDirection),
+                        style: AppFontStyles.styleBold14(context).copyWith(
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 );
-              case LocationPermission.deniedForever:
-                return LocationErrorWidget(
-                  error: "Location service Denied Forever !",
-                  callback: _checkLocationStatus,
-                );
-              // case GeolocationStatus.unknown:
-              //   return LocationErrorWidget(
-              //     error: "Unknown Location service error",
-              //     callback: _checkLocationStatus,
-              //   );
-              default:
-                return const SizedBox();
-            }
-          } else {
-            return LocationErrorWidget(
-              error: "Please enable Location service",
-              callback: _checkLocationStatus,
-            );
-          }
-        },
-      ),
-    );
-  }
-
-  Future<void> _checkLocationStatus() async {
-    final locationStatus = await FlutterQiblah.checkLocationStatus();
-    if (locationStatus.enabled &&
-        locationStatus.status == LocationPermission.denied) {
-      await FlutterQiblah.requestPermissions();
-      final s = await FlutterQiblah.checkLocationStatus();
-      _locationStreamController.sink.add(s);
-    } else {
-      _locationStreamController.sink.add(locationStatus);
-    }
-  }
-}
-
-class QiblahCompassWidget extends StatelessWidget {
-  const QiblahCompassWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FlutterQiblah.qiblahStream,
-      builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator.adaptive());
+              } else {
+                return const Center(child: Text('Waiting for compass data...'));
+              }
+            },
+          );
+        } else {
+          return const Center(child: Text('Some error occurred'));
         }
-
-        final qiblahDirection = snapshot.data!;
-
-        return Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            AnimatedRotation(
-              turns: (qiblahDirection.direction * (pi / 180) * -1),
-              duration: const Duration(seconds: 1),
-              child: SvgPicture.asset(
-                Assets.assetsImagesCompass,
-                width: MediaQuery.sizeOf(context).width * 0.95,
-              ),
-            ),
-            AnimatedRotation(
-              turns: (qiblahDirection.qiblah * (pi / 180) * -1),
-              duration: const Duration(seconds: 1),
-              alignment: Alignment.center,
-              child: SvgPicture.asset(
-                Assets.assetsImagesNeedle,
-                fit: BoxFit.contain,
-                height: 300,
-                alignment: Alignment.center,
-              ),
-            ),
-          ],
-        );
       },
     );
+  }
+
+  String showHeading(double direction, double qiblaDirection) {
+    return qiblaDirection.toInt() != direction.toInt()
+        ? '${direction.toStringAsFixed(0)}°'
+        : "You're facing Makkah!";
   }
 }

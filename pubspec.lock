@@ -134,15 +134,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  flutter_compass_v2:
-    dependency: transitive
+  flutter_compass:
+    dependency: "direct main"
     description:
       path: "."
-      ref: master
-      resolved-ref: "738bc9544aca2294b468dcf82317e237cd38122b"
-      url: "https://github.com/nafiskabbo/flutter_compass_v2.git"
+      ref: HEAD
+      resolved-ref: b497b419aaca9086e88b533834c8b37f8fcbf541
+      url: "https://github.com/helpisdev/flutter_compass.git"
     source: git
-    version: "1.1.0"
+    version: "0.8.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -156,15 +156,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_qiblah:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "0cff3f616fdc5f8832f7cd4f3b55f7224f8241a8"
-      url: "https://github.com/nafiskabbo/flutter_qiblah_v2.git"
-    source: git
-    version: "3.1.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -516,14 +507,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
-  stream_transform:
-    dependency: transitive
-    description:
-      name: stream_transform
-      sha256: "14a00e794c7c11aa145a170587321aedce29769c08d7f58b1d141da75e3b1c6f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
   string_scanner:
     dependency: transitive
     description:

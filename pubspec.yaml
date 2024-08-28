@@ -36,8 +36,8 @@ dependencies:
   flutter_bounceable: ^1.1.0
   flutter_localizations:
     sdk: flutter
-  flutter_qiblah:
-    git: https://github.com/nafiskabbo/flutter_qiblah_v2.git
+  flutter_compass:
+    git: https://github.com/helpisdev/flutter_compass.git
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
   geolocator: ^13.0.1
