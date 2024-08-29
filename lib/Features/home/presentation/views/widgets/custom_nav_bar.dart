@@ -133,7 +133,7 @@ class CustomNavBar extends StatelessWidget {
           Transform.translate(
             offset: const Offset(
               0,
-              -1,
+              -0.5,
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -146,7 +146,7 @@ class CustomNavBar extends StatelessWidget {
                     curve: navBarEssentials.itemAnimationProperties.curve,
                     color: Colors.transparent,
                     width: (itemWidth * navBarEssentials.selectedIndex) +
-                        getResponsiveFontSize(context, fontSize: (26 * 0.6)),
+                        getResponsiveFontSize(context, fontSize: (27 * 0.5)),
                     height: 2,
                   ),
                   Flexible(
@@ -154,7 +154,7 @@ class CustomNavBar extends StatelessWidget {
                       duration:
                           navBarEssentials.itemAnimationProperties.duration,
                       curve: navBarEssentials.itemAnimationProperties.curve,
-                      width: 26,
+                      width: getResponsiveFontSize(context, fontSize: 27),
                       height: 2,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
