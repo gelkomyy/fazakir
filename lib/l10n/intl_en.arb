@@ -14,5 +14,11 @@
     "your_home": "Your Home",
     "prayer_times": "Prayer Times",
     "settings": "Settings",
-    "podcast": "Podcast: "
+    "podcast": "Podcast: ",
+    "some_error_occurred": "Some error occurred",
+    "correct_qibla": "You are now facing the correct Qibla!",
+    "waiting_for_compass_data": "Waiting for compass data ...",
+    "move_for_better_results": "Move for better results",
+    "tilt_and_move_phone": "Tilt and move your phone about 3 times like this:",
+    "done": "Done"
 }

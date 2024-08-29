@@ -146,7 +146,7 @@ class CustomNavBar extends StatelessWidget {
                     curve: navBarEssentials.itemAnimationProperties.curve,
                     color: Colors.transparent,
                     width: (itemWidth * navBarEssentials.selectedIndex) +
-                        (26 * 0.4),
+                        getResponsiveFontSize(context, fontSize: (26 * 0.6)),
                     height: 2,
                   ),
                   Flexible(

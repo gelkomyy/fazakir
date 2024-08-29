@@ -62,6 +62,10 @@ class Assets {
   /// assets/images/maghrib_icon_svg.svg
   static const String assetsImagesMaghribIconSvg = "assets/images/maghrib_icon_svg.svg";
 
+  /// Assets for assetsImagesMoveForCompassGif
+  /// assets/images/move_for_compass_gif.gif
+  static const String assetsImagesMoveForCompassGif = "assets/images/move_for_compass_gif.gif";
+
   /// Assets for assetsImagesMuslimWomen
   /// assets/images/muslim_women.jpg
   static const String assetsImagesMuslimWomen = "assets/images/muslim_women.jpg";

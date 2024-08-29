@@ -14,5 +14,11 @@
     "your_home": "بيتك",
     "prayer_times": "أوقات الصلاة",
     "settings": "الاعدادات",
-    "podcast": "بودكاست: "
+    "podcast": "بودكاست: ",
+    "correct_qibla": "أنت الان تواجه القبلة الصحيحة!",
+    "some_error_occurred": "حدث خطأ ما",
+    "waiting_for_compass_data": "في انتظار بيانات البوصلة ...",
+    "move_for_better_results": "تحرك لتحقيق نتائج أفضل",
+    "tilt_and_move_phone": "قم بإمالة وتحريك هاتفك حوالي 3 مرات مثل هذا:",
+    "done": "تم"
 }

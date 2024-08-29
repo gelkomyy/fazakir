@@ -2,6 +2,7 @@ import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dar
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PrayerTimesViewBodyHeader extends StatelessWidget {
@@ -40,7 +41,8 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            GestureDetector(
+            Bounceable(
+              scaleFactor: 0.6,
               onTap: () async {
                 final Uri googleMapsUrl = Uri.parse(
                     'https://www.google.com/maps/search/?api=1&query=mosques+near+me');
@@ -65,7 +67,8 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            GestureDetector(
+            Bounceable(
+              scaleFactor: 0.6,
               onTap: () {
                 Navigator.pushNamed(context, QiblahView.routeName);
               },

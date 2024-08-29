@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:fazakir/Features/prayer_times/presentation/manager/cubits/qiblah_cubit/qiblah_cubit.dart';
+import 'package:fazakir/Features/prayer_times/presentation/views/widgets/qiblah_compass_bottom.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Adjust the import according to your directory
@@ -13,6 +15,7 @@ class QiblahCompass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S txt = S.of(context);
     return BlocBuilder<QiblahCubit, QiblahState>(
       builder: (context, state) {
         if (state is QiblahLoading) {
@@ -77,83 +80,29 @@ class QiblahCompass extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'تحرك مع السهم ',
-                            style: TextStyle(
-                              color: Color(0xFF1E201E),
-                              fontSize: 16,
-                              fontFamily: 'Almarai',
-                              fontWeight: FontWeight.w400,
-                              height: 0,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'الاحمر',
-                            style: TextStyle(
-                              color: Color(0xFFB90000),
-                              fontSize: 16,
-                              fontFamily: 'Almarai',
-                              fontWeight: FontWeight.w700,
-                              height: 0,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' لتعرف زاوية قبلة الصلاة',
-                            style: TextStyle(
-                              color: Color(0xFF1E201E),
-                              fontSize: 16,
-                              fontFamily: 'Almarai',
-                              fontWeight: FontWeight.w400,
-                              height: 0,
-                            ),
-                          ),
-                        ],
-                      ),
+                    QiblahCompassBottom(
+                      direction: direction,
+                      qiblahDirection: qiblahDirection,
                     ),
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'زاوية القبلة : ${qiblahDirection.toInt()}°',
-                          style: AppFontStyles.styleRegular14(context),
-                        ),
-                        Container(
-                          margin: const EdgeInsetsDirectional.symmetric(
-                              horizontal: 8),
-                          color: AppColors.greyColor,
-                          height: 10,
-                          width: 1,
-                        ),
-                        Text(
-                          showHeading(direction, qiblahDirection),
-                          style: AppFontStyles.styleBold16(context).copyWith(
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 24),
                   ],
                 );
               } else {
-                return const Center(child: Text('Waiting for compass data...'));
+                return Center(
+                    child: Text(
+                  txt.waiting_for_compass_data,
+                  style: AppFontStyles.styleRegular16(context),
+                ));
               }
             },
           );
         } else {
-          return const Center(child: Text('Some error occurred'));
+          return Center(
+              child: Text(
+            txt.some_error_occurred,
+            style: AppFontStyles.styleRegular16(context),
+          ));
         }
       },
     );
-  }
-
-  String showHeading(double direction, double qiblaDirection) {
-    return qiblaDirection.toInt() != direction.toInt()
-        ? 'الزاوية الحالية :  ${direction.toStringAsFixed(0)}°'
-        : "You're facing Makkah!";
   }
 }

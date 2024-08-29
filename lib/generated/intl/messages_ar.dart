@@ -24,12 +24,17 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about_religion": MessageLookupByLibrary.simpleMessage("عن الدين"),
         "app_name": MessageLookupByLibrary.simpleMessage("فذكر"),
+        "correct_qibla": MessageLookupByLibrary.simpleMessage(
+            "أنت الان تواجه القبلة الصحيحة!"),
+        "done": MessageLookupByLibrary.simpleMessage("تم"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "holy_quran": MessageLookupByLibrary.simpleMessage("القران الكريم"),
         "light_journey_begins_here": MessageLookupByLibrary.simpleMessage(
             "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد"),
         "mention_of_the_day":
             MessageLookupByLibrary.simpleMessage("ذكر اليوم من.."),
+        "move_for_better_results":
+            MessageLookupByLibrary.simpleMessage("تحرك لتحقيق نتائج أفضل"),
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
         "podcast": MessageLookupByLibrary.simpleMessage("بودكاست: "),
         "prayer_times": MessageLookupByLibrary.simpleMessage("أوقات الصلاة"),
@@ -38,6 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("الاختصارات"),
         "show_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "some_error_occurred":
+            MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
+        "tilt_and_move_phone": MessageLookupByLibrary.simpleMessage(
+            "قم بإمالة وتحريك هاتفك حوالي 3 مرات مثل هذا:"),
+        "waiting_for_compass_data": MessageLookupByLibrary.simpleMessage(
+            "في انتظار بيانات البوصلة ..."),
         "welcome": MessageLookupByLibrary.simpleMessage("اهلا بيك"),
         "your_home": MessageLookupByLibrary.simpleMessage("بيتك")
       };

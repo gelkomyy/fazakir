@@ -20,5 +20,6 @@ abstract class AppColors {
   static const Color secondaryColor = Colors.white;
   static const Color textBlackColor = Color(0xFF1E201E);
   static const Color heartRedColor = Color(0xFFC22525);
+  static const Color redColor = Color(0xFFB90000);
   static const Color greyColor = Color(0xFFBBBBBB);
 }

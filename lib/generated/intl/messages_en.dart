@@ -25,12 +25,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_religion":
             MessageLookupByLibrary.simpleMessage("About Religion"),
         "app_name": MessageLookupByLibrary.simpleMessage("Fazakir"),
+        "correct_qibla": MessageLookupByLibrary.simpleMessage(
+            "You are now facing the correct Qibla!"),
+        "done": MessageLookupByLibrary.simpleMessage("Done"),
         "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
         "holy_quran": MessageLookupByLibrary.simpleMessage("The Holy Quran"),
         "light_journey_begins_here": MessageLookupByLibrary.simpleMessage(
             "The journey of light begins here, be the first to discover our new spiritual app"),
         "mention_of_the_day":
             MessageLookupByLibrary.simpleMessage("Mention of the Day from.."),
+        "move_for_better_results":
+            MessageLookupByLibrary.simpleMessage("Move for better results"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "podcast": MessageLookupByLibrary.simpleMessage("Podcast: "),
         "prayer_times": MessageLookupByLibrary.simpleMessage("Prayer Times"),
@@ -39,6 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("Shortcuts"),
         "show_all": MessageLookupByLibrary.simpleMessage("Show All"),
+        "some_error_occurred":
+            MessageLookupByLibrary.simpleMessage("Some error occurred"),
+        "tilt_and_move_phone": MessageLookupByLibrary.simpleMessage(
+            "Tilt and move your phone about 3 times like this:"),
+        "waiting_for_compass_data": MessageLookupByLibrary.simpleMessage(
+            "Waiting for compass data ..."),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "your_home": MessageLookupByLibrary.simpleMessage("Your Home")
       };

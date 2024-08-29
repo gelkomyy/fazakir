@@ -199,6 +199,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Some error occurred`
+  String get some_error_occurred {
+    return Intl.message(
+      'Some error occurred',
+      name: 'some_error_occurred',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are now facing the correct Qibla!`
+  String get correct_qibla {
+    return Intl.message(
+      'You are now facing the correct Qibla!',
+      name: 'correct_qibla',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Waiting for compass data ...`
+  String get waiting_for_compass_data {
+    return Intl.message(
+      'Waiting for compass data ...',
+      name: 'waiting_for_compass_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Move for better results`
+  String get move_for_better_results {
+    return Intl.message(
+      'Move for better results',
+      name: 'move_for_better_results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tilt and move your phone about 3 times like this:`
+  String get tilt_and_move_phone {
+    return Intl.message(
+      'Tilt and move your phone about 3 times like this:',
+      name: 'tilt_and_move_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get done {
+    return Intl.message(
+      'Done',
+      name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
