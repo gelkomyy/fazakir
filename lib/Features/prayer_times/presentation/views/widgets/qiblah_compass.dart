@@ -38,15 +38,16 @@ class QiblahCompass extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           AnimatedRotation(
-                            //  turns:
-                            //     ((direction - qiblahDirection) * pi / 180) * -1,
-                            turns: -2 * pi * (direction / 360),
+                            turns:
+                                ((direction - qiblahDirection) * pi / 180) * -1,
+                            // turns: -2 * pi * (direction / 360),
                             duration: const Duration(seconds: 1),
                             alignment: Alignment.center,
                             child: Transform(
                               alignment: FractionalOffset.center,
-                              transform:
-                                  Matrix4.rotationZ(qiblahDirection * pi / 180),
+                              transform: Matrix4.rotationZ(
+                                  ((direction - qiblahDirection) * pi / 180) *
+                                      -1),
                               origin: Offset.zero,
                               child: SvgPicture.asset(
                                 Assets.assetsImagesCompassShapeWithKaabaSvg,
@@ -60,11 +61,14 @@ class QiblahCompass extends StatelessWidget {
                             foregroundColor: Colors.transparent,
                             radius: 140,
                             child: Transform.rotate(
-                              angle: -2 * pi * (direction / 360),
+                              angle:
+                                  ((direction - qiblahDirection) * pi / 180) *
+                                      -1,
                               child: Transform(
                                 alignment: FractionalOffset.center,
                                 transform: Matrix4.rotationZ(
-                                    qiblahDirection * pi / 180),
+                                    ((direction - qiblahDirection) * pi / 180) *
+                                        -1),
                                 origin: Offset.zero,
                                 child: const Align(
                                   alignment: Alignment.topCenter,
