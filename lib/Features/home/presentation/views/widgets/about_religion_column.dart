@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/about_religion/presentation/views/about_religion_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_item.dart';
 import 'package:fazakir/core/widgets/row_label_with_show_more.dart';
 import 'package:fazakir/generated/l10n.dart';
@@ -19,6 +20,9 @@ class AboutReligionColumn extends StatelessWidget {
         children: [
           RowLabelWithShowMore(
             labelText: txt.about_religion,
+            onTapShowMore: () {
+              Navigator.pushNamed(context, AboutReligionView.routeName);
+            },
           ),
           const SizedBox(
             height: 12,
