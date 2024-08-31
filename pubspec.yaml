@@ -29,15 +29,16 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   adhan: ^2.0.0+1
+  cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_bounceable: ^1.1.0
-  flutter_localizations:
-    sdk: flutter
   flutter_compass:
     git: https://github.com/helpisdev/flutter_compass.git
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
   geolocator: ^13.0.1
