@@ -37,6 +37,7 @@ dependencies:
   flutter_bounceable: ^1.1.0
   flutter_compass:
     git: https://github.com/helpisdev/flutter_compass.git
+  flutter_inappwebview: ^6.0.0
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.10+1

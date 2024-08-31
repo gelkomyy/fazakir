@@ -1,0 +1,40 @@
+import 'package:fazakir/Features/about_religion/presentation/views/widgets/video_player_view_body.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
+
+class VideoPlayerView extends StatelessWidget {
+  const VideoPlayerView({super.key, required this.videoUrl});
+  static const String routeName = 'videoPlayerView';
+  final String videoUrl;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('مشاهدة الفيديو'),
+        leadingWidth: 64,
+        leading: Bounceable(
+          child: const Card(
+            color: AppColors.textBlackColor,
+            shape: CircleBorder(),
+            margin: EdgeInsetsDirectional.only(start: 24),
+            child: Icon(
+              Icons.arrow_back_outlined,
+              color: Colors.white,
+            ),
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: VideoPlayerViewBody(
+          videoUrl: videoUrl,
+        ),
+      ),
+    );
+  }
+}
