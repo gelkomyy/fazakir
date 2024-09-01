@@ -46,6 +46,7 @@ class AboutReligionColumn extends StatelessWidget {
                           padding: EdgeInsetsDirectional.only(
                               end: index + 1 == 10 ? 0 : 14),
                           child: AboutReligionItem(
+                            pushToVideoPlayerView: true,
                             videoYoutubeEntity:
                                 state.videoYoutubeEntities[index],
                           ),
