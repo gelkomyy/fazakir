@@ -32,10 +32,22 @@ class NavigationPage extends StatelessWidget {
               }
             },
             child: Scaffold(
-              bottomNavigationBar: CustomBottomNavBar(
-                selectedIndex: state,
+              body: Stack(
+                children: [
+                  Positioned.fill(
+                    child: getPage(state),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: CustomBottomNavBar(
+                        selectedIndex: state,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              body: getPage(state),
             ),
           );
         },

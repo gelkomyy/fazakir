@@ -1,5 +1,4 @@
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar_models.dart';
-import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -84,18 +83,22 @@ class CustomNavBar extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: double.infinity,
             height: navBarEssentials.navBarHeight,
             padding: navBarEssentials.padding,
             decoration: BoxDecoration(
-                color: navBarEssentials.backgroundColor,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
-                border: Border.all(
-                  color: AppColors.greyColor,
-                  width: 0.5,
-                )),
+              color: navBarEssentials.backgroundColor,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.35),
+                  blurRadius: 24,
+                  offset: const Offset(0, 4),
+                  spreadRadius: 1,
+                )
+              ],
+            ),
             child: Row(
               mainAxisAlignment: navBarEssentials.navBarItemsAlignment,
               children: navBarEssentials.items.map((final item) {
@@ -146,7 +149,8 @@ class CustomNavBar extends StatelessWidget {
                     curve: navBarEssentials.itemAnimationProperties.curve,
                     color: Colors.transparent,
                     width: (itemWidth * navBarEssentials.selectedIndex) +
-                        getResponsiveFontSize(context, fontSize: (27 * 0.5)),
+                        getResponsiveFontSize(context,
+                            fontSize: (itemWidth * 0.45 * 0.5)),
                     height: 2,
                   ),
                   Flexible(
@@ -154,7 +158,8 @@ class CustomNavBar extends StatelessWidget {
                       duration:
                           navBarEssentials.itemAnimationProperties.duration,
                       curve: navBarEssentials.itemAnimationProperties.curve,
-                      width: getResponsiveFontSize(context, fontSize: 27),
+                      width: getResponsiveFontSize(context,
+                          fontSize: itemWidth * 0.45),
                       height: 2,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
