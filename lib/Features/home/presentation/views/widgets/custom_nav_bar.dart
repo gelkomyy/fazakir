@@ -68,40 +68,7 @@ class CustomNavBar extends StatelessWidget {
         .items[navBarEssentials.selectedIndex].activeColorPrimary;
     final double iconSize =
         navBarEssentials.items[navBarEssentials.selectedIndex].iconSize;
-
-    final double indicatorWidth =
-        iconSize; // The bar width should match the icon size
-    final double spaceBetweenIcons = (MediaQuery.of(context).size.width -
-            navBarEssentials.margin.left -
-            (iconSize * navBarEssentials.items.length)) /
-        (navBarEssentials.items.length - 1);
-
-    // Calculate the base offset
-    final double baseOffset =
-        (iconSize + spaceBetweenIcons) * navBarEssentials.selectedIndex;
-
-    // Adjust offset based on index
-    double offset;
-
-    switch (navBarEssentials.selectedIndex) {
-      case 0:
-        offset = baseOffset + navBarEssentials.padding.left;
-        break;
-      case 1:
-        offset = baseOffset;
-        break;
-      case 2:
-        offset = baseOffset - indicatorWidth / 2;
-        break;
-      case 3:
-        offset = baseOffset - indicatorWidth * 1.3;
-        break;
-      case 4:
-        offset = baseOffset - indicatorWidth * 2;
-      default:
-        offset = baseOffset;
-        break;
-    }
+    final int selectedIndex = navBarEssentials.selectedIndex;
 
     return Padding(
       padding: navBarEssentials.margin,
@@ -160,20 +127,51 @@ class CustomNavBar extends StatelessWidget {
           ),
           // The moving indicator bar
           // The moving indicator bar
-          AnimatedPositionedDirectional(
-            duration: navBarEssentials.itemAnimationProperties.duration,
-            curve: navBarEssentials.itemAnimationProperties.curve,
-            start: offset,
-            top: 0,
-            child: Container(
-              width: indicatorWidth,
-              height: 2, // Height of the indicator
-              color: selectedItemActiveColor,
+
+          Transform.translate(
+            offset: const Offset(0, -0.5),
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: navBarEssentials.padding.left,
+                right: navBarEssentials.padding.right,
+              ),
+              child: AnimatedAlign(
+                alignment: _getAlignmentForIndex(selectedIndex),
+                duration: navBarEssentials.itemAnimationProperties.duration,
+                curve: navBarEssentials.itemAnimationProperties.curve,
+                child: Container(
+                  width: iconSize,
+                  height: 2.5,
+                  color: selectedItemActiveColor,
+                ),
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  AlignmentDirectional _getAlignmentForIndex(int index) {
+    switch (index) {
+      case 0:
+        return AlignmentDirectional.topStart;
+      case 1:
+        return const AlignmentDirectional(
+            -0.54, 1.0); // Adjust the value based on your layout
+      case 2:
+        return const AlignmentDirectional(-0.02, 1.0);
+      case 3:
+        return const AlignmentDirectional(
+            0.45, 1.0); // Adjust the value based on your layout
+      case 4:
+        return const AlignmentDirectional(
+          0.94,
+          1.0,
+        );
+      default:
+        return AlignmentDirectional.center;
+    }
   }
 }
 
