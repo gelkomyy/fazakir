@@ -3,7 +3,6 @@ import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_n
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_nav_bar.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
-import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +15,7 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomNavBar(
       navBarEssentials: NavBarEssentials(
-        navBarHeight: getResponsiveFontSize(context, fontSize: 80),
+        navBarHeight: null /* getResponsiveFontSize(context, fontSize: 80) */,
         items: buildNavBarItems,
         selectedIndex: selectedIndex,
         backgroundColor: Colors.white,
@@ -28,15 +27,15 @@ class CustomBottomNavBar extends StatelessWidget {
           context.read<NavigationCubit>().navigationIndexView(index);
         },
         padding: const EdgeInsets.symmetric(
-          horizontal: 2,
-          vertical: 6,
+          horizontal: 16,
+          vertical: 10,
         ),
         margin: const EdgeInsets.only(
           left: 18,
           right: 18,
           bottom: 18,
         ),
-        navBarItemsAlignment: MainAxisAlignment.spaceEvenly,
+        navBarItemsAlignment: MainAxisAlignment.spaceBetween,
       ),
     );
   }

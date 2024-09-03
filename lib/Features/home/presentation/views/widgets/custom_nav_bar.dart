@@ -17,54 +17,47 @@ class CustomNavBar extends StatelessWidget {
           : AnimatedContainer(
               duration: navBarEssentials.itemAnimationProperties.duration,
               curve: navBarEssentials.itemAnimationProperties.curve,
-              alignment: Alignment.center,
-              child: AnimatedContainer(
-                duration: navBarEssentials.itemAnimationProperties.duration,
-                curve: navBarEssentials.itemAnimationProperties.curve,
-                alignment: Alignment.center,
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      item.svgAsset != null
-                          ? SvgWithColorAnimation(
-                              item: item,
-                              isSelected: isSelected,
-                            )
-                          : IconTheme(
-                              data: IconThemeData(
-                                  size: item.iconSize,
-                                  color: isSelected
-                                      ? (item.activeColorSecondary ??
-                                          item.activeColorPrimary)
-                                      : item.inactiveColorPrimary ??
-                                          item.activeColorPrimary),
-                              child: isSelected
-                                  ? item.icon
-                                  : item.inactiveIcon ?? item.icon,
-                            ),
-                      if (item.title == null)
-                        const SizedBox.shrink()
-                      else
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12),
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              item.title!,
-                              style:
-                                  AppFontStyles.styleBold10(context).copyWith(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    item.svgAsset != null
+                        ? SvgWithColorAnimation(
+                            item: item,
+                            isSelected: isSelected,
+                          )
+                        : IconTheme(
+                            data: IconThemeData(
+                                size: item.iconSize,
                                 color: isSelected
                                     ? (item.activeColorSecondary ??
                                         item.activeColorPrimary)
-                                    : item.inactiveColorPrimary,
-                              ),
+                                    : item.inactiveColorPrimary ??
+                                        item.activeColorPrimary),
+                            child: isSelected
+                                ? item.icon
+                                : item.inactiveIcon ?? item.icon,
+                          ),
+                    if (item.title == null)
+                      const SizedBox.shrink()
+                    else
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            item.title!,
+                            style: AppFontStyles.styleBold10(context).copyWith(
+                              color: isSelected
+                                  ? (item.activeColorSecondary ??
+                                      item.activeColorPrimary)
+                                  : item.inactiveColorPrimary,
                             ),
                           ),
                         ),
-                    ],
-                  ),
+                      ),
+                  ],
                 ),
               ),
             );
@@ -73,11 +66,43 @@ class CustomNavBar extends StatelessWidget {
   Widget build(final BuildContext context) {
     final Color selectedItemActiveColor = navBarEssentials
         .items[navBarEssentials.selectedIndex].activeColorPrimary;
-    final double itemWidth = (MediaQuery.of(context).size.width -
-            ((navBarEssentials.padding.left + navBarEssentials.padding.right) +
-                (navBarEssentials.margin.left +
-                    navBarEssentials.margin.right))) /
-        navBarEssentials.items.length;
+    final double iconSize =
+        navBarEssentials.items[navBarEssentials.selectedIndex].iconSize;
+
+    final double indicatorWidth =
+        iconSize; // The bar width should match the icon size
+    final double spaceBetweenIcons = (MediaQuery.of(context).size.width -
+            navBarEssentials.margin.left -
+            (iconSize * navBarEssentials.items.length)) /
+        (navBarEssentials.items.length - 1);
+
+    // Calculate the base offset
+    final double baseOffset =
+        (iconSize + spaceBetweenIcons) * navBarEssentials.selectedIndex;
+
+    // Adjust offset based on index
+    double offset;
+
+    switch (navBarEssentials.selectedIndex) {
+      case 0:
+        offset = baseOffset + navBarEssentials.padding.left;
+        break;
+      case 1:
+        offset = baseOffset;
+        break;
+      case 2:
+        offset = baseOffset - indicatorWidth / 2;
+        break;
+      case 3:
+        offset = baseOffset - indicatorWidth * 1.3;
+        break;
+      case 4:
+        offset = baseOffset - indicatorWidth * 2;
+      default:
+        offset = baseOffset;
+        break;
+    }
+
     return Padding(
       padding: navBarEssentials.margin,
       child: Stack(
@@ -133,43 +158,17 @@ class CustomNavBar extends StatelessWidget {
               }).toList(),
             ),
           ),
-          Transform.translate(
-            offset: const Offset(
-              0,
-              -0.5,
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: navBarEssentials.padding.horizontal,
-              ),
-              child: Row(
-                children: <Widget>[
-                  AnimatedContainer(
-                    duration: navBarEssentials.itemAnimationProperties.duration,
-                    curve: navBarEssentials.itemAnimationProperties.curve,
-                    color: Colors.transparent,
-                    width: (itemWidth * navBarEssentials.selectedIndex) +
-                        getResponsiveFontSize(context,
-                            fontSize: (itemWidth * 0.45 * 0.5)),
-                    height: 2,
-                  ),
-                  Flexible(
-                    child: AnimatedContainer(
-                      duration:
-                          navBarEssentials.itemAnimationProperties.duration,
-                      curve: navBarEssentials.itemAnimationProperties.curve,
-                      width: getResponsiveFontSize(context,
-                          fontSize: itemWidth * 0.45),
-                      height: 2,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: selectedItemActiveColor,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+          // The moving indicator bar
+          // The moving indicator bar
+          AnimatedPositionedDirectional(
+            duration: navBarEssentials.itemAnimationProperties.duration,
+            curve: navBarEssentials.itemAnimationProperties.curve,
+            start: offset,
+            top: 0,
+            child: Container(
+              width: indicatorWidth,
+              height: 2, // Height of the indicator
+              color: selectedItemActiveColor,
             ),
           ),
         ],

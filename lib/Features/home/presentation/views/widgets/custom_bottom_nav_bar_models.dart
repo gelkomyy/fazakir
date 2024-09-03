@@ -156,14 +156,14 @@ class NavBarEssentials {
     required this.margin,
     required this.navBarItemsAlignment,
     this.selectedScreenBuildContext,
-    this.navBarHeight = 0.0,
+    this.navBarHeight,
   });
 
   final int selectedIndex;
   final Color backgroundColor;
   final List<PersistentBottomNavBarItem> items;
   final ValueChanged<int>? onItemSelected;
-  final double navBarHeight;
+  final double? navBarHeight;
   final EdgeInsets padding;
   final ItemAnimationSettings itemAnimationProperties;
   final BuildContext? selectedScreenBuildContext;
