@@ -29,9 +29,12 @@ class _VideoPlayerImageStackState extends State<VideoPlayerImageStack> {
       alignment: AlignmentDirectional.topStart,
       children: [
         isPlayed
-            ? VideoPlayerViewBody(
+            ? AspectRatio(
                 aspectRatio: 1.77,
-                videoUrl: widget.videoYoutubeEntity.url,
+                child: VideoPlayerViewBody(
+                  aspectRatio: 1.77,
+                  videoUrl: widget.videoYoutubeEntity.url,
+                ),
               )
             : AspectRatio(
                 aspectRatio: 1.77,

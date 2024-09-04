@@ -78,6 +78,10 @@ class Assets {
   /// assets/images/muslim_women.jpg
   static const String assetsImagesMuslimWomen = "assets/images/muslim_women.jpg";
 
+  /// Assets for assetsImagesNoInternetShape
+  /// assets/images/no_internet_shape.png
+  static const String assetsImagesNoInternetShape = "assets/images/no_internet_shape.png";
+
   /// Assets for assetsImagesNotificationIconSvg
   /// assets/images/notification_icon_svg.svg
   static const String assetsImagesNotificationIconSvg = "assets/images/notification_icon_svg.svg";

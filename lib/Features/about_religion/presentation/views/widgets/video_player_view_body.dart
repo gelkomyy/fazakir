@@ -1,5 +1,8 @@
+import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/utils/g_snack_bar.dart';
+import 'package:fazakir/core/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -19,79 +22,125 @@ class _VideoPlayerViewBodyState extends State<VideoPlayerViewBody> {
   InAppWebViewController? webViewController;
   double _progress = 0;
   bool _isLoading = true;
-
+  String? errorMessage;
   @override
   Widget build(BuildContext context) {
     final videoId = convertYouTubeVideoUrlToId(widget.videoUrl);
 
-    return AspectRatio(
-      aspectRatio: widget.aspectRatio,
-      child: Stack(
-        children: [
-          InAppWebView(
-            initialUrlRequest: URLRequest(
-              url: WebUri.uri(
-                Uri.parse(
-                    "https://www.youtube.com/embed/$videoId?controls=1&autoplay=1&rel=0&showinfo=0"),
+    return errorMessage != null
+        ? AspectRatio(
+            aspectRatio: 1,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    Assets.assetsImagesNoInternetShape,
+                  ),
+                  const SizedBox(height: 12),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: SizedBox(
+                      width: MediaQuery.sizeOf(context).width * 0.8,
+                      child: CustomTextButton(
+                        text: 'اعادة التحميل',
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 24,
+                        ),
+                        backgroundColor: AppColors.textBlackColor,
+                        textStyle: AppFontStyles.styleBold14(context).copyWith(
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isLoading = true;
+                            _progress = 0;
+                            errorMessage = null;
+                            webViewController?.reload();
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            initialSettings: InAppWebViewSettings(
-              mediaPlaybackRequiresUserGesture: false,
-              disableVerticalScroll: false, // Allow vertical scrolling
-              disableHorizontalScroll: false, // Allow horizontal scrolling
-              allowsInlineMediaPlayback: true,
-              javaScriptEnabled: true,
-              supportZoom: true, // Enable zoom if needed
+          )
+        : AspectRatio(
+            aspectRatio: widget.aspectRatio,
+            child: Stack(
+              children: [
+                InAppWebView(
+                  initialUrlRequest: URLRequest(
+                    url: WebUri.uri(
+                      Uri.parse(
+                          "https://www.youtube.com/embed/$videoId?controls=1&autoplay=1&rel=0&showinfo=0"),
+                    ),
+                  ),
+                  initialSettings: InAppWebViewSettings(
+                    mediaPlaybackRequiresUserGesture: false,
+                    disableVerticalScroll: false, // Allow vertical scrolling
+                    disableHorizontalScroll:
+                        false, // Allow horizontal scrolling
+                    allowsInlineMediaPlayback: true,
+                    javaScriptEnabled: true,
+                    supportZoom: true, // Enable zoom if needed
+                  ),
+                  onWebViewCreated: (InAppWebViewController controller) {
+                    webViewController = controller;
+                  },
+                  onLoadStart:
+                      (InAppWebViewController controller, WebUri? url) {
+                    setState(() {
+                      _isLoading = true;
+                      _progress = 0;
+                      errorMessage = null;
+                    });
+                  },
+                  onLoadStop: (InAppWebViewController controller, WebUri? url) {
+                    setState(() {
+                      _isLoading = false;
+                      _progress = 1.0;
+                    });
+                  },
+                  onProgressChanged:
+                      (InAppWebViewController controller, int progress) {
+                    setState(() {
+                      _progress = progress / 100;
+                    });
+                  },
+                  onEnterFullscreen: (InAppWebViewController controller) {
+                    _enterFullScreen();
+                  },
+                  onExitFullscreen: (InAppWebViewController controller) {
+                    _exitFullScreen();
+                  },
+                  onReceivedError: (InAppWebViewController controller,
+                      WebResourceRequest request, WebResourceError error) {
+                    setState(() {
+                      _isLoading = false;
+                      errorMessage = error.description;
+                    });
+                    showCustomSnackBar(
+                      context,
+                      'Error: ${error.description}',
+                    );
+                  },
+                ),
+                if (_isLoading)
+                  Center(
+                    child: CircularProgressIndicator(
+                      value: _progress,
+                      backgroundColor: Colors.grey[200],
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+              ],
             ),
-            onWebViewCreated: (InAppWebViewController controller) {
-              webViewController = controller;
-            },
-            onLoadStart: (InAppWebViewController controller, WebUri? url) {
-              setState(() {
-                _isLoading = true;
-                _progress = 0;
-              });
-            },
-            onLoadStop: (InAppWebViewController controller, WebUri? url) {
-              setState(() {
-                _isLoading = false;
-                _progress = 1.0;
-              });
-            },
-            onProgressChanged:
-                (InAppWebViewController controller, int progress) {
-              setState(() {
-                _progress = progress / 100;
-              });
-            },
-            onEnterFullscreen: (InAppWebViewController controller) {
-              _enterFullScreen();
-            },
-            onExitFullscreen: (InAppWebViewController controller) {
-              _exitFullScreen();
-            },
-            onReceivedError: (InAppWebViewController controller,
-                WebResourceRequest request, WebResourceError error) {
-              setState(() {
-                _isLoading = false;
-              });
-              showCustomSnackBar(
-                context,
-                'Error: ${error.description}',
-              );
-            },
-          ),
-          if (_isLoading)
-            Center(
-              child: CircularProgressIndicator(
-                value: _progress,
-                backgroundColor: Colors.grey[200],
-                color: AppColors.primaryColor,
-              ),
-            ),
-        ],
-      ),
-    );
+          );
   }
 
   void _enterFullScreen() {
