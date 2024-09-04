@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
           )..fetchVideos(),
         ),
       ],
-      child: const SafeArea(child: HomeViewBody()),
+      child: const HomeViewBody(),
     );
   }
 }

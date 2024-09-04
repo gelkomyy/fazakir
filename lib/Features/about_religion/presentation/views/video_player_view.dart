@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/about_religion/presentation/views/widgets/video_player_view_body.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 
@@ -11,8 +12,10 @@ class VideoPlayerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('مشاهدة الفيديو'),
-        leadingWidth: 64,
+        title: Text(
+          'مشاهدة الفيديو',
+          style: AppFontStyles.styleBold20(context),
+        ),
         leading: Bounceable(
           child: const Card(
             color: AppColors.textBlackColor,

@@ -99,7 +99,7 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                 },
                 child: SvgPicture.asset(
                   Assets.assetsImagesLayersShapeSvg,
-                  width: 24,
+                  width: 20,
                 ),
               ),
               SizedBox(height: isShow ? 24 : 0),
@@ -113,7 +113,7 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                             opacity: _fadeAnimation,
                             child: SvgPicture.asset(
                               Assets.assetsImagesHeartBlackIconSvg,
-                              width: 18,
+                              width: 14,
                             ),
                           ),
                         ),
@@ -124,7 +124,7 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                             opacity: _fadeAnimation,
                             child: SvgPicture.asset(
                               Assets.assetsImagesCopyIconSvg,
-                              width: 18,
+                              width: 14,
                             ),
                           ),
                         ),
@@ -138,7 +138,7 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                         opacity: _fadeAnimation,
                         child: SvgPicture.asset(
                           Assets.assetsImagesShareIconSvg,
-                          width: 16,
+                          width: 14,
                         ),
                       ),
                     )

@@ -15,7 +15,6 @@ class QiblahView extends StatelessWidget {
       create: (context) => QiblahCubit()..startTracking(),
       child: Scaffold(
         appBar: AppBar(
-          leadingWidth: 64,
           leading: Bounceable(
             child: const Card(
               color: AppColors.textBlackColor,

@@ -40,7 +40,7 @@ class NavigationPage extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.sizeOf(context).width,
                       child: CustomBottomNavBar(
                         selectedIndex: state,
                       ),
