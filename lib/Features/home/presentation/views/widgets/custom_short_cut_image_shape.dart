@@ -1,4 +1,3 @@
-import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
@@ -6,15 +5,18 @@ import 'package:flutter/material.dart';
 class CustomShortCutImageShape extends StatelessWidget {
   const CustomShortCutImageShape({
     super.key,
+    required this.title,
+    required this.assetImage,
   });
-
+  final String title;
+  final String assetImage;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 0.72,
       child: Container(
-        decoration: const BoxDecoration(
-          boxShadow: [
+        decoration: BoxDecoration(
+          boxShadow: const [
             BoxShadow(
               color: Color(0xFF6F5B42),
               blurRadius: 24,
@@ -22,15 +24,15 @@ class CustomShortCutImageShape extends StatelessWidget {
               spreadRadius: 1,
             )
           ],
-          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
           image: DecorationImage(
-            image: AssetImage(Assets.assetsImagesQuranImage),
+            image: AssetImage(assetImage),
             fit: BoxFit.cover,
           ),
         ),
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: 24,
+            horizontal: 12,
             vertical: 10,
           ),
           decoration: ShapeDecoration(
@@ -59,7 +61,7 @@ class CustomShortCutImageShape extends StatelessWidget {
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
-                  'القران الكريم',
+                  title,
                   style: AppFontStyles.styleBold10(context).copyWith(
                     color: Colors.white,
                   ),

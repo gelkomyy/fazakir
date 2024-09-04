@@ -1,65 +1,58 @@
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
-import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ShortCutItemsListView extends StatelessWidget {
   const ShortCutItemsListView({
     super.key,
   });
-
+  static const List<Map<String, String>> shortcuts = [
+    {
+      "title": "القران الكريم",
+      "AssetImage": Assets.assetsImagesQuranImage,
+    },
+    {
+      "title": "الادعية والاذكار",
+      "AssetImage": Assets.assetsImagesAzkarShortcut,
+    },
+    {
+      "title": "الاحاديث النبوية",
+      "AssetImage": Assets.assetsImagesAhadithShortcut,
+    },
+    {
+      "title": "عن الدين",
+      "AssetImage": Assets.assetsImagesReligionShortcut,
+    },
+    {
+      "title": "أوقات الصلاة",
+      "AssetImage": Assets.assetsImagesPrayerShortcut,
+    },
+    {
+      "title": "الرقية الشرعية",
+      "AssetImage": Assets.assetsImagesRuqyaShortcut,
+    },
+    {
+      "title": "السبحة",
+      "AssetImage": Assets.assetsImagesSibhaShortcut,
+    }
+  ];
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: [
-        ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          clipBehavior: Clip.none,
-          scrollDirection: Axis.horizontal,
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: EdgeInsetsDirectional.only(end: index + 1 == 3 ? 0 : 12),
-              child: const CustomShortCutImageShape(),
-            );
-          },
-        ),
-        PositionedDirectional(
-          start: 0,
-          child: Container(
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.textBlackColor),
-            child: Center(
-              child: IconButton(
-                iconSize: 20,
-                visualDensity: VisualDensity.compact,
-                icon: const Icon(
-                  FontAwesomeIcons.arrowRightLong,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-            ),
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      clipBehavior: Clip.none,
+      scrollDirection: Axis.horizontal,
+      itemCount: shortcuts.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: EdgeInsetsDirectional.only(
+              end: index + 1 == shortcuts.length ? 0 : 12),
+          child: CustomShortCutImageShape(
+            title: shortcuts[index]["title"] ?? '',
+            assetImage: shortcuts[index]["AssetImage"] ?? '',
           ),
-        ),
-        PositionedDirectional(
-          end: 0,
-          child: Container(
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.textBlackColor),
-            child: IconButton(
-              iconSize: 20,
-              visualDensity: VisualDensity.compact,
-              icon: const Icon(
-                FontAwesomeIcons.arrowLeftLong,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

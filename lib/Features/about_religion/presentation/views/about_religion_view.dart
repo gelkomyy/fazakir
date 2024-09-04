@@ -3,6 +3,7 @@ import 'package:fazakir/Features/about_religion/presentation/manager/cubits/mana
 import 'package:fazakir/Features/about_religion/presentation/views/widgets/about_religion_view_body.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,10 @@ class AboutReligionView extends StatelessWidget {
       )..fetchVideos(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(S.of(context).about_religion),
+          title: Text(
+            S.of(context).about_religion,
+            style: AppFontStyles.styleBold20(context),
+          ),
           centerTitle: true,
           actions: [
             Bounceable(
@@ -31,10 +35,10 @@ class AboutReligionView extends StatelessWidget {
                 shape: const CircleBorder(),
                 margin: const EdgeInsetsDirectional.only(end: 24),
                 child: Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(7),
                   child: SvgPicture.asset(
                     Assets.assetsImagesSearchIconSvg,
-                    width: 20,
+                    width: 19,
                     colorFilter: const ColorFilter.mode(
                       Colors.white,
                       BlendMode.srcIn,
@@ -47,7 +51,6 @@ class AboutReligionView extends StatelessWidget {
               },
             ),
           ],
-          leadingWidth: 64,
           leading: Bounceable(
             child: const Card(
               color: AppColors.textBlackColor,

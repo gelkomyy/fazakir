@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesAhadithShortcut
+  /// assets/images/ahadith_shortcut.jpg
+  static const String assetsImagesAhadithShortcut = "assets/images/ahadith_shortcut.jpg";
+
   /// Assets for assetsImagesAlarmIconSvg
   /// assets/images/alarm_icon_svg.svg
   static const String assetsImagesAlarmIconSvg = "assets/images/alarm_icon_svg.svg";
@@ -9,6 +13,10 @@ class Assets {
   /// Assets for assetsImagesAsrIconSvg
   /// assets/images/asr_icon_svg.svg
   static const String assetsImagesAsrIconSvg = "assets/images/asr_icon_svg.svg";
+
+  /// Assets for assetsImagesAzkarShortcut
+  /// assets/images/azkar_shortcut.jpg
+  static const String assetsImagesAzkarShortcut = "assets/images/azkar_shortcut.jpg";
 
   /// Assets for assetsImagesCompassShapeSvg
   /// assets/images/compass_shape_svg.svg
@@ -74,6 +82,10 @@ class Assets {
   /// assets/images/notification_icon_svg.svg
   static const String assetsImagesNotificationIconSvg = "assets/images/notification_icon_svg.svg";
 
+  /// Assets for assetsImagesPrayerShortcut
+  /// assets/images/prayer_shortcut.jpg
+  static const String assetsImagesPrayerShortcut = "assets/images/prayer_shortcut.jpg";
+
   /// Assets for assetsImagesPrayerTimesBackgroundShapeSvg
   /// assets/images/prayer_times_background_shape_svg.svg
   static const String assetsImagesPrayerTimesBackgroundShapeSvg = "assets/images/prayer_times_background_shape_svg.svg";
@@ -81,6 +93,14 @@ class Assets {
   /// Assets for assetsImagesQuranImage
   /// assets/images/quran_image.jpg
   static const String assetsImagesQuranImage = "assets/images/quran_image.jpg";
+
+  /// Assets for assetsImagesReligionShortcut
+  /// assets/images/religion_shortcut.jpg
+  static const String assetsImagesReligionShortcut = "assets/images/religion_shortcut.jpg";
+
+  /// Assets for assetsImagesRuqyaShortcut
+  /// assets/images/ruqya_shortcut.jpg
+  static const String assetsImagesRuqyaShortcut = "assets/images/ruqya_shortcut.jpg";
 
   /// Assets for assetsImagesScreenDisplayShapeSvg
   /// assets/images/screen_display_shape_svg.svg
@@ -97,6 +117,14 @@ class Assets {
   /// Assets for assetsImagesShareIconSvg
   /// assets/images/share_icon_svg.svg
   static const String assetsImagesShareIconSvg = "assets/images/share_icon_svg.svg";
+
+  /// Assets for assetsImagesShortcutsBackgroundShapeSvg
+  /// assets/images/shortcuts_background_shape_svg.svg
+  static const String assetsImagesShortcutsBackgroundShapeSvg = "assets/images/shortcuts_background_shape_svg.svg";
+
+  /// Assets for assetsImagesSibhaShortcut
+  /// assets/images/sibha_shortcut.jpg
+  static const String assetsImagesSibhaShortcut = "assets/images/sibha_shortcut.jpg";
 
   /// Assets for assetsImagesTestPreviewImage
   /// assets/images/test_preview_image.jpg

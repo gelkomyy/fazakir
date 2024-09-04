@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/home/presentation/views/shortcuts_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_column.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_of_the_day.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/home_view_body_header.dart';
@@ -42,6 +43,9 @@ class HomeViewBody extends StatelessWidget {
                 const SizedBox(height: 42),
                 RowLabelWithShowMore(
                   labelText: txt.shortcuts,
+                  onTapShowMore: () {
+                    Navigator.pushNamed(context, ShortCutsView.routeName);
+                  },
                 ),
               ],
             ),
