@@ -56,7 +56,9 @@ class HomeViewBody extends StatelessWidget {
             child: const ShortCutItemsListView(),
           ),
           const SizedBox(height: 35),
-          const ContainerZikrOfTheDay(),
+          const ContainerZikrOfTheDay(
+            withoutCount: true,
+          ),
           const SizedBox(height: 35),
           const AboutReligionColumn(),
           const SizedBox(height: 110),
