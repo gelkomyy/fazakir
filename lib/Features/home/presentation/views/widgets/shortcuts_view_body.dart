@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/about_religion/presentation/views/about_religion_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
@@ -31,10 +32,9 @@ class ShortCutsViewBody extends StatelessWidget {
       {
         "title": "عن الدين",
         "AssetImage": Assets.assetsImagesReligionShortcut,
-      },
-      {
-        "title": "أوقات الصلاة",
-        "AssetImage": Assets.assetsImagesPrayerShortcut,
+        "onTap": () {
+          Navigator.pushNamed(context, AboutReligionView.routeName);
+        }
       },
       {
         "title": "الرقية الشرعية",
