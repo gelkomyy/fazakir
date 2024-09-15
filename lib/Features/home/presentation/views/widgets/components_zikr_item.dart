@@ -7,15 +7,15 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
 
-class ComponentsZikrOfTheDay extends StatefulWidget {
-  const ComponentsZikrOfTheDay({super.key, required this.zikr});
+class ComponentsZikrItem extends StatefulWidget {
+  const ComponentsZikrItem({super.key, required this.zikr});
   final AzkarItemEntity zikr;
 
   @override
-  State<ComponentsZikrOfTheDay> createState() => _ComponentsZikrOfTheDayState();
+  State<ComponentsZikrItem> createState() => _ComponentsZikrItemState();
 }
 
-class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
+class _ComponentsZikrItemState extends State<ComponentsZikrItem>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _positionAnimation;

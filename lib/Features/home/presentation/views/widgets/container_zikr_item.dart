@@ -1,12 +1,12 @@
 import 'package:fazakir/Features/azkar/domain/entities/azkar_item_entity.dart';
-import 'package:fazakir/Features/home/presentation/views/widgets/components_zikr_of_the_day.dart';
+import 'package:fazakir/Features/home/presentation/views/widgets/components_zikr_item.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-class ContainerZikrOfTheDay extends StatelessWidget {
-  const ContainerZikrOfTheDay({
+class ContainerZikrItem extends StatelessWidget {
+  const ContainerZikrItem({
     super.key,
     this.margin,
     this.withoutHeader = false,
@@ -91,7 +91,7 @@ class ContainerZikrOfTheDay extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                ComponentsZikrOfTheDay(
+                ComponentsZikrItem(
                   zikr: azkarItem,
                 ),
               ],

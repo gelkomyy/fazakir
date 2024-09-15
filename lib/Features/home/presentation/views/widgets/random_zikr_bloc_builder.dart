@@ -1,6 +1,6 @@
 import 'package:fazakir/Features/azkar/domain/entities/azkar_item_entity.dart';
 import 'package:fazakir/Features/azkar/presentation/manager/cubits/manage_azkar_cubit/manage_azkar_cubit.dart';
-import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_of_the_day.dart';
+import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -15,7 +15,7 @@ class RandomZikrBlocBuilder extends StatelessWidget {
     return BlocBuilder<ManageAzkarCubit, ManageAzkarState>(
       builder: (context, state) {
         if (state is FetchAzkarSuccess) {
-          return ContainerZikrOfTheDay(
+          return ContainerZikrItem(
             azkarItem: state.azkarCategories.first.azkar.first,
             zikrCategory: state.azkarCategories.first.category,
             withoutCount: true,
@@ -23,7 +23,7 @@ class RandomZikrBlocBuilder extends StatelessWidget {
         } else if (state is FetchAzkarLoading) {
           return Skeletonizer(
             effect: const PulseEffect(),
-            child: ContainerZikrOfTheDay(
+            child: ContainerZikrItem(
               azkarItem: AzkarItemEntity(
                 id: 1,
                 text:
@@ -34,7 +34,7 @@ class RandomZikrBlocBuilder extends StatelessWidget {
             ),
           );
         } else {
-          return ContainerZikrOfTheDay(
+          return ContainerZikrItem(
             azkarItem: AzkarItemEntity(
               id: 1,
               text:
