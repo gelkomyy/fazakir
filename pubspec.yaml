@@ -46,6 +46,7 @@ dependencies:
   get_it: ^7.7.0
   intl: ^0.19.0
   rename: ^3.0.2
+  share_plus: ^10.0.2
   shared_preferences: ^2.3.1
   skeletonizer: ^1.4.2
   url_launcher: ^6.3.0

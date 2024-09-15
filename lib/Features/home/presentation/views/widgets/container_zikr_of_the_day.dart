@@ -91,7 +91,9 @@ class ContainerZikrOfTheDay extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const ComponentsZikrOfTheDay(),
+                ComponentsZikrOfTheDay(
+                  zikr: azkarItem,
+                ),
               ],
             ),
           )

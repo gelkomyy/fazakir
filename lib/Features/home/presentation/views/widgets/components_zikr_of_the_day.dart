@@ -1,9 +1,15 @@
+import 'package:fazakir/Features/azkar/domain/entities/azkar_item_entity.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
+import 'package:fazakir/core/utils/g_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ComponentsZikrOfTheDay extends StatefulWidget {
-  const ComponentsZikrOfTheDay({super.key});
+  const ComponentsZikrOfTheDay({super.key, required this.zikr});
+  final AzkarItemEntity zikr;
 
   @override
   State<ComponentsZikrOfTheDay> createState() => _ComponentsZikrOfTheDayState();
@@ -78,13 +84,13 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
         builder: (context, child) {
           double t = _positionAnimation.value;
 
-          // Left icon (Heart)
+          /*  // Left icon (Heart)
           double x1 = 24 * t;
           double y1 = -24 * (1 - t) - 0.5 * -24 * (1 - t) * (1 - t);
 
           // Center icon (Copy)
           double x2 = -24 * t;
-          double y2 = -24 * (1 - t) - 0.5 * -24 * (1 - t) * (1 - t);
+          double y2 = -24 * (1 - t) - 0.5 * -24 * (1 - t) * (1 - t); */
 
           // Right icon (Share)
           double x3 = 0 * t;
@@ -93,7 +99,7 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              GestureDetector(
+              Bounceable(
                 onTap: () {
                   _handleTap();
                 },
@@ -102,13 +108,15 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                   width: 20,
                 ),
               ),
-              SizedBox(height: isShow ? 24 : 0),
+              SizedBox(height: isShow ? 16 : 0),
               isShow
-                  ? Row(
-                      mainAxisSize: MainAxisSize.min,
+                  ? Stack(
                       children: [
-                        Transform.translate(
-                          offset: Offset(x1, y1),
+                        Align(
+                          alignment: AlignmentDirectional(
+                            t * -0.2,
+                            0.0,
+                          ), // Use Alignment to position
                           child: FadeTransition(
                             opacity: _fadeAnimation,
                             child: SvgPicture.asset(
@@ -117,14 +125,29 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20),
-                        Transform.translate(
-                          offset: Offset(x2, y2),
+                        Align(
+                          alignment: AlignmentDirectional(
+                            t * 0.2,
+                            0.0,
+                          ), // Use Alignment to position
                           child: FadeTransition(
                             opacity: _fadeAnimation,
-                            child: SvgPicture.asset(
-                              Assets.assetsImagesCopyIconSvg,
-                              width: 14,
+                            child: Bounceable(
+                              scaleFactor: 0.5,
+                              onTap: () {
+                                Clipboard.setData(
+                                  ClipboardData(text: widget.zikr.text),
+                                ).then(
+                                  (_) {
+                                    if (!context.mounted) return;
+                                    showCustomSnackBar(context, 'تم نسخ النص');
+                                  },
+                                );
+                              },
+                              child: SvgPicture.asset(
+                                Assets.assetsImagesCopyIconSvg,
+                                width: 14,
+                              ),
                             ),
                           ),
                         ),
@@ -136,15 +159,21 @@ class _ComponentsZikrOfTheDayState extends State<ComponentsZikrOfTheDay>
                       offset: Offset(x3, y3),
                       child: FadeTransition(
                         opacity: _fadeAnimation,
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesShareIconSvg,
-                          width: 14,
+                        child: Bounceable(
+                          scaleFactor: 0.5,
+                          onTap: () {
+                            Share.share(widget.zikr.text);
+                          },
+                          child: SvgPicture.asset(
+                            Assets.assetsImagesShareIconSvg,
+                            width: 14,
+                          ),
                         ),
                       ),
                     )
                   : const SizedBox(),
               SizedBox(
-                height: isShow ? 12 : 0,
+                height: isShow ? 8 : 0,
               ),
             ],
           );
