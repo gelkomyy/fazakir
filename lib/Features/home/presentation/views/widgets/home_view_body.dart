@@ -1,8 +1,7 @@
-import 'package:fazakir/Features/azkar/domain/entities/azkar_item_entity.dart';
 import 'package:fazakir/Features/home/presentation/views/shortcuts_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_column.dart';
-import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_of_the_day.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/home_view_body_header.dart';
+import 'package:fazakir/Features/home/presentation/views/widgets/random_zikr_bloc_builder.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/remain_time_for_next_prayer_text.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/short_cut_items_list_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
@@ -57,15 +56,7 @@ class HomeViewBody extends StatelessWidget {
             child: const ShortCutItemsListView(),
           ),
           const SizedBox(height: 35),
-          ContainerZikrOfTheDay(
-            azkarItem: AzkarItemEntity(
-              id: 1,
-              text:
-                  'اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ.',
-              count: 1,
-            ),
-            withoutCount: true,
-          ),
+          const RandomZikrBlocBuilder(),
           const SizedBox(height: 35),
           const AboutReligionColumn(),
           const SizedBox(height: 110),

@@ -13,11 +13,23 @@ class ManageAzkarCubit extends Cubit<ManageAzkarState> {
   Future<void> fetchAzkar() async {
     try {
       safeEmit(FetchAzkarLoading());
-      final videos = await azkarRepoImpl.getAzkar();
-      safeEmit(FetchAzkarSuccess(azkarCategories: videos));
+      final azkar = await azkarRepoImpl.getAzkar();
+      safeEmit(FetchAzkarSuccess(azkarCategories: azkar));
     } catch (e) {
       safeEmit(
         FetchAzkarFailure(message: 'Failed to load azkar'),
+      );
+    }
+  }
+
+  Future<void> fetchRandomZikr() async {
+    try {
+      safeEmit(FetchAzkarLoading());
+      final zikr = await azkarRepoImpl.getRandomAzkarCategory();
+      safeEmit(FetchAzkarSuccess(azkarCategories: [zikr]));
+    } catch (e) {
+      safeEmit(
+        FetchAzkarFailure(message: 'Failed to load zikr'),
       );
     }
   }

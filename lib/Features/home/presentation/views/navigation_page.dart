@@ -1,3 +1,5 @@
+import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
+import 'package:fazakir/Features/azkar/presentation/manager/cubits/manage_azkar_cubit/manage_azkar_cubit.dart';
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/home_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
@@ -10,8 +12,17 @@ class NavigationPage extends StatelessWidget {
   static const String routeName = 'navigationPage';
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NavigationCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NavigationCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ManageAzkarCubit(
+            AzkarRepoImpl(),
+          )..fetchRandomZikr(),
+        ),
+      ],
       child: BlocBuilder<NavigationCubit, int>(
         builder: (context, state) {
           return PopScope(
@@ -19,12 +30,12 @@ class NavigationPage extends StatelessWidget {
             onPopInvokedWithResult: (popBool, result) {
               if (state == 0) {
                 /*  showExitConfirmation(context).then(
-                  (shouldExit) {
-                    if (shouldExit ?? false) {
-                      SystemNavigator.pop();
-                    }
-                  },
-                ); */
+                      (shouldExit) {
+                        if (shouldExit ?? false) {
+                          SystemNavigator.pop();
+                        }
+                      },
+                    ); */
               } else {
                 // Handle navigation index change if the state is not 0
 

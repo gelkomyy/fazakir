@@ -10,4 +10,15 @@ class AzkarCategoryEntity {
     required this.category,
     required this.azkar,
   });
+
+  AzkarCategoryEntity copyWith({
+    String? category,
+    List<AzkarItemEntity>? azkar,
+  }) {
+    return AzkarCategoryEntity(
+      id: id,
+      category: category ?? this.category,
+      azkar: azkar ?? this.azkar,
+    );
+  }
 }

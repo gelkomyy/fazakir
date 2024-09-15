@@ -12,11 +12,13 @@ class ContainerZikrOfTheDay extends StatelessWidget {
     this.withoutHeader = false,
     this.withoutCount = false,
     required this.azkarItem,
+    this.zikrCategory,
   });
   final EdgeInsetsGeometry? margin;
   final bool withoutHeader;
   final bool withoutCount;
   final AzkarItemEntity azkarItem;
+  final String? zikrCategory;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +75,7 @@ class ContainerZikrOfTheDay extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'أذكار الصباح',
+                        zikrCategory ?? 'الاذكار العشوائية',
                         style: AppFontStyles.styleRegular11(context).copyWith(
                           color: AppColors.greyColor,
                         ),
