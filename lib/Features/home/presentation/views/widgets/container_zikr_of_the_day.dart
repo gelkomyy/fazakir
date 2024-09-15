@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/azkar/domain/entities/azkar_item_entity.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/components_zikr_of_the_day.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -10,10 +11,12 @@ class ContainerZikrOfTheDay extends StatelessWidget {
     this.margin,
     this.withoutHeader = false,
     this.withoutCount = false,
+    required this.azkarItem,
   });
   final EdgeInsetsGeometry? margin;
   final bool withoutHeader;
   final bool withoutCount;
+  final AzkarItemEntity azkarItem;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +43,7 @@ class ContainerZikrOfTheDay extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'التكرار مره',
+                  'التكرار ${azkarItem.count}',
                   textAlign: TextAlign.right,
                   style: AppFontStyles.styleBold12(context)
                       .copyWith(color: Colors.white),
@@ -79,7 +82,7 @@ class ContainerZikrOfTheDay extends StatelessWidget {
                   ),
                 const SizedBox(height: 12),
                 Text(
-                  'اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ.',
+                  azkarItem.text,
                   textAlign: TextAlign.center,
                   style: AppFontStyles.styleRegular24(context).copyWith(
                     fontFamily: 'Scheherazade',

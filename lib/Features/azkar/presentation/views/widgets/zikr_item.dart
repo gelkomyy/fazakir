@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
 import 'package:fazakir/Features/azkar/presentation/views/zikr_view.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -7,13 +8,19 @@ import 'package:flutter_bounceable/flutter_bounceable.dart';
 class ZikrItem extends StatelessWidget {
   const ZikrItem({
     super.key,
+    required this.azkarCategory,
   });
 
+  final AzkarCategoryEntity azkarCategory;
   @override
   Widget build(BuildContext context) {
     return Bounceable(
       onTap: () {
-        Navigator.pushNamed(context, ZikrView.routeName);
+        Navigator.pushNamed(
+          context,
+          ZikrView.routeName,
+          arguments: azkarCategory,
+        );
       },
       child: Container(
         width: double.infinity,
@@ -33,7 +40,7 @@ class ZikrItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'اذكار الصباح',
+              azkarCategory.category,
               textAlign: TextAlign.right,
               style: AppFontStyles.styleRegular14(context),
             ),

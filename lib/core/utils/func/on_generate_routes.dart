@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/about_religion/presentation/views/about_religion_view.dart';
 import 'package:fazakir/Features/about_religion/presentation/views/video_player_view.dart';
+import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
 import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/zikr_view.dart';
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
@@ -29,7 +30,10 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case AzkarView.routeName:
       return MaterialPageRoute(builder: (context) => const AzkarView());
     case ZikrView.routeName:
-      return MaterialPageRoute(builder: (context) => const ZikrView());
+      return MaterialPageRoute(
+          builder: (context) => ZikrView(
+                azkar: settings.arguments as AzkarCategoryEntity,
+              ));
     default:
       return MaterialPageRoute(builder: (context) => const NavigationPage());
   }
