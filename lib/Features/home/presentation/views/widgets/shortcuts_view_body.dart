@@ -1,11 +1,13 @@
 import 'package:fazakir/Features/about_religion/presentation/views/about_religion_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
+import 'package:fazakir/Features/azkar/presentation/views/ruqyah_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 class ShortCutsViewBody extends StatelessWidget {
@@ -39,6 +41,9 @@ class ShortCutsViewBody extends StatelessWidget {
       {
         "title": "الرقية الشرعية",
         "AssetImage": Assets.assetsImagesRuqyaShortcut,
+        "onTap": () {
+          Navigator.pushNamed(context, RuqyahView.routeName);
+        }
       },
       {
         "title": "السبحة",

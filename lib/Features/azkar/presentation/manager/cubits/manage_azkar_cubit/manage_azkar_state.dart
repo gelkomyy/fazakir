@@ -12,6 +12,11 @@ final class FetchAzkarSuccess extends ManageAzkarState {
   FetchAzkarSuccess({required this.azkarCategories});
 }
 
+final class FetchRuqyahSuccess extends ManageAzkarState {
+  final List<RuqyahEntity> ruqyahZikrs;
+  FetchRuqyahSuccess({required this.ruqyahZikrs});
+}
+
 final class FetchAzkarFailure extends ManageAzkarState {
   final String message;
 

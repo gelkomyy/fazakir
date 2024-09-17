@@ -90,6 +90,20 @@ class ContainerZikrItem extends StatelessWidget {
                     fontFamily: 'Scheherazade',
                   ),
                 ),
+                if (azkarItem.source != null &&
+                    azkarItem.source!.isNotEmpty &&
+                    azkarItem.source != '')
+                  const SizedBox(height: 6),
+                if (azkarItem.source != null &&
+                    azkarItem.source!.isNotEmpty &&
+                    azkarItem.source != '')
+                  Text(
+                    azkarItem.source!,
+                    textAlign: TextAlign.center,
+                    style: AppFontStyles.styleRegular24(context).copyWith(
+                      fontFamily: 'Scheherazade',
+                    ),
+                  ),
                 const SizedBox(height: 12),
                 ComponentsZikrItem(
                   zikr: azkarItem,

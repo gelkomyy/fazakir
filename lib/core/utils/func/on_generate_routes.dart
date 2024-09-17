@@ -2,6 +2,7 @@ import 'package:fazakir/Features/about_religion/presentation/views/about_religio
 import 'package:fazakir/Features/about_religion/presentation/views/video_player_view.dart';
 import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
 import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
+import 'package:fazakir/Features/azkar/presentation/views/ruqyah_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/zikr_view.dart';
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/home/presentation/views/shortcuts_view.dart';
@@ -29,6 +30,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ShortCutsView());
     case AzkarView.routeName:
       return MaterialPageRoute(builder: (context) => const AzkarView());
+    case RuqyahView.routeName:
+      return MaterialPageRoute(builder: (context) => const RuqyahView());
     case ZikrView.routeName:
       return MaterialPageRoute(
           builder: (context) => ZikrView(
