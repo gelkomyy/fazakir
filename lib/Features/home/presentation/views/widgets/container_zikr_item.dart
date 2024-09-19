@@ -98,7 +98,7 @@ class ContainerZikrItem extends StatelessWidget {
                     azkarItem.source!.isNotEmpty &&
                     azkarItem.source != '')
                   Card(
-                    color: AppColors.greyColor,
+                    color: const Color.fromARGB(255, 207, 207, 207),
                     child: Text(
                       azkarItem.source!,
                       textAlign: TextAlign.center,

@@ -63,7 +63,7 @@ class ContainerHadithItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Card(
-                  color: AppColors.greyColor,
+                  color: const Color.fromARGB(255, 207, 207, 207),
                   child: Column(
                     children: [
                       Text(

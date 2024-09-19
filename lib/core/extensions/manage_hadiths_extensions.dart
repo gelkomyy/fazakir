@@ -23,7 +23,8 @@ extension ManageHadithsExtensions on Collections {
   static List<String> getDisplayNames() {
     return Collections.values
         .map((collection) => collection.displayName)
-        .toList();
+        .toList()
+      ..sort((a, b) => a == 'سنن ابن ماجه' ? 1 : -1);
   }
 
   static Collections getCollectionByName(String name) {
