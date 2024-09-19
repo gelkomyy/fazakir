@@ -1,4 +1,5 @@
 import 'package:fazakir/Features/about_religion/presentation/views/about_religion_view.dart';
+import 'package:fazakir/Features/ahadith/presentation/views/a_6books_of_hadith_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/ruqyah_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
@@ -30,6 +31,9 @@ class ShortCutsViewBody extends StatelessWidget {
       {
         "title": "الاحاديث النبوية",
         "AssetImage": Assets.assetsImagesAhadithShortcut,
+        "onTap": () {
+          Navigator.pushNamed(context, A6BooksOfHadithView.routeName);
+        },
       },
       {
         "title": "عن الدين",
