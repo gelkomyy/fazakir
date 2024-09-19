@@ -97,11 +97,14 @@ class ContainerZikrItem extends StatelessWidget {
                 if (azkarItem.source != null &&
                     azkarItem.source!.isNotEmpty &&
                     azkarItem.source != '')
-                  Text(
-                    azkarItem.source!,
-                    textAlign: TextAlign.center,
-                    style: AppFontStyles.styleRegular24(context).copyWith(
-                      fontFamily: 'Scheherazade',
+                  Card(
+                    color: AppColors.greyColor,
+                    child: Text(
+                      azkarItem.source!,
+                      textAlign: TextAlign.center,
+                      style: AppFontStyles.styleRegular24(context).copyWith(
+                        fontFamily: 'Scheherazade',
+                      ),
                     ),
                   ),
                 const SizedBox(height: 12),
