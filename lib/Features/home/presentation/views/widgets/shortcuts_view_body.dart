@@ -3,6 +3,7 @@ import 'package:fazakir/Features/ahadith/presentation/views/a_6books_of_hadith_v
 import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/ruqyah_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
+import 'package:fazakir/Features/sebha/presentation/views/saved_azkar_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -52,6 +53,9 @@ class ShortCutsViewBody extends StatelessWidget {
       {
         "title": "السبحة",
         "AssetImage": Assets.assetsImagesSibhaShortcut,
+        "onTap": () {
+          Navigator.pushNamed(context, SavedAzkarView.routeName);
+        },
       }
     ];
     return Padding(

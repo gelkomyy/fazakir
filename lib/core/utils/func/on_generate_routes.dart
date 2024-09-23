@@ -11,6 +11,7 @@ import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/home/presentation/views/shortcuts_view.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
 import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dart';
+import 'package:fazakir/Features/sebha/presentation/views/saved_azkar_view.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -61,6 +62,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
           bookName: args['bookName'],
         ),
       );
+    case SavedAzkarView.routeName:
+      return MaterialPageRoute(builder: (context) => const SavedAzkarView());
     default:
       return MaterialPageRoute(builder: (context) => const NavigationPage());
   }

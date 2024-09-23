@@ -4,6 +4,7 @@ import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/ruqyah_view.dart';
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
+import 'package:fazakir/Features/sebha/presentation/views/saved_azkar_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,6 +58,9 @@ class ShortCutItemsListView extends StatelessWidget {
       {
         "title": "السبحة",
         "AssetImage": Assets.assetsImagesSibhaShortcut,
+        "onTap": () {
+          Navigator.pushNamed(context, SavedAzkarView.routeName);
+        },
       }
     ];
     return ListView.builder(
