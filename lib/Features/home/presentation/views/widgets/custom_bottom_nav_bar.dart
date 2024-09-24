@@ -63,6 +63,16 @@ class CustomBottomNavBar extends StatelessWidget {
         iconSize: 28,
       ),
       PersistentBottomNavBarItem(
+        svgAsset: Assets.assetsImagesSibhaIconSvg,
+        icon: SvgPicture.asset(
+          Assets.assetsImagesSibhaIconSvg,
+        ),
+        activeColorPrimary: AppColors.primaryColor,
+        inactiveColorPrimary: AppColors.greyColor,
+        title: S.current.sebha,
+        iconSize: 28,
+      ),
+      PersistentBottomNavBarItem(
         svgAsset: Assets.assetsImagesHeartBlackIconSvg,
         icon: SvgPicture.asset(
           Assets.assetsImagesHeartBlackIconSvg,
@@ -71,16 +81,6 @@ class CustomBottomNavBar extends StatelessWidget {
         inactiveColorPrimary: AppColors.greyColor,
         title: S.current.favorites,
         iconSize: 26,
-      ),
-      PersistentBottomNavBarItem(
-        svgAsset: Assets.assetsImagesNotificationIconSvg,
-        icon: SvgPicture.asset(
-          Assets.assetsImagesNotificationIconSvg,
-        ),
-        activeColorPrimary: AppColors.primaryColor,
-        inactiveColorPrimary: AppColors.greyColor,
-        title: S.current.notifications,
-        iconSize: 22,
       ),
       PersistentBottomNavBarItem(
         svgAsset: Assets.assetsImagesSettingsIconSvg,

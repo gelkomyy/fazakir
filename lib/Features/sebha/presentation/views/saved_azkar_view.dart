@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/sebha/presentation/manager/cubits/manage_sebha_zikr_cubit/manage_sebha_zikr_cubit.dart';
 import 'package:fazakir/Features/sebha/presentation/views/widgets/add_zikr_dialog.dart';
 import 'package:fazakir/Features/sebha/presentation/views/widgets/saved_azkar_view_body.dart';
@@ -8,10 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 
 class SavedAzkarView extends StatelessWidget {
-  const SavedAzkarView({super.key});
+  const SavedAzkarView({
+    super.key,
+    this.fromNavigation = false,
+  });
 
   static const String routeName = 'savedAzkarView';
-
+  final bool fromNavigation;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -55,7 +59,11 @@ class SavedAzkarView extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pop(context);
+              if (fromNavigation) {
+                context.read<NavigationCubit>().backNavigation();
+              } else {
+                Navigator.pop(context);
+              }
             },
           ),
           backgroundColor: Colors.white,

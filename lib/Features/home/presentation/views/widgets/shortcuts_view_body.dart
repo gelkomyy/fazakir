@@ -37,17 +37,17 @@ class ShortCutsViewBody extends StatelessWidget {
         },
       },
       {
-        "title": "عن الدين",
-        "AssetImage": Assets.assetsImagesReligionShortcut,
-        "onTap": () {
-          Navigator.pushNamed(context, AboutReligionView.routeName);
-        }
-      },
-      {
         "title": "الرقية الشرعية",
         "AssetImage": Assets.assetsImagesRuqyaShortcut,
         "onTap": () {
           Navigator.pushNamed(context, RuqyahView.routeName);
+        }
+      },
+      {
+        "title": "عن الدين",
+        "AssetImage": Assets.assetsImagesReligionShortcut,
+        "onTap": () {
+          Navigator.pushNamed(context, AboutReligionView.routeName);
         }
       },
       {

@@ -134,6 +134,10 @@ class Assets {
   /// assets/images/shortcuts_background_shape_svg.svg
   static const String assetsImagesShortcutsBackgroundShapeSvg = "assets/images/shortcuts_background_shape_svg.svg";
 
+  /// Assets for assetsImagesSibhaIconSvg
+  /// assets/images/sibha_icon_svg.svg
+  static const String assetsImagesSibhaIconSvg = "assets/images/sibha_icon_svg.svg";
+
   /// Assets for assetsImagesSibhaShortcut
   /// assets/images/sibha_shortcut.jpg
   static const String assetsImagesSibhaShortcut = "assets/images/sibha_shortcut.jpg";
