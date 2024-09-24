@@ -1,4 +1,5 @@
 import 'package:fazakir/Features/sebha/data/models/sebha_zikr_model.dart';
+import 'package:fazakir/Features/sebha/presentation/views/sebha_view.dart';
 import 'package:fazakir/Features/sebha/presentation/views/widgets/edit_zikr_dialog.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -36,7 +37,9 @@ class SebhaZikrItem extends StatelessWidget {
           ),
         ),
         Bounceable(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, SebhaView.routeName, arguments: zikr);
+          },
           child: Container(
             width: double.infinity,
             padding: const EdgeInsetsDirectional.only(
