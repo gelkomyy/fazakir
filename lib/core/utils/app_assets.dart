@@ -62,6 +62,10 @@ class Assets {
   /// assets/images/isha_icon_svg.svg
   static const String assetsImagesIshaIconSvg = "assets/images/isha_icon_svg.svg";
 
+  /// Assets for assetsImagesIslamicBackgroundPatternVector
+  /// assets/images/islamic_background_pattern_vector.jpeg
+  static const String assetsImagesIslamicBackgroundPatternVector = "assets/images/islamic_background_pattern_vector.jpeg";
+
   /// Assets for assetsImagesKaaba
   /// assets/images/kaaba.png
   static const String assetsImagesKaaba = "assets/images/kaaba.png";
