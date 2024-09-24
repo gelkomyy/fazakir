@@ -24,23 +24,25 @@ class SavedAzkarView extends StatelessWidget {
           ),
           centerTitle: true,
           actions: [
-            Bounceable(
-              child: const Card(
-                color: AppColors.textBlackColor,
-                shape: CircleBorder(),
-                margin: EdgeInsetsDirectional.only(end: 24),
-                child: Padding(
-                  padding: EdgeInsets.all(4),
-                  child: Icon(
-                    Icons.add_outlined,
-                    color: Colors.white,
+            Builder(builder: (acontext) {
+              return Bounceable(
+                child: const Card(
+                  color: AppColors.textBlackColor,
+                  shape: CircleBorder(),
+                  margin: EdgeInsetsDirectional.only(end: 24),
+                  child: Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Icon(
+                      Icons.add_outlined,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              onTap: () {
-                showAddZikrDialog(context);
-              },
-            ),
+                onTap: () {
+                  showAddZikrDialog(acontext);
+                },
+              );
+            }),
           ],
           leading: Bounceable(
             child: const Card(

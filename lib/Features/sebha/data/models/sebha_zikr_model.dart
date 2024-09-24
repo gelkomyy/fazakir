@@ -17,6 +17,16 @@ class SebhaZikrModel {
     return uniqueString.hashCode;
   }
 
+  copyWith({
+    String? zikr,
+    int? count,
+  }) {
+    return SebhaZikrModel(
+      zikr: zikr ?? this.zikr,
+      count: count ?? this.count,
+    );
+  }
+
   // Convert a SebhaZikrModel instance to a map
   Map<String, dynamic> toJson() {
     return {

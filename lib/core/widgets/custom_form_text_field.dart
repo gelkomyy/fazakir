@@ -11,15 +11,19 @@ class CustomFormTextField extends StatelessWidget {
     this.controller,
     this.validator,
     this.initialValue,
+    this.onSaved,
   });
   final String hintText;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
   final String? initialValue;
   final TextEditingController? controller;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      onSaved: onSaved,
       controller: controller,
       validator: validator,
       initialValue: initialValue,

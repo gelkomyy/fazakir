@@ -11,8 +11,8 @@ class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
   final GlobalKey<FormState> formKeyEdit = GlobalKey<FormState>();
   final TextEditingController textAddZikr = TextEditingController();
   final TextEditingController textAddZikrCount = TextEditingController();
-  final TextEditingController textEditZikr = TextEditingController();
-  final TextEditingController textEditZikrCount = TextEditingController();
+  String? editZikr;
+  int? editZikrCount;
 
   void getSebhaZikr() {
     emit(ManageSebhaZikrLoading());
@@ -56,9 +56,9 @@ class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
     getSebhaZikr();
   }
 
-  Future<void> updateSebhaZikr(SebhaZikrModel zikrModel) async {
+  Future<void> updateSebhaZikr(int id, SebhaZikrModel zikrModel) async {
     emit(ManageSebhaZikrLoading());
-    await SebhaZikrRepo.updateZikr(zikrModel.id, zikrModel);
+    await SebhaZikrRepo.updateZikr(id, zikrModel);
     getSebhaZikr();
   }
 
@@ -66,5 +66,21 @@ class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
     emit(ManageSebhaZikrLoading());
     await SebhaZikrRepo.deleteZikr(id);
     getSebhaZikr();
+  }
+
+  void clear() {
+    textAddZikr.clear();
+    textAddZikrCount.clear();
+    formKeyAdd.currentState?.reset();
+    formKeyEdit.currentState?.reset();
+  }
+
+  @override
+  Future<void> close() async {
+    textAddZikr.clear();
+    textAddZikrCount.clear();
+    formKeyAdd.currentState?.reset();
+    formKeyEdit.currentState?.reset();
+    super.close();
   }
 }

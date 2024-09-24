@@ -37,7 +37,7 @@ class SavedAzkarViewBody extends StatelessWidget {
                       ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          bottom: index + 1 == zikrs.length ? 0 : 32),
+                          bottom: index + 1 == zikrs.length ? 0 : 14),
                       child: SebhaZikrItem(zikr: zikrs[index]),
                     ),
                   ],

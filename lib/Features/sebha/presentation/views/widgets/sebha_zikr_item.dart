@@ -1,4 +1,5 @@
 import 'package:fazakir/Features/sebha/data/models/sebha_zikr_model.dart';
+import 'package:fazakir/Features/sebha/presentation/views/widgets/edit_zikr_dialog.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -16,10 +17,24 @@ class SebhaZikrItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.topEnd,
-      clipBehavior: Clip.none,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
+        Bounceable(
+          scaleFactor: 0.5,
+          onTap: () {
+            showEditZikrDialog(context, zikr);
+          },
+          child: SvgPicture.asset(
+            Assets.assetsImagesEditIconSvg,
+            width: 16,
+            colorFilter: const ColorFilter.mode(
+              AppColors.primaryColor,
+              BlendMode.srcIn,
+            ),
+          ),
+        ),
         Bounceable(
           onTap: () {},
           child: Container(
@@ -50,21 +65,6 @@ class SebhaZikrItem extends StatelessWidget {
                       .copyWith(color: AppColors.primarySwatch.shade400),
                 ),
               ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: -16,
-          child: Bounceable(
-            scaleFactor: 0.5,
-            onTap: () {},
-            child: SvgPicture.asset(
-              Assets.assetsImagesEditIconSvg,
-              width: 16,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primaryColor,
-                BlendMode.srcIn,
-              ),
             ),
           ),
         ),
