@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "prayer_times": MessageLookupByLibrary.simpleMessage("Prayer Times"),
         "search_mention_or_reciter": MessageLookupByLibrary.simpleMessage(
             "Search for a mention or reciter..."),
+        "sebha": MessageLookupByLibrary.simpleMessage("Sibha"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("Shortcuts"),
         "show_all": MessageLookupByLibrary.simpleMessage("Show All"),

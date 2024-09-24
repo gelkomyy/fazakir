@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "prayer_times": MessageLookupByLibrary.simpleMessage("أوقات الصلاة"),
         "search_mention_or_reciter":
             MessageLookupByLibrary.simpleMessage("ابحث عن ذكر أو قارئ ..."),
+        "sebha": MessageLookupByLibrary.simpleMessage("السبحة"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("الاختصارات"),
         "show_all": MessageLookupByLibrary.simpleMessage("عرض الكل"),
