@@ -4,14 +4,14 @@ import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hintText});
+class CustomSearchTextField extends StatelessWidget {
+  const CustomSearchTextField({super.key, required this.hintText});
   final String hintText;
   @override
   Widget build(BuildContext context) {
     return TextField(
       cursorColor: AppColors.primaryColor,
-      style: AppFontStyles.styleRegular11(context).copyWith(),
+      style: AppFontStyles.styleRegular11(context),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,

@@ -1,6 +1,6 @@
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
-import 'package:fazakir/core/widgets/custom_text_field.dart';
+import 'package:fazakir/core/widgets/custom_search_text_field.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,7 +52,7 @@ class HomeViewBodyHeader extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: 36,
-                  child: CustomTextField(
+                  child: CustomSearchTextField(
                     hintText: txt.search_mention_or_reciter,
                   ),
                 ),

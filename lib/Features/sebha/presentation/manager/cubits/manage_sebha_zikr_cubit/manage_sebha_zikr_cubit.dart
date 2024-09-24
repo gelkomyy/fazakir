@@ -1,0 +1,70 @@
+import 'package:fazakir/Features/sebha/data/models/sebha_zikr_model.dart';
+import 'package:fazakir/Features/sebha/data/repos/sebha_zikr_repo.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'manage_sebha_zikr_state.dart';
+
+class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
+  ManageSebhaZikrCubit() : super(ManageSebhaZikrInitial());
+  final GlobalKey<FormState> formKeyAdd = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKeyEdit = GlobalKey<FormState>();
+  final TextEditingController textAddZikr = TextEditingController();
+  final TextEditingController textAddZikrCount = TextEditingController();
+  final TextEditingController textEditZikr = TextEditingController();
+  final TextEditingController textEditZikrCount = TextEditingController();
+
+  void getSebhaZikr() {
+    emit(ManageSebhaZikrLoading());
+    final List<SebhaZikrModel> data = SebhaZikrRepo.getZikrs();
+    emit(GetAzkarSuccess(azkar: data));
+  }
+
+  Future<void> addSebhaZikr(SebhaZikrModel zikrModel) async {
+    emit(ManageSebhaZikrLoading());
+    await SebhaZikrRepo.addZikr(zikrModel);
+    getSebhaZikr();
+  }
+
+  Future<void> addDefaultSebhaZikr() async {
+    final List<SebhaZikrModel> defaultZikrs = [
+      SebhaZikrModel(
+        zikr: 'سبحانَ اللهِ',
+        count: 33,
+      ),
+      SebhaZikrModel(
+        zikr: 'الحمدُ للهِ',
+        count: 33,
+      ),
+      SebhaZikrModel(
+        zikr: 'لَا إلهَ إلَّا اللهِ',
+        count: 33,
+      ),
+      SebhaZikrModel(
+        zikr: 'اللهُ أكبرُ',
+        count: 33,
+      ),
+      SebhaZikrModel(
+        zikr: 'لا حَوْلَ ولَا قُوَّةَ إلَّا باللَّهِ',
+        count: 33,
+      ),
+    ];
+    emit(ManageSebhaZikrLoading());
+    for (var zikr in defaultZikrs) {
+      await SebhaZikrRepo.addZikr(zikr);
+    }
+    getSebhaZikr();
+  }
+
+  Future<void> updateSebhaZikr(SebhaZikrModel zikrModel) async {
+    emit(ManageSebhaZikrLoading());
+    await SebhaZikrRepo.updateZikr(zikrModel.id, zikrModel);
+    getSebhaZikr();
+  }
+
+  Future<void> deleteSebhaZikr(int id) async {
+    emit(ManageSebhaZikrLoading());
+    await SebhaZikrRepo.deleteZikr(id);
+    getSebhaZikr();
+  }
+}
