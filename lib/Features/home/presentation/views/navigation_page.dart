@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/azkar/presentation/manager/cubits/manage_azkar_cubit/manage_azkar_cubit.dart';
+import 'package:fazakir/Features/favorites/presentation/views/favorites_view.dart';
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/home_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
@@ -78,7 +79,7 @@ class NavigationPage extends StatelessWidget {
           fromNavigation: true,
         );
       case 3:
-        return const HomeView();
+        return const FavoritesView();
       case 4:
         return const HomeView();
       default:

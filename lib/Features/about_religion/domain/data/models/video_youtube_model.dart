@@ -1,7 +1,7 @@
 import 'package:fazakir/Features/about_religion/domain/entities/video_youtube_entity.dart';
 
 class VideoYoutubeModel extends VideoYoutubeEntity {
-  const VideoYoutubeModel({
+  VideoYoutubeModel({
     required super.title,
     required super.url,
     required super.thumbnailurl,

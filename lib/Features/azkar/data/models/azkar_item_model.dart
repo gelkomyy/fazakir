@@ -26,6 +26,7 @@ class AzkarItemModel extends AzkarItemEntity {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,

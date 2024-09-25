@@ -1,4 +1,6 @@
-class AzkarItemEntity {
+import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart';
+
+class AzkarItemEntity extends FavoriteEntity {
   final int id;
   final String text;
   final int count;
@@ -10,4 +12,17 @@ class AzkarItemEntity {
     required this.count,
     this.source,
   });
+
+  @override
+  String getIdentifier() => "zikr-$id";
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'text': text,
+      'count': count,
+      'source': source,
+    };
+  }
 }
