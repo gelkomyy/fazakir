@@ -50,7 +50,7 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 38),
+          const SizedBox(height: 24),
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.2,
             child: const ShortCutItemsListView(),
