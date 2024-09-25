@@ -1,4 +1,3 @@
-import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +34,7 @@ class SebhaCircleWithCurrentCount extends StatelessWidget {
         ),
         height: MediaQuery.sizeOf(context).height * 0.5,
         decoration: BoxDecoration(
+          color: Colors.white,
           border: Border.all(
             color: AppColors.primaryColor,
             width: 3,
@@ -42,18 +42,12 @@ class SebhaCircleWithCurrentCount extends StatelessWidget {
           shape: BoxShape.circle,
           boxShadow: const [
             BoxShadow(
-              color: AppColors.primaryColor,
-              blurRadius: 12,
-              offset: Offset(0, 2),
-              spreadRadius: 1,
+              color: Colors.black,
+              blurRadius: 6,
+              offset: Offset(0, 1),
+              spreadRadius: 0.5,
             ),
           ],
-          image: const DecorationImage(
-            image: AssetImage(
-              Assets.assetsImagesIslamicBackgroundPatternVector,
-            ),
-            fit: BoxFit.fill,
-          ),
         ),
         child: Center(
           child: Column(
