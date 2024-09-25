@@ -48,24 +48,26 @@ class SavedAzkarView extends StatelessWidget {
               );
             }),
           ],
-          leading: Bounceable(
-            child: const Card(
-              color: AppColors.textBlackColor,
-              shape: CircleBorder(),
-              margin: EdgeInsetsDirectional.only(start: 24),
-              child: Icon(
-                Icons.arrow_back_outlined,
-                color: Colors.white,
-              ),
-            ),
-            onTap: () {
-              if (fromNavigation) {
-                context.read<NavigationCubit>().backNavigation();
-              } else {
-                Navigator.pop(context);
-              }
-            },
-          ),
+          leading: fromNavigation
+              ? null
+              : Bounceable(
+                  child: const Card(
+                    color: AppColors.textBlackColor,
+                    shape: CircleBorder(),
+                    margin: EdgeInsetsDirectional.only(start: 24),
+                    child: Icon(
+                      Icons.arrow_back_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onTap: () {
+                    if (fromNavigation) {
+                      context.read<NavigationCubit>().backNavigation();
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
           backgroundColor: Colors.white,
         ),
         body: const SafeArea(
