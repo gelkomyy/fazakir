@@ -14,7 +14,7 @@ class AzkarItemEntity extends FavoriteEntity {
   });
 
   @override
-  String getIdentifier() => "zikr-$id";
+  String getIdentifier() => "zikr-$id-$count-$source-$text";
 
   @override
   Map<String, dynamic> toJson() {

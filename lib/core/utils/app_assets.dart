@@ -94,6 +94,10 @@ class Assets {
   /// assets/images/notification_icon_svg.svg
   static const String assetsImagesNotificationIconSvg = "assets/images/notification_icon_svg.svg";
 
+  /// Assets for assetsImagesPrayerBackground
+  /// assets/images/prayer_background.jpg
+  static const String assetsImagesPrayerBackground = "assets/images/prayer_background.jpg";
+
   /// Assets for assetsImagesPrayerShortcut
   /// assets/images/prayer_shortcut.jpg
   static const String assetsImagesPrayerShortcut = "assets/images/prayer_shortcut.jpg";

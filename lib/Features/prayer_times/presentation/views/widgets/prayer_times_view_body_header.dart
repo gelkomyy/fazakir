@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
@@ -17,7 +18,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(14)),
         image: DecorationImage(
-          image: AssetImage(Assets.assetsImagesMuslimWomen),
+          image: AssetImage(Assets.assetsImagesPrayerBackground),
           fit: BoxFit.cover,
         ),
       ),
@@ -37,7 +38,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
             Text(
               'لمعرفة أقرب مسجد',
               style: AppFontStyles.styleBold15(context).copyWith(
-                color: Colors.white,
+                color: Colors.white70,
               ),
             ),
             const SizedBox(height: 8),
@@ -51,11 +52,34 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
                   await launchUrl(googleMapsUrl);
                 } else {}
               },
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.pin_drop,
-                  color: Colors.black,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.primarySwatch.shade800,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'اقرب مسجد',
+                      style: AppFontStyles.styleBold14(context).copyWith(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    const Icon(
+                      Icons.pin_drop_outlined,
+                      color: Colors.white70,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -63,7 +87,7 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
             Text(
               'لمعرفة القبلة',
               style: AppFontStyles.styleBold15(context).copyWith(
-                color: Colors.white,
+                color: Colors.white70,
               ),
             ),
             const SizedBox(height: 8),
@@ -72,11 +96,34 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(context, QiblahView.routeName);
               },
-              child: const CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.explore,
-                  color: Colors.black,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.primarySwatch.shade800,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'القبلة',
+                      style: AppFontStyles.styleBold14(context).copyWith(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    const Icon(
+                      Icons.explore_outlined,
+                      color: Colors.white70,
+                    ),
+                  ],
                 ),
               ),
             ),
