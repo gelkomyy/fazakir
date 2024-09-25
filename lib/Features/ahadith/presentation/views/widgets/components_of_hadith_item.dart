@@ -1,8 +1,11 @@
 import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
+import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/favorites_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/g_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:share_plus/share_plus.dart';
@@ -120,9 +123,30 @@ class _ComponentsOfHadithItemState extends State<ComponentsOfHadithItem>
                           ), // Use Alignment to position
                           child: FadeTransition(
                             opacity: _fadeAnimation,
-                            child: SvgPicture.asset(
-                              Assets.assetsImagesHeartBlackIconSvg,
-                              width: 14,
+                            child: BlocBuilder<FavoritesCubit, FavoritesState>(
+                              builder: (context, state) {
+                                final isFav = context
+                                    .read<FavoritesCubit>()
+                                    .favorites
+                                    .any(
+                                      (fav) =>
+                                          fav.getIdentifier() ==
+                                          widget.hadithEntity.getIdentifier(),
+                                    );
+                                return Bounceable(
+                                  onTap: () => context
+                                      .read<FavoritesCubit>()
+                                      .toggleFavorite(widget.hadithEntity),
+                                  child: SvgPicture.asset(
+                                    Assets.assetsImagesHeartBlackIconSvg,
+                                    width: 14,
+                                    colorFilter: ColorFilter.mode(
+                                      isFav ? AppColors.redColor : Colors.black,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
