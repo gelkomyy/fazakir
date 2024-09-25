@@ -1,10 +1,13 @@
 import 'package:fazakir/Features/about_religion/domain/entities/video_youtube_entity.dart';
 import 'package:fazakir/Features/about_religion/presentation/views/video_player_view.dart';
 import 'package:fazakir/Features/about_religion/presentation/views/widgets/video_player_view_body.dart';
+import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/favorites_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/widgets/image_with_play_arrow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/svg.dart';
 
 class VideoPlayerImageStack extends StatefulWidget {
@@ -66,13 +69,27 @@ class _VideoPlayerImageStackState extends State<VideoPlayerImageStack> {
               bottomEnd: Radius.circular(8),
             ),
           ),
-          child: SvgPicture.asset(
-            Assets.assetsImagesHeartBlackIconSvg,
-            width: widget.smallerWidth ? 12 : 18,
-            colorFilter: const ColorFilter.mode(
-              AppColors.redColor,
-              BlendMode.srcIn,
-            ),
+          child: BlocBuilder<FavoritesCubit, FavoritesState>(
+            builder: (context, state) {
+              final isFav = context.read<FavoritesCubit>().favorites.any(
+                    (fav) =>
+                        fav.getIdentifier() ==
+                        widget.videoYoutubeEntity.getIdentifier(),
+                  );
+              return Bounceable(
+                onTap: () => context
+                    .read<FavoritesCubit>()
+                    .toggleFavorite(widget.videoYoutubeEntity),
+                child: SvgPicture.asset(
+                  Assets.assetsImagesHeartBlackIconSvg,
+                  width: widget.smallerWidth ? 12 : 18,
+                  colorFilter: ColorFilter.mode(
+                    isFav ? AppColors.redColor : AppColors.greyColor,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ],

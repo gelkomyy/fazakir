@@ -18,10 +18,9 @@ class FavoriteRepository {
     List<String> favoriteItems = prefs.getStringList(_favoritesKey) ?? [];
 
     String entityJson = jsonEncode(entity.toJson());
-    String identifier = entity.getIdentifier();
 
-    if (favoriteItems.contains(identifier)) {
-      favoriteItems.remove(identifier);
+    if (favoriteItems.contains(entityJson)) {
+      favoriteItems.remove(entityJson);
     } else {
       favoriteItems.add(entityJson);
     }
@@ -40,9 +39,9 @@ class FavoriteRepository {
       Map<String, dynamic> json = jsonDecode(jsonString);
 
       // Use the identifier or some key to determine the type of entity
-      if (json.containsKey('zikr')) {
+      if (json.containsKey('count')) {
         favorites.add(AzkarItemModel.fromJson(json));
-      } else if (json.containsKey('video')) {
+      } else if (json.containsKey('url')) {
         favorites.add(VideoYoutubeModel.fromJson(json));
       } else if (json.containsKey('hadith')) {
         favorites.add(HadithEntity.fromJson(json));

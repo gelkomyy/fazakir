@@ -9,9 +9,9 @@ class VideoYoutubeModel extends VideoYoutubeEntity {
 
   factory VideoYoutubeModel.fromJson(Map<String, dynamic> json) {
     return VideoYoutubeModel(
-      title: json['Title'],
-      url: json['Videourl'],
-      thumbnailurl: json['Thumbnailurl'],
+      title: json['Title'] ?? json['title'],
+      url: json['Videourl'] ?? json['url'],
+      thumbnailurl: json['Thumbnailurl'] ?? json['thumbnailurl'],
     );
   }
 }
