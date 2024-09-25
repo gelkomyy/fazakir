@@ -46,7 +46,10 @@ class SavedAzkarViewBody extends StatelessWidget {
             );
           } else if (state is ManageSebhaZikrLoading) {
             return const Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: CircularProgressIndicator.adaptive(
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+              ),
             );
           }
           return const EmptyZikrStateWidget();

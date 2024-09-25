@@ -19,7 +19,10 @@ class QiblahCompass extends StatelessWidget {
     return BlocBuilder<QiblahCubit, QiblahState>(
       builder: (context, state) {
         if (state is QiblahLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator.adaptive(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+          ));
         } else if (state is QiblahError) {
           return Center(child: Text(state.message));
         } else if (state is QiblahLocationUpdated ||

@@ -40,8 +40,9 @@ class LoadingOverlayBlured extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const CircularProgressIndicator(
-                      color: AppColors.primaryColor,
+                    const CircularProgressIndicator.adaptive(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
                     ),
                     const SizedBox(height: 10),
                     Text('Loading...',

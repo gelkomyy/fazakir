@@ -132,10 +132,11 @@ class _VideoPlayerViewBodyState extends State<VideoPlayerViewBody> {
                 ),
                 if (_isLoading)
                   Center(
-                    child: CircularProgressIndicator(
+                    child: CircularProgressIndicator.adaptive(
                       value: _progress,
                       backgroundColor: Colors.grey[200],
-                      color: AppColors.primaryColor,
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                          AppColors.primaryColor),
                     ),
                   ),
               ],

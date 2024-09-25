@@ -6,6 +6,7 @@ import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart'
 import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/favorites_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_item.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_item.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,9 @@ class FavoritesViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state is FavoritesLoading) {
           return const Center(
-            child: CircularProgressIndicator.adaptive(),
+            child: CircularProgressIndicator.adaptive(
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+            ),
           );
         } else if (state is FavoritesFailure) {
           return Center(

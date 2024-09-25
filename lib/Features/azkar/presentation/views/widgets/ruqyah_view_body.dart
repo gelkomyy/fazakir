@@ -1,6 +1,7 @@
 import 'package:fazakir/Features/azkar/data/models/azkar_item_model.dart';
 import 'package:fazakir/Features/azkar/presentation/manager/cubits/manage_azkar_cubit/manage_azkar_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_item.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +38,10 @@ class RuqyahViewBody extends StatelessWidget {
             );
           } else {
             return const Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: CircularProgressIndicator.adaptive(
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+              ),
             );
           }
         },

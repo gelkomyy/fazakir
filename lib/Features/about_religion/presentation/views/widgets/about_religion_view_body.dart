@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/about_religion/presentation/manager/cubits/manage_about_religion_cubit/manage_about_religion_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_item.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +38,9 @@ class AboutReligionViewBody extends StatelessWidget {
           );
         } else {
           return const Center(
-            child: CircularProgressIndicator.adaptive(),
+            child: CircularProgressIndicator.adaptive(
+              valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+            ),
           );
         }
       },
