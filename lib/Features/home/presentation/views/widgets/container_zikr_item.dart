@@ -22,7 +22,7 @@ class ContainerZikrItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.sizeOf(context).width * 0.9,
       margin: margin ?? const EdgeInsets.symmetric(horizontal: 40),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
