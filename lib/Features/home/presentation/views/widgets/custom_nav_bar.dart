@@ -158,15 +158,15 @@ class CustomNavBar extends StatelessWidget {
         return AlignmentDirectional.topStart;
       case 1:
         return const AlignmentDirectional(
-            -0.54, 1.0); // Adjust the value based on your layout
+            -0.51, 1.0); // Adjust the value based on your layout
       case 2:
-        return const AlignmentDirectional(-0.02, 1.0);
+        return const AlignmentDirectional(-0.015, 1.0);
       case 3:
         return const AlignmentDirectional(
-            0.45, 1.0); // Adjust the value based on your layout
+            0.475, 1.0); // Adjust the value based on your layout
       case 4:
         return const AlignmentDirectional(
-          0.94,
+          0.95,
           1.0,
         );
       default:
