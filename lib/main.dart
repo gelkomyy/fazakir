@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/ahadith/presentation/manager/cubits/hadith_processing_cubit/hadith_processing_cubit.dart';
 import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/favorites_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
@@ -27,8 +28,15 @@ class Fazakir extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FavoritesCubit()..getFavorites(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => FavoritesCubit()..getFavorites(),
+        ),
+        BlocProvider(
+          create: (context) => HadithProcessingCubit()..processHadiths(),
+        ),
+      ],
       child: MaterialApp(
         onGenerateRoute: onGenerateRoutes,
         initialRoute: getIt<SharedPreferences>().getBool('seen_intro') == true

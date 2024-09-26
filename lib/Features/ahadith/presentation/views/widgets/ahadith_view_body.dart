@@ -74,21 +74,21 @@ class AhadithViewBody extends StatelessWidget {
       },
     );
   }
+}
 
-  String parseHadith(String hadith) {
-    // Replace custom tags with empty strings or spaces where needed
-    hadith = hadith.replaceAll(
-        RegExp(r'\[/?prematn\]'), ''); // Remove [prematn] and [/prematn]
-    hadith = hadith.replaceAll(
-        RegExp(r'\[/?matn\]'), ''); // Remove [matn] and [/matn]
-    hadith = hadith.replaceAll(RegExp(r'\[/?narrator[^\]]*\]'),
-        ''); // Remove narrator tags and their attributes
-    hadith = hadith.replaceAll(
-        RegExp(r'<[^>]*>'), ''); // Remove any leftover HTML tags
+String parseHadith(String hadith) {
+  // Replace custom tags with empty strings or spaces where needed
+  hadith = hadith.replaceAll(
+      RegExp(r'\[/?prematn\]'), ''); // Remove [prematn] and [/prematn]
+  hadith =
+      hadith.replaceAll(RegExp(r'\[/?matn\]'), ''); // Remove [matn] and [/matn]
+  hadith = hadith.replaceAll(RegExp(r'\[/?narrator[^\]]*\]'),
+      ''); // Remove narrator tags and their attributes
+  hadith = hadith.replaceAll(
+      RegExp(r'<[^>]*>'), ''); // Remove any leftover HTML tags
 
-    // Optionally replace newline characters with actual newlines in Flutter
-    hadith = hadith.replaceAll('\\n', '\n');
+  // Optionally replace newline characters with actual newlines in Flutter
+  hadith = hadith.replaceAll('\\n', '\n');
 
-    return hadith;
-  }
+  return hadith;
 }

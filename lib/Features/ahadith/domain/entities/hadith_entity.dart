@@ -2,7 +2,7 @@ import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart'
 
 class HadithEntity extends FavoriteEntity {
   final String hadith;
-
+  final String hadithWithoutTashkeel;
   final String hadithNumber;
   final String bookName;
   final String sectionOfBookHadith;
@@ -13,7 +13,7 @@ class HadithEntity extends FavoriteEntity {
     required this.sectionOfBookHadith,
     required this.hadithNumber,
     required this.grades,
-  });
+  }) : hadithWithoutTashkeel = removeDiacritics(hadith);
 
   @override
   factory HadithEntity.fromJson(Map<String, dynamic> json) {
@@ -38,5 +38,11 @@ class HadithEntity extends FavoriteEntity {
       'hadithNumber': hadithNumber,
       'grades': grades,
     };
+  }
+
+  static String removeDiacritics(String input) {
+    final RegExp diacriticRegExp = RegExp(
+        r'[\u0610-\u061A\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]');
+    return input.replaceAll(diacriticRegExp, '');
   }
 }
