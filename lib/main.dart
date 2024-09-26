@@ -8,12 +8,15 @@ import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:fazakir/core/utils/func/on_generate_routes.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Bloc.observer = CustomBlocObserver();
   await getItSetup();
   runApp(const Fazakir());
