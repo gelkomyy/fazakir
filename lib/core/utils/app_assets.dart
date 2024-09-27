@@ -126,6 +126,14 @@ class Assets {
   /// assets/images/search_icon_svg.svg
   static const String assetsImagesSearchIconSvg = "assets/images/search_icon_svg.svg";
 
+  /// Assets for assetsImagesSearchViewShape
+  /// assets/images/search_view_shape.png
+  static const String assetsImagesSearchViewShape = "assets/images/search_view_shape.png";
+
+  /// Assets for assetsImagesSearchViewShape2
+  /// assets/images/search_view_shape2.png
+  static const String assetsImagesSearchViewShape2 = "assets/images/search_view_shape2.png";
+
   /// Assets for assetsImagesSettingsIconSvg
   /// assets/images/settings_icon_svg.svg
   static const String assetsImagesSettingsIconSvg = "assets/images/settings_icon_svg.svg";

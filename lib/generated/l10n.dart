@@ -100,11 +100,11 @@ class S {
     );
   }
 
-  /// `Search for a mention or reciter...`
-  String get search_mention_or_reciter {
+  /// `Search for a zikr or hadith ...`
+  String get search_zikr_or_hadith {
     return Intl.message(
-      'Search for a mention or reciter...',
-      name: 'search_mention_or_reciter',
+      'Search for a zikr or hadith ...',
+      name: 'search_zikr_or_hadith',
       desc: '',
       args: [],
     );

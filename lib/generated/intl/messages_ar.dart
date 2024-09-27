@@ -38,8 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notifications": MessageLookupByLibrary.simpleMessage("الاشعارات"),
         "podcast": MessageLookupByLibrary.simpleMessage("بودكاست: "),
         "prayer_times": MessageLookupByLibrary.simpleMessage("أوقات الصلاة"),
-        "search_mention_or_reciter":
-            MessageLookupByLibrary.simpleMessage("ابحث عن ذكر أو قارئ ..."),
+        "search_zikr_or_hadith":
+            MessageLookupByLibrary.simpleMessage("ابحث عن ذكر أو حديث ..."),
         "sebha": MessageLookupByLibrary.simpleMessage("السبحة"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("الاختصارات"),

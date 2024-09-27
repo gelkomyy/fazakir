@@ -39,8 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "podcast": MessageLookupByLibrary.simpleMessage("Podcast: "),
         "prayer_times": MessageLookupByLibrary.simpleMessage("Prayer Times"),
-        "search_mention_or_reciter": MessageLookupByLibrary.simpleMessage(
-            "Search for a mention or reciter..."),
+        "search_zikr_or_hadith": MessageLookupByLibrary.simpleMessage(
+            "Search for a zikr or hadith ..."),
         "sebha": MessageLookupByLibrary.simpleMessage("Sibha"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "shortcuts": MessageLookupByLibrary.simpleMessage("Shortcuts"),

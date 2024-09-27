@@ -60,7 +60,7 @@ class HomeViewBodyHeader extends StatelessWidget {
                       },
                       child: CustomSearchTextField(
                         enabled: false,
-                        hintText: txt.search_mention_or_reciter,
+                        hintText: txt.search_zikr_or_hadith,
                       ),
                     ),
                   ),
