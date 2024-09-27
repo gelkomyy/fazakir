@@ -19,6 +19,13 @@ class SearchViewBodyList extends StatelessWidget {
             ),
           );
         } else if (state is SearchLoaded) {
+          if (state.searchResults == null ||
+              state.searchResults.isEmpty ||
+              state.searchResults.length == 0) {
+            return const Center(
+              child: Text('لا توجد نتائج'),
+            );
+          }
           return ListView.builder(
             itemCount: state.searchResults.length,
             itemBuilder: (context, index) {
