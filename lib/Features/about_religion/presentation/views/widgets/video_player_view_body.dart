@@ -38,6 +38,7 @@ class _VideoPlayerViewBodyState extends State<VideoPlayerViewBody> {
                 children: [
                   Image.asset(
                     Assets.assetsImagesNoInternetShape,
+                    width: MediaQuery.sizeOf(context).width * 0.5,
                   ),
                   const SizedBox(height: 12),
                   Padding(
