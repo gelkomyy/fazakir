@@ -1,6 +1,5 @@
 import 'package:fazakir/Features/search/presentation/views/widgets/search_view_body_header.dart';
-import 'package:fazakir/core/utils/app_assets.dart';
-
+import 'package:fazakir/Features/search/presentation/views/widgets/search_view_body_list.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -23,16 +22,15 @@ class SearchViewBody extends StatelessWidget {
             'نتائج البحث : ',
             style: AppFontStyles.styleBold20(context),
           ),
-          Expanded(
+          /*  Expanded(
             child: Center(
               child: Image.asset(
                 Assets.assetsImagesSearchViewShape2,
                 fit: BoxFit.cover,
               ),
             ),
-          ),
-
-          //    SearchViewBodyList(),
+          ), */
+          const Expanded(child: SearchViewBodyList()),
         ],
       ),
     );

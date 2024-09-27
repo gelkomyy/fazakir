@@ -1,8 +1,10 @@
+import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:searchfield/searchfield.dart';
@@ -128,7 +130,9 @@ class SearchViewBodyHeader extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         Bounceable(
-          onTap: () {},
+          onTap: () {
+            context.read<SearchCubit>().searchContent('بني الدار');
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
