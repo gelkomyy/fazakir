@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key, required this.hintText});
+  const CustomSearchTextField(
+      {super.key, required this.hintText, this.enabled});
   final String hintText;
+  final bool? enabled;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      enabled: enabled,
       cursorColor: AppColors.primaryColor,
       style: AppFontStyles.styleRegular11(context),
       decoration: InputDecoration(

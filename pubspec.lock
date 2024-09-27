@@ -590,6 +590,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.28.0"
+  searchfield:
+    dependency: "direct main"
+    description:
+      name: searchfield
+      sha256: "6ae29d79f9aa648f59a50ed8616704e6a2118b228fda5ad3af3520d8208b41d4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.6"
   share_plus:
     dependency: "direct main"
     description:

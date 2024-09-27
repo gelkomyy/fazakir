@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/search/presentation/views/search_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/widgets/custom_search_text_field.dart';
@@ -53,8 +54,14 @@ class HomeViewBodyHeader extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * 0.5,
                     height: 36,
-                    child: CustomSearchTextField(
-                      hintText: txt.search_mention_or_reciter,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, SearchView.routeName);
+                      },
+                      child: CustomSearchTextField(
+                        enabled: false,
+                        hintText: txt.search_mention_or_reciter,
+                      ),
                     ),
                   ),
                 ],
