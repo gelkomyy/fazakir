@@ -34,7 +34,7 @@ class Fazakir extends StatelessWidget {
           create: (context) => FavoritesCubit()..getFavorites(),
         ),
         BlocProvider(
-          create: (context) => HadithProcessingCubit()..processHadiths(),
+          create: (context) => HadithProcessingCubit(),
         ),
       ],
       child: MaterialApp(
