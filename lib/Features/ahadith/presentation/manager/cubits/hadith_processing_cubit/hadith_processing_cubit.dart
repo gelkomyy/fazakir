@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:isolate';
 
 import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
@@ -20,20 +21,14 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     emit(HadithProcessingLoading());
 
     try {
-      // Fetch book names in the main thread (lightweight operation)
       final a6BooksOfHadiths = ManageHadithsExtensions.getDisplayNames();
 
-      // Use a Future.wait to parallelize fetching for different books
       List<Future<List<HadithEntity>>> hadithFutures = [];
-
       for (String bookName in a6BooksOfHadiths) {
         hadithFutures.add(_fetchHadithForBook(bookName));
       }
 
-      // Wait for all hadiths to be fetched in parallel
       final results = await Future.wait(hadithFutures);
-
-      // Combine all results into a single list
       _allAhadith = results.expand((list) => list).toList();
 
       emit(HadithProcessingLoaded(_allAhadith));
@@ -42,43 +37,52 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     }
   }
 
-  // Fetch hadiths for a single book using isolates for heavier tasks
   Future<List<HadithEntity>> _fetchHadithForBook(String bookName) async {
-    // Fetch sections in isolate (heavy task)
-    final sectionsOfBookHadith = await Isolate.run(
-        () => getBooks(ManageHadithsExtensions.getCollectionByName(bookName)));
+    final ReceivePort receivePort = ReceivePort();
+    await Isolate.spawn(_isolateProcess, {
+      'sendPort': receivePort.sendPort,
+      'bookName': bookName,
+    });
 
-    List<HadithEntity> bookHadiths = [];
-
-    for (int index = 0; index < sectionsOfBookHadith.length; index++) {
-      final sectionOfBookHadithNumber =
-          _getSectionNumber(bookName, sectionsOfBookHadith[index].bookNumber);
-
-      // Fetch ahadith in isolate (heavy task)
-      final ahadith = await Isolate.run(() => getHadiths(
-          ManageHadithsExtensions.getCollectionByName(bookName),
-          sectionOfBookHadithNumber));
-
-      // Convert to HadithEntity
-      bookHadiths.addAll(ahadith.map((hadith) => HadithEntity(
-            hadith: parseHadith(hadith.hadith[1].body),
-            bookName: bookName,
-            sectionOfBookHadith: getBook(
-                    ManageHadithsExtensions.getCollectionByName(bookName),
-                    int.parse(hadith.bookNumber))
-                .book[1]
-                .name,
-            hadithNumber: hadith.hadithNumber,
-            grades: hadith.hadith[1].grades,
-          )));
-    }
-
-    return bookHadiths;
+    final List<dynamic> result = await receivePort.first;
+    return (result).map((item) => HadithEntity.fromJson(item)).toList();
   }
 
-  int _getSectionNumber(String bookName, String bookNumber) {
+  static void _isolateProcess(Map<String, dynamic> message) async {
+    final SendPort sendPort = message['sendPort'];
+    final String bookName = message['bookName'];
+
+    final sectionsOfBookHadith =
+        getBooks(ManageHadithsExtensions.getCollectionByName(bookName));
+    List<Map<String, dynamic>> processedHadiths = [];
+
+    for (var section in sectionsOfBookHadith) {
+      final sectionNumber = _getSectionNumber(bookName, section.bookNumber);
+      final ahadith = getHadiths(
+          ManageHadithsExtensions.getCollectionByName(bookName), sectionNumber);
+
+      for (var hadith in ahadith) {
+        processedHadiths.add({
+          'hadith': parseHadith(hadith.hadith[1].body),
+          'bookName': bookName,
+          'sectionOfBookHadith': getBook(
+                  ManageHadithsExtensions.getCollectionByName(bookName),
+                  int.parse(hadith.bookNumber))
+              .book[1]
+              .name,
+          'hadithNumber': hadith.hadithNumber,
+          'grades': hadith.hadith[1].grades,
+        });
+      }
+    }
+
+    sendPort.send(processedHadiths);
+  }
+
+  static int _getSectionNumber(String bookName, String bookNumber) {
     if (bookName == 'سنن ابن ماجه' || bookName == 'صحيح مسلم') {
       final parsedNumber = int.tryParse(bookNumber);
+      log('$bookName : ${parsedNumber == null ? 1 : parsedNumber + 1}');
       return parsedNumber == null ? 1 : parsedNumber + 1;
     }
     return int.parse(bookNumber);
