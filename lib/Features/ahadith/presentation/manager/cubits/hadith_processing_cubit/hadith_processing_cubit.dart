@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:isolate';
 
@@ -6,28 +7,60 @@ import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
+import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadith/classes.dart';
 import 'package:hadith/hadith.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'hadith_processing_state.dart';
 
 class HadithProcessingCubit extends Cubit<HadithProcessingState> {
-  HadithProcessingCubit() : super(HadithProcessingInitial());
+  HadithProcessingCubit() : super(HadithProcessingInitial()) {
+    _loadHadithFromPrefs(); // Load data from shared preferences on cubit creation
+  }
 
   List<HadithEntity> _allAhadith = [];
 
   List<HadithEntity> get allAhadith => _allAhadith;
+  // Load hadiths from shared preferences
+  void _loadHadithFromPrefs() {
+    final SharedPreferences prefs = getIt<SharedPreferences>();
+    final String? hadithsJson = prefs.getString('allAhadith');
+
+    if (hadithsJson != null && hadithsJson.isNotEmpty) {
+      List<dynamic> jsonData = jsonDecode(hadithsJson);
+      _allAhadith =
+          jsonData.map((json) => HadithEntity.fromJson(json)).toList();
+
+      emit(HadithProcessingLoaded(
+          _allAhadith)); // Emit loaded state with data from prefs
+    }
+  }
+
+  // Save the hadiths to shared preferences when closing the cubit
+  Future<void> _saveHadithToPrefs() async {
+    final SharedPreferences prefs = getIt<SharedPreferences>();
+    final String hadithsJson =
+        jsonEncode(_allAhadith.map((hadith) => hadith.toJson()).toList());
+    await prefs.setString('allAhadith', hadithsJson);
+  }
 
   Future<void> processHadiths() async {
     emit(HadithProcessingLoading());
 
+    if (_allAhadith.isNotEmpty) {
+      // Hadiths are already loaded from shared preferences, no need to process
+      emit(HadithProcessingLoaded(_allAhadith));
+      return;
+    }
     try {
       List<List<HadithEntity>> results = await processTheHadiths();
       _allAhadith = results.expand((list) => list).toList();
 
       emit(HadithProcessingLoaded(_allAhadith));
+      await _saveHadithToPrefs();
     } catch (e) {
       emit(HadithProcessingError(e.toString()));
     }
