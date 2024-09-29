@@ -22,14 +22,7 @@ class SearchViewBody extends StatelessWidget {
             'نتائج البحث : ',
             style: AppFontStyles.styleBold20(context),
           ),
-          /*  Expanded(
-            child: Center(
-              child: Image.asset(
-                Assets.assetsImagesSearchViewShape2,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ), */
+          const SizedBox(height: 8),
           const Expanded(child: SearchViewBodyList()),
         ],
       ),

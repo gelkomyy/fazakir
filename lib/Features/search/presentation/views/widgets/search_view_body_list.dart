@@ -2,6 +2,7 @@ import 'package:fazakir/Features/ahadith/presentation/views/widgets/container_ha
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
+import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,27 +14,89 @@ class SearchViewBodyList extends StatelessWidget {
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
         if (state is SearchLoading) {
-          return const CircularProgressIndicator.adaptive(
-            valueColor: AlwaysStoppedAnimation<Color>(
-              AppColors.primaryColor,
+          return const Center(
+            child: CircularProgressIndicator.adaptive(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                AppColors.primaryColor,
+              ),
             ),
           );
         } else if (state is SearchLoaded) {
-          if (state.searchResults == null ||
-              state.searchResults.isEmpty ||
-              state.searchResults.length == 0) {
-            return const Center(
-              child: Text('لا توجد نتائج'),
+          final searchResult = state.searchResult;
+
+          if (searchResult.exactMatches.isNotEmpty) {
+            final ahadith = searchResult.exactMatches;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "عدد النتائج : ${ahadith.length}",
+                  style: AppFontStyles.styleBold16(context).copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: ahadith.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsetsDirectional.only(
+                            bottom: index + 1 == ahadith.length ? 0 : 24),
+                        child: ContainerHadithItem(
+                          hadithEntity: ahadith[index],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else if (searchResult.relatedMatches.isNotEmpty) {
+            final ahadith = searchResult.relatedMatches;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "عدد النتائج : ${ahadith.length}",
+                  style: AppFontStyles.styleBold16(context).copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  "لم يتم العثور على تطابقات دقيقة. فيما يلي بعض النتائج ذات الصلة :",
+                  style: AppFontStyles.styleBold16(context).copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: ahadith.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsetsDirectional.only(
+                            bottom: index + 1 == ahadith.length ? 0 : 24),
+                        child: ContainerHadithItem(
+                          hadithEntity: ahadith[index],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Center(
+              child: Text(
+                'لا توجد نتائج',
+                style: AppFontStyles.styleBold20(context).copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
             );
           }
-          return ListView.builder(
-            itemCount: state.searchResults.length,
-            itemBuilder: (context, index) {
-              return ContainerHadithItem(
-                hadithEntity: state.searchResults[index],
-              );
-            },
-          );
         } else if (state is SearchError) {
           return Text('Error: ${state.error}');
         } else {

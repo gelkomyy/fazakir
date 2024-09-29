@@ -14,7 +14,6 @@ class ContainerHadithItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.9,
-      margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: AppColors.greyColor.withOpacity(0.32),
