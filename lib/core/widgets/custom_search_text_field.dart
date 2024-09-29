@@ -6,15 +6,26 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField(
-      {super.key, required this.hintText, this.enabled});
+      {super.key,
+      required this.hintText,
+      this.controller,
+      this.enabled,
+      this.focusNode,
+      this.onChanged});
   final String hintText;
   final bool? enabled;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
+      focusNode: focusNode,
+      onChanged: onChanged,
       enabled: enabled,
       cursorColor: AppColors.primaryColor,
-      style: AppFontStyles.styleRegular11(context),
+      style: AppFontStyles.styleRegular14(context),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,
