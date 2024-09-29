@@ -24,20 +24,25 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     emit(HadithProcessingLoading());
 
     try {
-      final a6BooksOfHadiths = ManageHadithsExtensions.getDisplayNames();
-
-      List<Future<List<HadithEntity>>> hadithFutures = [];
-      for (String bookName in a6BooksOfHadiths) {
-        hadithFutures.add(_fetchHadithForBook(bookName));
-      }
-
-      final results = await Future.wait(hadithFutures);
+      List<List<HadithEntity>> results = await processTheHadiths();
       _allAhadith = results.expand((list) => list).toList();
 
       emit(HadithProcessingLoaded(_allAhadith));
     } catch (e) {
       emit(HadithProcessingError(e.toString()));
     }
+  }
+
+  Future<List<List<HadithEntity>>> processTheHadiths() async {
+    final a6BooksOfHadiths = ManageHadithsExtensions.getDisplayNames();
+
+    List<Future<List<HadithEntity>>> hadithFutures = [];
+    for (String bookName in a6BooksOfHadiths) {
+      hadithFutures.add(_fetchHadithForBook(bookName));
+    }
+
+    final results = await Future.wait(hadithFutures);
+    return results;
   }
 
   Future<List<HadithEntity>> _fetchHadithForBook(String bookName) async {
