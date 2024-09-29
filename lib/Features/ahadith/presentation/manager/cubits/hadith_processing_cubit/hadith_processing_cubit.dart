@@ -99,21 +99,6 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     return int.parse(bookNumber);
   }
 
-  /* // Method to filter hadiths efficiently
-  Future<List<HadithEntity>?> filterHadiths(String searchHadith) async {
-    // Run the filter operation in an isolate to avoid UI freezing
-
-    if (searchHadith.isEmpty || _allAhadith.isEmpty) return null;
-    return await Isolate.run<List<HadithEntity>?>(() {
-      final searchTerms =
-          HadithEntity.removeDiacritics(searchHadith).toLowerCase().split(' ');
-      return _allAhadith.where((hadith) {
-        return searchTerms.every((term) =>
-            hadith.hadithWithoutTashkeel.toLowerCase().contains(term));
-      }).toList();
-    });
-  } */
-
   Future<SearchResult> filterHadiths(String searchHadith) async {
     log('searchHadith: $searchHadith, allAhadith: ${_allAhadith.length}');
     if (searchHadith.isEmpty || _allAhadith.isEmpty) {
