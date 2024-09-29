@@ -39,10 +39,10 @@ class HadithEntity extends FavoriteEntity {
       'grades': grades,
     };
   }
+}
 
-  static String removeDiacritics(String input) {
-    final RegExp diacriticRegExp = RegExp(
-        r'[\u0610-\u061A\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]');
-    return input.replaceAll(diacriticRegExp, '');
-  }
+String removeDiacritics(String input) {
+  final RegExp diacriticRegExp = RegExp(
+      r'[\u0610-\u061A\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]');
+  return input.replaceAll(diacriticRegExp, '');
 }

@@ -118,8 +118,7 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     final String searchHadith = params['searchHadith'];
     final List<Map<String, dynamic>> allAhadithMaps = params['allAhadith'];
 
-    final normalizedQuery =
-        HadithEntity.removeDiacritics(searchHadith).toLowerCase();
+    final normalizedQuery = removeDiacritics(searchHadith).toLowerCase();
     final searchTerms = normalizedQuery.split(' ');
     final List<HadithEntity> allAhadith =
         allAhadithMaps.map((m) => HadithEntity.fromJson(m)).toList();
@@ -128,8 +127,7 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
     for (HadithEntity hadith in allAhadith) {
       String normalizedHadith =
-          HadithEntity.removeDiacritics(hadith.hadithWithoutTashkeel)
-              .toLowerCase();
+          removeDiacritics(hadith.hadithWithoutTashkeel).toLowerCase();
 
       if (normalizedHadith.contains(normalizedQuery)) {
         exactMatches.add(hadith);

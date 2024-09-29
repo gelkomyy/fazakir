@@ -14,7 +14,7 @@ class ManageAzkarCubit extends Cubit<ManageAzkarState> {
   Future<void> fetchAzkar() async {
     try {
       safeEmit(FetchAzkarLoading());
-      final azkar = await azkarRepoImpl.getAzkar();
+      final azkar = await azkarRepoImpl.getAzkarCategories();
       safeEmit(FetchAzkarSuccess(azkarCategories: azkar));
     } catch (e) {
       safeEmit(
