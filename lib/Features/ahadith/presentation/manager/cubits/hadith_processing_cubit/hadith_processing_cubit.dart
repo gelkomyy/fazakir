@@ -3,9 +3,11 @@ import 'dart:isolate';
 
 import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
 import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view_body.dart';
+import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
+import 'package:hadith/classes.dart';
 import 'package:hadith/hadith.dart';
 
 part 'hadith_processing_state.dart';
@@ -58,10 +60,16 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
     for (var section in sectionsOfBookHadith) {
       final sectionNumber = _getSectionNumber(bookName, section.bookNumber);
-      final ahadith = getHadiths(
-          ManageHadithsExtensions.getCollectionByName(bookName), sectionNumber);
+      List<Hadith> ahadith = [];
+      try {
+        ahadith = getHadiths(
+            ManageHadithsExtensions.getCollectionByName(bookName),
+            sectionNumber);
+      } catch (e) {
+        log('Error: $e at --- $bookName:$sectionNumber---');
+      }
 
-      for (var hadith in ahadith) {
+      for (Hadith hadith in ahadith) {
         processedHadiths.add({
           'hadith': parseHadith(hadith.hadith[1].body),
           'bookName': bookName,
@@ -80,15 +88,18 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
   }
 
   static int _getSectionNumber(String bookName, String bookNumber) {
+    if (bookNumber == 'introduction') bookNumber = '1';
+    bookNumber = bookNumber.replaceAll(RegExp(r'[^0-9]'), '');
     if (bookName == 'سنن ابن ماجه' || bookName == 'صحيح مسلم') {
       final parsedNumber = int.tryParse(bookNumber);
-      log('$bookName : ${parsedNumber == null ? 1 : parsedNumber + 1}');
-      return parsedNumber == null ? 1 : parsedNumber + 1;
+
+      return parsedNumber ?? 1;
     }
+
     return int.parse(bookNumber);
   }
 
-  // Method to filter hadiths efficiently
+  /* // Method to filter hadiths efficiently
   Future<List<HadithEntity>?> filterHadiths(String searchHadith) async {
     // Run the filter operation in an isolate to avoid UI freezing
 
@@ -101,5 +112,48 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
             hadith.hadithWithoutTashkeel.toLowerCase().contains(term));
       }).toList();
     });
+  } */
+
+  Future<SearchResult> filterHadiths(String searchHadith) async {
+    log('searchHadith: $searchHadith, allAhadith: ${_allAhadith.length}');
+    if (searchHadith.isEmpty || _allAhadith.isEmpty) {
+      return SearchResult(exactMatches: [], relatedMatches: []);
+    }
+
+    return await compute<Map<String, dynamic>, SearchResult>(
+      _filterHadithsIsolate,
+      {
+        'searchHadith': searchHadith,
+        'allAhadith': _allAhadith.map((h) => h.toJson()).toList(),
+      },
+    );
+  }
+
+  static SearchResult _filterHadithsIsolate(Map<String, dynamic> params) {
+    final String searchHadith = params['searchHadith'];
+    final List<Map<String, dynamic>> allAhadithMaps = params['allAhadith'];
+
+    final normalizedQuery =
+        HadithEntity.removeDiacritics(searchHadith).toLowerCase();
+    final searchTerms = normalizedQuery.split(' ');
+    final List<HadithEntity> allAhadith =
+        allAhadithMaps.map((m) => HadithEntity.fromJson(m)).toList();
+    List<HadithEntity> exactMatches = [];
+    List<HadithEntity> relatedMatches = [];
+
+    for (HadithEntity hadith in allAhadith) {
+      String normalizedHadith =
+          HadithEntity.removeDiacritics(hadith.hadithWithoutTashkeel)
+              .toLowerCase();
+
+      if (normalizedHadith.contains(normalizedQuery)) {
+        exactMatches.add(hadith);
+      } else if (searchTerms.every((term) => normalizedHadith.contains(term))) {
+        relatedMatches.add(hadith);
+      }
+    }
+
+    return SearchResult(
+        exactMatches: exactMatches, relatedMatches: relatedMatches);
   }
 }
