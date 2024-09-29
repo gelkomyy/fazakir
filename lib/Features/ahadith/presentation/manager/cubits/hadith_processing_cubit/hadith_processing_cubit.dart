@@ -3,6 +3,7 @@ import 'dart:isolate';
 
 import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
 import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view_body.dart';
+import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
 import 'package:flutter/foundation.dart';
@@ -118,7 +119,8 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     final String searchHadith = params['searchHadith'];
     final List<Map<String, dynamic>> allAhadithMaps = params['allAhadith'];
 
-    final normalizedQuery = removeDiacritics(searchHadith).toLowerCase();
+    final normalizedQuery =
+        normalizeArabicText(removeDiacritics(searchHadith).toLowerCase());
     final searchTerms = normalizedQuery.split(' ');
     final List<HadithEntity> allAhadith =
         allAhadithMaps.map((m) => HadithEntity.fromJson(m)).toList();
@@ -127,12 +129,24 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
     for (HadithEntity hadith in allAhadith) {
       String normalizedHadith =
-          removeDiacritics(hadith.hadithWithoutTashkeel).toLowerCase();
+          normalizeArabicText(hadith.hadithWithoutTashkeel.toLowerCase());
 
       if (normalizedHadith.contains(normalizedQuery)) {
         exactMatches.add(hadith);
-      } else if (searchTerms.every((term) => normalizedHadith.contains(term))) {
-        relatedMatches.add(hadith);
+      } else {
+        int matchingWordCount = 0;
+
+        for (String term in searchTerms) {
+          if (normalizedHadith.contains(term) ||
+              hasPartialMatch(term, normalizedHadith)) {
+            matchingWordCount++;
+          }
+        }
+
+        // If a sufficient number of terms match, consider it a related result
+        if (matchingWordCount > 0) {
+          relatedMatches.add(hadith);
+        }
       }
     }
 

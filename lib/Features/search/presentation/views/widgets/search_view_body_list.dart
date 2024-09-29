@@ -1,4 +1,7 @@
+import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
 import 'package:fazakir/Features/ahadith/presentation/views/widgets/container_hadith_item.dart';
+import 'package:fazakir/Features/azkar/domain/entities/azkar_item_entity.dart';
+import 'package:fazakir/Features/home/presentation/views/widgets/container_zikr_item.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -25,12 +28,12 @@ class SearchViewBodyList extends StatelessWidget {
           final searchResult = state.searchResult;
 
           if (searchResult.exactMatches.isNotEmpty) {
-            final ahadith = searchResult.exactMatches;
+            final result = searchResult.exactMatches;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "عدد النتائج : ${ahadith.length}",
+                  "عدد النتائج : ${result.length}",
                   style: AppFontStyles.styleBold16(context).copyWith(
                     color: AppColors.primaryColor,
                   ),
@@ -38,14 +41,22 @@ class SearchViewBodyList extends StatelessWidget {
                 const SizedBox(height: 6),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: ahadith.length,
+                    itemCount: result.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsetsDirectional.only(
-                            bottom: index + 1 == ahadith.length ? 0 : 24),
-                        child: ContainerHadithItem(
-                          hadithEntity: ahadith[index],
-                        ),
+                            bottom: index + 1 == result.length ? 0 : 24),
+                        child: result[index] is AzkarItemEntity
+                            ? ContainerZikrItem(
+                                azkarItem: result[index],
+                                margin: EdgeInsets.zero,
+                                withoutHeader: true,
+                              )
+                            : result[index] is HadithEntity
+                                ? ContainerHadithItem(
+                                    hadithEntity: result[index],
+                                  )
+                                : const SizedBox.shrink(),
                       );
                     },
                   ),
@@ -53,12 +64,12 @@ class SearchViewBodyList extends StatelessWidget {
               ],
             );
           } else if (searchResult.relatedMatches.isNotEmpty) {
-            final ahadith = searchResult.relatedMatches;
+            final result = searchResult.relatedMatches;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "عدد النتائج : ${ahadith.length}",
+                  "عدد النتائج : ${result.length}",
                   style: AppFontStyles.styleBold16(context).copyWith(
                     color: AppColors.primaryColor,
                   ),
@@ -73,14 +84,22 @@ class SearchViewBodyList extends StatelessWidget {
                 const SizedBox(height: 6),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: ahadith.length,
+                    itemCount: result.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsetsDirectional.only(
-                            bottom: index + 1 == ahadith.length ? 0 : 24),
-                        child: ContainerHadithItem(
-                          hadithEntity: ahadith[index],
-                        ),
+                            bottom: index + 1 == result.length ? 0 : 24),
+                        child: result[index] is AzkarItemEntity
+                            ? ContainerZikrItem(
+                                azkarItem: result[index],
+                                margin: EdgeInsets.zero,
+                                withoutHeader: true,
+                              )
+                            : result[index] is HadithEntity
+                                ? ContainerHadithItem(
+                                    hadithEntity: result[index],
+                                  )
+                                : const SizedBox.shrink(),
                       );
                     },
                   ),

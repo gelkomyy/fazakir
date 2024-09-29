@@ -57,7 +57,8 @@ class AzkarRepoImpl {
         params['allAzkarItems'];
 
     // Normalize the query by removing diacritics
-    final normalizedQuery = removeDiacritics(searchAzkar).toLowerCase();
+    final normalizedQuery =
+        normalizeArabicText(removeDiacritics(searchAzkar).toLowerCase());
     final searchTerms = normalizedQuery.split(' ');
 
     final List<AzkarItemEntity> allAzkarItems =
@@ -67,14 +68,27 @@ class AzkarRepoImpl {
     List<AzkarItemEntity> relatedMatches = [];
 
     for (AzkarItemEntity azkarItem in allAzkarItems) {
-      String normalizedAzkar = removeDiacritics(azkarItem.text).toLowerCase();
+      String normalizedAzkar =
+          normalizeArabicText(removeDiacritics(azkarItem.text).toLowerCase());
 
       // Exact match: search term is found as a whole in the azkar content
       if (normalizedAzkar.contains(normalizedQuery)) {
         exactMatches.add(azkarItem);
-      } else if (searchTerms.every((term) => normalizedAzkar.contains(term))) {
-        // Related match: all search terms are found in the azkar content
-        relatedMatches.add(azkarItem);
+      } else {
+        // Related match improvement: check how many words match, and allow partial matches
+        int matchingWordCount = 0;
+
+        for (String term in searchTerms) {
+          if (normalizedAzkar.contains(term) ||
+              hasPartialMatch(term, normalizedAzkar)) {
+            matchingWordCount++;
+          }
+        }
+
+        // If a sufficient number of terms match, consider it a related result
+        if (matchingWordCount > 0) {
+          relatedMatches.add(azkarItem);
+        }
       }
     }
 
@@ -132,4 +146,23 @@ class AzkarRepoImpl {
       throw Exception("Error fetching random Azkar category: $e");
     }
   }
+
+  // Helper function to check for partial word matches
+}
+
+bool hasPartialMatch(String term, String content) {
+  // Consider a partial match if the term matches at least 3 characters at the start or within the content
+  const partialMatchLength = 3;
+  return term.length >= partialMatchLength &&
+      content.contains(term.substring(0, partialMatchLength));
+}
+
+String normalizeArabicText(String input) {
+  return input
+      .replaceAll(RegExp(r'[أإآ]', caseSensitive: false),
+          'ا') // Normalize Alef variants
+      .replaceAll(RegExp(r'ء'), '') // Optional: remove Hamza
+      .replaceAll(RegExp(r'ة'), 'ه') // Normalize Ta Marbuta (ة to ه)
+      .replaceAll(RegExp(r'ئ'), 'ي') // Normalize Ya with Hamza to regular Ya
+      .replaceAll(RegExp(r'ى'), 'ي'); // Normalize Alef Maqsura to Ya
 }
