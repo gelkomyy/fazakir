@@ -70,11 +70,16 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case SebhaView.routeName:
       final args = settings.arguments as SebhaZikrModel;
       return MaterialPageRoute(
-          builder: (context) => SebhaView(
-                zikrModel: args,
-              ));
+        builder: (context) => SebhaView(
+          zikrModel: args,
+        ),
+      );
     case SearchView.routeName:
-      return MaterialPageRoute(builder: (context) => const SearchView());
+      return MaterialPageRoute(
+        builder: (context) => SearchView(
+          isFromZikr: settings.arguments as bool? ?? false,
+        ),
+      );
     default:
       return MaterialPageRoute(builder: (context) => const NavigationPage());
   }

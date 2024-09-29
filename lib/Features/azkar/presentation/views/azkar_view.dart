@@ -1,6 +1,7 @@
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/azkar/presentation/manager/cubits/manage_azkar_cubit/manage_azkar_cubit.dart';
 import 'package:fazakir/Features/azkar/presentation/views/widgets/azkar_view_body.dart';
+import 'package:fazakir/Features/search/presentation/views/search_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -45,7 +46,11 @@ class AzkarView extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(
+                  context,
+                  SearchView.routeName,
+                  arguments: true,
+                );
               },
             ),
           ],

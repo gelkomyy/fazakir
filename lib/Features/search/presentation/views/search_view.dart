@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({super.key});
+  const SearchView({super.key, this.isFromZikr = false});
 
   static const String routeName = 'searchView';
-
+  final bool isFromZikr;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -17,7 +17,8 @@ class SearchView extends StatelessWidget {
           create: (_) => SearchCubit(context),
         ),
         BlocProvider(
-          create: (context) => FilterSelectItemCubit(),
+          create: (context) => FilterSelectItemCubit()
+            ..setSelectedItem(isFromZikr ? 'ذكر' : '', 'search_type'),
         ),
       ],
       child: const Scaffold(
