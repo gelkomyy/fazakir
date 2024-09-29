@@ -1,8 +1,8 @@
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
+import 'package:fazakir/core/cubits/filter_select_item_cubit/filter_select_item_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
-import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
@@ -15,77 +15,83 @@ class SearchFieldWithSuggetionHistory extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<List<String>>(
-      valueListenable: context.read<SearchCubit>().searchHistoryNotifier,
-      builder: (context, value, _) {
-        final List<String> searchHistory = value;
-        return Container(
-          height: 40,
-          decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x3F000000),
-                blurRadius: 20,
-                offset: Offset(0, 4),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: SearchField<String>(
-            controller: context.read<SearchCubit>().searchController,
-            autofocus: true,
-            onTapOutside: (_) {
-              FocusScope.of(context).unfocus();
-            },
-            suggestions: searchHistory
-                .map(
-                  (s) => searchFieldListItemSugesstion(
-                    context,
-                    sugesstionKey: s,
-                    onTapRemove: () {
-                      context.read<SearchCubit>().removeSearchHistory(s);
-                    },
+    return BlocBuilder<FilterSelectItemCubit, Map<String, String>>(
+      builder: (context, selectState) {
+        return ValueListenableBuilder<List<String>>(
+          valueListenable: context.read<SearchCubit>().searchHistoryNotifier,
+          builder: (context, value, _) {
+            final List<String> searchHistory = value;
+            return Container(
+              height: 40,
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x3F000000),
+                    blurRadius: 20,
+                    offset: Offset(0, 4),
+                    spreadRadius: 0,
+                  )
+                ],
+              ),
+              child: SearchField<String>(
+                controller: context.read<SearchCubit>().searchController,
+                autofocus: true,
+                onTapOutside: (_) {
+                  FocusScope.of(context).unfocus();
+                },
+                suggestions: searchHistory
+                    .map(
+                      (s) => searchFieldListItemSugesstion(
+                        context,
+                        sugesstionKey: s,
+                        onTapRemove: () {
+                          context.read<SearchCubit>().removeSearchHistory(s);
+                        },
+                      ),
+                    )
+                    .toList(),
+                searchInputDecoration: SearchInputDecoration(
+                  cursorColor: AppColors.primaryColor,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
                   ),
-                )
-                .toList(),
-            searchInputDecoration: SearchInputDecoration(
-              cursorColor: AppColors.primaryColor,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 6,
-              ),
-              searchStyle: AppFontStyles.styleRegular14(context),
-              hintStyle: AppFontStyles.styleRegular11(context).copyWith(
-                color: AppColors.greyColor,
-              ),
-              filled: true,
-              fillColor: Colors.white,
-              suffixIcon: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
+                  searchStyle: AppFontStyles.styleRegular14(context),
+                  hintStyle: AppFontStyles.styleRegular11(context).copyWith(
+                    color: AppColors.greyColor,
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ),
+                    child: SvgPicture.asset(
+                      Assets.assetsImagesSearchIconSvg,
+                      width: 16,
+                      height: 16,
+                    ),
+                  ),
+                  suffixIconConstraints: const BoxConstraints(
+                    minHeight: 12,
+                    minWidth: 12,
+                  ),
+                  border: getBorder(),
+                  enabledBorder: getBorder(),
+                  hintText: selectState['search_type'] == 'حديث'
+                      ? 'ابحث عن حديث' ' ..... '
+                      : 'ابحث عن ذكر' ' ..... ',
                 ),
-                child: SvgPicture.asset(
-                  Assets.assetsImagesSearchIconSvg,
-                  width: 16,
-                  height: 16,
+                suggestionsDecoration: SuggestionDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(6),
+                  ),
+                  color: Colors.white,
+                  elevation: 5,
                 ),
               ),
-              suffixIconConstraints: const BoxConstraints(
-                minHeight: 12,
-                minWidth: 12,
-              ),
-              border: getBorder(),
-              enabledBorder: getBorder(),
-              hintText: S.of(context).search_zikr_or_hadith,
-            ),
-            suggestionsDecoration: SuggestionDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(6),
-              ),
-              color: Colors.white,
-              elevation: 5,
-            ),
-          ),
+            );
+          },
         );
       },
     );

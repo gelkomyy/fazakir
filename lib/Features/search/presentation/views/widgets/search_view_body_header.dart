@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/Features/search/presentation/views/widgets/search_field_with_suggetion_history.dart';
+import 'package:fazakir/core/cubits/filter_select_item_cubit/filter_select_item_cubit.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class SearchViewBodyHeader extends StatelessWidget {
         const SizedBox(width: 16),
         Bounceable(
           onTap: () {
-            context.read<SearchCubit>().searchContent();
+            context.read<SearchCubit>().searchContent(
+                  context.read<FilterSelectItemCubit>().state['search_type'],
+                );
           },
           child: Container(
             padding: const EdgeInsets.symmetric(

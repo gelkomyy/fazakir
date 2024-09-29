@@ -31,7 +31,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   // Method to handle search across both Hadith and Zikr entities
-  Future<void> searchContent() async {
+  Future<void> searchContent(String? hadithOrZikr) async {
     if (searchController.text.isEmpty || searchController.text.trim().isEmpty) {
       return;
     }
@@ -40,16 +40,19 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchLoading());
     addSearchHistory(searchQuery);
     try {
-      // Search Hadith
-      /*    final SearchResult hadithResults = await context
-          .read<HadithProcessingCubit>()
-          .filterHadiths(searchQuery); */
+      if (hadithOrZikr == 'ذكر') {
+        // Search Zikr
+        final SearchResult zikrResults =
+            await getIt<AzkarRepoImpl>().filterAzkarItems(searchQuery);
 
-      // Search Zikr
-      final SearchResult zikrResults =
-          await getIt<AzkarRepoImpl>().filterAzkarItems(searchQuery);
-
-      emit(SearchLoaded(zikrResults));
+        emit(SearchLoaded(zikrResults));
+      } else {
+        // Search Hadith
+        final SearchResult hadithResults = await context
+            .read<HadithProcessingCubit>()
+            .filterHadiths(searchQuery);
+        emit(SearchLoaded(hadithResults));
+      }
     } catch (e) {
       emit(SearchError('Failed to load search results'));
     }

@@ -101,7 +101,6 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
   }
 
   Future<SearchResult> filterHadiths(String searchHadith) async {
-    log('searchHadith: $searchHadith, allAhadith: ${_allAhadith.length}');
     if (searchHadith.isEmpty || _allAhadith.isEmpty) {
       return SearchResult(exactMatches: [], relatedMatches: []);
     }
