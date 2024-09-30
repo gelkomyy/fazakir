@@ -6,6 +6,11 @@ plugins {
 }
 
 android {
+    packagingOptions { 
+        jniLibs { 
+            useLegacyPackaging true 
+        } 
+    }
     namespace = "com.fazakir.elkomy"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
