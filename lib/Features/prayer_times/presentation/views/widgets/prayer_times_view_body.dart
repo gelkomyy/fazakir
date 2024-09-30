@@ -42,6 +42,9 @@ class PrayerTimesViewBody extends StatelessWidget {
               Expanded(
                 child: PrayerTimesColumn(),
               ),
+              SizedBox(
+                height: 90,
+              ),
             ],
           ),
         ),

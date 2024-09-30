@@ -12,22 +12,28 @@ class PrayerTimesColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PrayerTimesCubit, PrayerTimesState>(
       builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: context
-              .read<PrayerTimesCubit>()
-              .prayerList
-              .map(
-                (e) => PrayerDetailsBar(
-                  prayerEntity: e,
-                  isNextPrayer:
-                      context.read<PrayerTimesCubit>().nextPrayerName ==
-                              e.prayer.name
-                          ? true
-                          : false,
-                ),
-              )
-              .toList(),
+        return SingleChildScrollView(
+          child: Column(
+            children: context
+                .read<PrayerTimesCubit>()
+                .prayerList
+                .map(
+                  (e) => Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.sizeOf(context).height * 0.04,
+                    ),
+                    child: PrayerDetailsBar(
+                      prayerEntity: e,
+                      isNextPrayer:
+                          context.read<PrayerTimesCubit>().nextPrayerName ==
+                                  e.prayer.name
+                              ? true
+                              : false,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
         );
       },
     );
