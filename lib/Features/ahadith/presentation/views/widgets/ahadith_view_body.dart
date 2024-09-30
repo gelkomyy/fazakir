@@ -35,7 +35,7 @@ class AhadithViewBody extends StatelessWidget {
                   padding: EdgeInsetsDirectional.only(
                       bottom: index + 1 == ahadith.length ? 0 : 24),
                   child: ContainerHadithItem(
-                    hadithEntity: HadithEntity(
+                    hadithEntity: HadithEntity.create(
                       hadith: parseHadith(ahadith[index].hadith[1].body),
                       bookName: bookName,
                       sectionOfBookHadith: getBook(

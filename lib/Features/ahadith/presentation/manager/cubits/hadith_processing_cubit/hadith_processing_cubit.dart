@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:isolate';
 
@@ -7,44 +6,65 @@ import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
-import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadith/classes.dart';
 import 'package:hadith/hadith.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 part 'hadith_processing_state.dart';
 
 class HadithProcessingCubit extends Cubit<HadithProcessingState> {
   HadithProcessingCubit() : super(HadithProcessingInitial()) {
-    _loadHadithFromPrefs(); // Load data from shared preferences on cubit creation
+    _loadHadithFromIsar();
+    // Load data from Isar on cubit creation
   }
 
   List<HadithEntity> _allAhadith = [];
 
   List<HadithEntity> get allAhadith => _allAhadith;
-  // Load hadiths from shared preferences
-  void _loadHadithFromPrefs() {
-    final SharedPreferences prefs = getIt<SharedPreferences>();
-    final String? hadithsJson = prefs.getString('allAhadith');
 
-    if (hadithsJson != null && hadithsJson.isNotEmpty) {
-      List<dynamic> jsonData = jsonDecode(hadithsJson);
-      _allAhadith =
-          jsonData.map((json) => HadithEntity.fromJson(json)).toList();
+  // Load hadiths from Isar
+  Future<void> _loadHadithFromIsar() async {
+    final dir = await getApplicationDocumentsDirectory();
+    // Open the Isar instance
+    final Isar isar =
+        await Isar.open([HadithEntitySchema], directory: dir.path);
 
-      emit(HadithProcessingLoaded(
-          _allAhadith)); // Emit loaded state with data from prefs
+    try {
+      // Retrieve all HadithEntity records
+      _allAhadith = await isar.hadithEntitys.where().findAll();
+
+      if (_allAhadith.isNotEmpty) {
+        emit(HadithProcessingLoaded(
+            _allAhadith)); // Emit loaded state with data from Isar
+      }
+    } catch (e) {
+      log('Error loading hadiths from Isar: $e');
+      emit(HadithProcessingError('Failed to load hadiths from database.'));
+    } finally {
+      await isar.close(); // Close the Isar instance
     }
   }
 
-  // Save the hadiths to shared preferences when closing the cubit
-  Future<void> _saveHadithToPrefs() async {
-    final SharedPreferences prefs = getIt<SharedPreferences>();
-    final String hadithsJson =
-        jsonEncode(_allAhadith.map((hadith) => hadith.toJson()).toList());
-    await prefs.setString('allAhadith', hadithsJson);
+  // Save the hadiths to Isar
+  Future<void> _saveHadithToIsar() async {
+    final dir = await getApplicationDocumentsDirectory();
+    // Open the Isar instance
+    final Isar isar =
+        await Isar.open([HadithEntitySchema], directory: dir.path);
+
+    try {
+      await isar.writeTxn(() async {
+        await isar.hadithEntitys
+            .putAll(_allAhadith); // Save all HadithEntity records
+      });
+    } catch (e) {
+      log('Error saving hadiths to Isar: $e');
+    } finally {
+      await isar.close(); // Close the Isar instance
+    }
   }
 
   Future<void> processHadiths() async {
@@ -60,9 +80,9 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
       _allAhadith = results.expand((list) => list).toList();
 
       emit(HadithProcessingLoaded(_allAhadith));
-      await _saveHadithToPrefs();
+      await _saveHadithToIsar();
     } catch (e) {
-      emit(HadithProcessingError(e.toString()));
+      emit(HadithProcessingError('Failed to process hadiths.'));
     }
   }
 

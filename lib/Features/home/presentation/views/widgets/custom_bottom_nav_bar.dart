@@ -1,4 +1,3 @@
-import 'package:fazakir/Features/ahadith/presentation/manager/cubits/hadith_processing_cubit/hadith_processing_cubit.dart';
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar_models.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_nav_bar.dart';
@@ -9,20 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomBottomNavBar extends StatefulWidget {
+class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key, required this.selectedIndex});
   final int selectedIndex;
-
-  @override
-  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
-}
-
-class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  @override
-  void initState() {
-    context.read<HadithProcessingCubit>().processHadiths();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +18,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       navBarEssentials: NavBarEssentials(
         navBarHeight: null /* getResponsiveFontSize(context, fontSize: 80) */,
         items: buildNavBarItems,
-        selectedIndex: widget.selectedIndex,
+        selectedIndex: selectedIndex,
         backgroundColor: Colors.white,
         itemAnimationProperties: const ItemAnimationSettings(
           duration: Duration(milliseconds: 300),

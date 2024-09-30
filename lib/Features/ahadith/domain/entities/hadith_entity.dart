@@ -1,23 +1,54 @@
-import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart';
+import 'dart:convert';
 
+import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart';
+import 'package:isar/isar.dart';
+
+part 'hadith_entity.g.dart';
+
+@collection
 class HadithEntity extends FavoriteEntity {
+  final Id id = Isar.autoIncrement;
   final String hadith;
   final String hadithWithoutTashkeel;
   final String hadithNumber;
   final String bookName;
   final String sectionOfBookHadith;
-  final List grades;
+  // Store the dynamic list as a JSON string
+  final String gradesJson;
+
+  // Getter to decode the JSON string back to List<dynamic>
+  @ignore
+  List<dynamic> get grades => jsonDecode(gradesJson);
+
+  // Constructor without the `grades` parameter
   HadithEntity({
     required this.hadith,
     required this.bookName,
     required this.sectionOfBookHadith,
     required this.hadithNumber,
-    required this.grades,
+    required this.gradesJson,
   }) : hadithWithoutTashkeel = removeDiacritics(hadith);
+
+  // Static method to create an instance with a `grades` list
+  static HadithEntity create({
+    required String hadith,
+    required String bookName,
+    required String sectionOfBookHadith,
+    required String hadithNumber,
+    required List<dynamic> grades,
+  }) {
+    return HadithEntity(
+      hadith: hadith,
+      bookName: bookName,
+      sectionOfBookHadith: sectionOfBookHadith,
+      hadithNumber: hadithNumber,
+      gradesJson: jsonEncode(grades), // Convert List to JSON
+    );
+  }
 
   @override
   factory HadithEntity.fromJson(Map<String, dynamic> json) {
-    return HadithEntity(
+    return HadithEntity.create(
       hadith: json['hadith'],
       bookName: json['bookName'],
       sectionOfBookHadith: json['sectionOfBookHadith'],
