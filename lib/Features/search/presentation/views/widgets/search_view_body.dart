@@ -16,10 +16,42 @@ class SearchViewBody extends StatelessWidget {
         future: context.read<HadithProcessingCubit>().processHadiths(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(
-                valueColor:
-                    AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+            return AbsorbPointer(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  start: 24,
+                  end: 24,
+                  top: 32,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const CustomSelectionItems(
+                      texts: [
+                        'حديث',
+                        'ذكر',
+                      ],
+                      filterKey: 'search_type',
+                      backgroundColor: AppColors.greyColor,
+                      activeColor: AppColors.primaryColor,
+                      activeTextColor: Colors.white,
+                    ),
+                    const SizedBox(height: 32),
+                    Text(
+                      'نتائج البحث : ',
+                      style: AppFontStyles.styleBold20(context),
+                    ),
+                    const SizedBox(height: 8),
+                    const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              AppColors.primaryColor),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           }

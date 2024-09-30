@@ -7,6 +7,7 @@ import 'package:fazakir/core/utils/custom_bloc_observer.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:fazakir/core/utils/func/on_generate_routes.dart';
+import 'package:fazakir/core/utils/isar_helper.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +20,9 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Bloc.observer = CustomBlocObserver();
+
   await getItSetup();
+  await IsarHelper.init();
   runApp(const Fazakir());
 }
 

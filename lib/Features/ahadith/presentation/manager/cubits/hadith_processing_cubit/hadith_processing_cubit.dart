@@ -6,12 +6,11 @@ import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
+import 'package:fazakir/core/utils/isar_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadith/classes.dart';
 import 'package:hadith/hadith.dart';
-import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 
 part 'hadith_processing_state.dart';
 
@@ -27,60 +26,39 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
   // Load hadiths from Isar
   Future<void> _loadHadithFromIsar() async {
-    final dir = await getApplicationDocumentsDirectory();
-    // Open the Isar instance
-    final Isar isar =
-        await Isar.open([HadithEntitySchema], directory: dir.path);
+    emit(HadithProcessingLoading());
 
     try {
-      // Retrieve all HadithEntity records
-      _allAhadith = await isar.hadithEntitys.where().findAll();
-
+      _allAhadith = await IsarHelper.loadHadithEntities(); // Load from Isar
       if (_allAhadith.isNotEmpty) {
         emit(HadithProcessingLoaded(
             _allAhadith)); // Emit loaded state with data from Isar
+      } else {
+        emit(HadithProcessingInitial()); // If no data found
       }
     } catch (e) {
-      log('Error loading hadiths from Isar: $e');
-      emit(HadithProcessingError('Failed to load hadiths from database.'));
-    } finally {
-      await isar.close(); // Close the Isar instance
+      emit(HadithProcessingError('Failed to load hadiths: $e'));
     }
   }
 
   // Save the hadiths to Isar
   Future<void> _saveHadithToIsar() async {
-    final dir = await getApplicationDocumentsDirectory();
-    // Open the Isar instance
-    final Isar isar =
-        await Isar.open([HadithEntitySchema], directory: dir.path);
-
-    try {
-      await isar.writeTxn(() async {
-        await isar.hadithEntitys
-            .putAll(_allAhadith); // Save all HadithEntity records
-      });
-    } catch (e) {
-      log('Error saving hadiths to Isar: $e');
-    } finally {
-      await isar.close(); // Close the Isar instance
-    }
+    await IsarHelper.saveHadithEntities(_allAhadith); // Save to Isar
   }
 
   Future<void> processHadiths() async {
     emit(HadithProcessingLoading());
 
     if (_allAhadith.isNotEmpty) {
-      // Hadiths are already loaded from shared preferences, no need to process
+      //  no need to process
       emit(HadithProcessingLoaded(_allAhadith));
       return;
     }
     try {
       List<List<HadithEntity>> results = await processTheHadiths();
       _allAhadith = results.expand((list) => list).toList();
-
-      emit(HadithProcessingLoaded(_allAhadith));
       await _saveHadithToIsar();
+      emit(HadithProcessingLoaded(_allAhadith));
     } catch (e) {
       emit(HadithProcessingError('Failed to process hadiths.'));
     }
