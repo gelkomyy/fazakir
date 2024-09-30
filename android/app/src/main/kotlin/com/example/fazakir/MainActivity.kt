@@ -1,4 +1,4 @@
-package com.example.fazakir
+package com.fazakir.elkomy
 
 import io.flutter.embedding.android.FlutterActivity
 
