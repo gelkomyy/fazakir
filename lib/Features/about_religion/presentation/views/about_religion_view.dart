@@ -5,7 +5,6 @@ import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/widgets/custom_search_text_field.dart';
-import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
@@ -69,12 +68,12 @@ class _AboutReligionViewState extends State<AboutReligionView> {
                             .read<ManageAboutReligionCubit>()
                             .filterVideosWithDebounce(query);
                       },
-                      hintText: 'ابحث عن شيء عن الدين' ' ..... ',
+                      hintText: 'ابحث عن بودكاست' ' ..... ',
                     );
                   }),
                 )
               : Text(
-                  S.of(context).about_religion,
+                  'بودكاست',
                   style: AppFontStyles.styleBold20(context),
                 ),
           centerTitle: true,

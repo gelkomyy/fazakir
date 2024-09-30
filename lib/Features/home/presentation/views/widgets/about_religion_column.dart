@@ -3,7 +3,6 @@ import 'package:fazakir/Features/about_religion/presentation/views/about_religio
 import 'package:fazakir/Features/home/presentation/views/widgets/about_religion_item.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/widgets/row_label_with_show_more.dart';
-import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +13,6 @@ class AboutReligionColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S txt = S.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -22,7 +20,7 @@ class AboutReligionColumn extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           RowLabelWithShowMore(
-            labelText: txt.about_religion,
+            labelText: 'بودكاست',
             onTapShowMore: () {
               Navigator.pushNamed(context, AboutReligionView.routeName);
             },
