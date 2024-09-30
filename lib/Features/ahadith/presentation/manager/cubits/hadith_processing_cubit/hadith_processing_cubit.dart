@@ -6,7 +6,7 @@ import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
-import 'package:fazakir/core/utils/isar_helper.dart';
+import 'package:fazakir/core/utils/object_box_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hadith/classes.dart';
@@ -29,7 +29,7 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     emit(HadithProcessingLoading());
 
     try {
-      _allAhadith = await IsarHelper.loadHadithEntities(); // Load from Isar
+      _allAhadith = ObjectBoxManager.instance.getAll(); // Load from Isar
       if (_allAhadith.isNotEmpty) {
         emit(HadithProcessingLoaded(
             _allAhadith)); // Emit loaded state with data from Isar
@@ -43,7 +43,7 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
   // Save the hadiths to Isar
   Future<void> _saveHadithToIsar() async {
-    await IsarHelper.saveHadithEntities(_allAhadith); // Save to Isar
+    await ObjectBoxManager.instance.putMany(_allAhadith); // Save to Isar
   }
 
   Future<void> processHadiths() async {

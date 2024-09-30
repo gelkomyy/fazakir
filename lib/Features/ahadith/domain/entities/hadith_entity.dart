@@ -1,13 +1,12 @@
 import 'dart:convert';
 
 import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart';
-import 'package:isar/isar.dart';
+import 'package:objectbox/objectbox.dart';
 
-part 'hadith_entity.g.dart';
-
-@collection
+@Entity()
 class HadithEntity extends FavoriteEntity {
-  final Id id = Isar.autoIncrement;
+  @Id()
+  int id = 0;
   final String hadith;
   final String hadithWithoutTashkeel;
   final String hadithNumber;
@@ -17,7 +16,6 @@ class HadithEntity extends FavoriteEntity {
   final String gradesJson;
 
   // Getter to decode the JSON string back to List<dynamic>
-  @ignore
   List<dynamic> get grades => jsonDecode(gradesJson);
 
   // Constructor without the `grades` parameter
