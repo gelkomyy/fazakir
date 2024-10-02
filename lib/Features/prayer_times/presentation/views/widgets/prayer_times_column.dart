@@ -20,7 +20,7 @@ class PrayerTimesColumn extends StatelessWidget {
                 .map(
                   (e) => Padding(
                     padding: EdgeInsets.only(
-                      bottom: MediaQuery.sizeOf(context).height * 0.04,
+                      bottom: MediaQuery.sizeOf(context).height * 0.035,
                     ),
                     child: PrayerDetailsBar(
                       prayerEntity: e,
