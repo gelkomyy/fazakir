@@ -20,12 +20,12 @@ class ObjectBoxManager {
 
   static ObjectBoxManager get instance => _instance;
 
-  Future<List<int>> putMany(List<HadithEntity> hadiths) async {
-    return _hadithBox.putMany(hadiths);
+  Future<List<int>> putManyAsync(List<HadithEntity> hadiths) async {
+    return await _hadithBox.putManyAsync(hadiths);
   }
 
-  List<HadithEntity> getAll() {
-    return _hadithBox.getAll();
+  Future<List<HadithEntity>> getAllAsync() async {
+    return await _hadithBox.getAllAsync();
   }
 
   void close() {

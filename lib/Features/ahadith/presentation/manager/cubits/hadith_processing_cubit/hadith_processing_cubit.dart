@@ -29,7 +29,8 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     emit(HadithProcessingLoading());
 
     try {
-      _allAhadith = ObjectBoxManager.instance.getAll(); // Load from Isar
+      _allAhadith =
+          await ObjectBoxManager.instance.getAllAsync(); // Load from Isar
       if (_allAhadith.isNotEmpty) {
         emit(HadithProcessingLoaded(
             _allAhadith)); // Emit loaded state with data from Isar
@@ -43,7 +44,7 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
   // Save the hadiths to Isar
   Future<void> _saveHadithToIsar() async {
-    await ObjectBoxManager.instance.putMany(_allAhadith); // Save to Isar
+    await ObjectBoxManager.instance.putManyAsync(_allAhadith); // Save to Isar
   }
 
   Future<void> processHadiths() async {
