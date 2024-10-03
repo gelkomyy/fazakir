@@ -16,6 +16,7 @@ class CustomTextButton extends StatelessWidget {
     this.minimumSize = const Size(double.infinity, 24),
     required this.onPressed,
     this.textStyle,
+    this.child,
   });
   final String text;
   final Color backgroundColor;
@@ -24,6 +25,9 @@ class CustomTextButton extends StatelessWidget {
   final void Function() onPressed;
   final TextStyle? textStyle;
   final Size? minimumSize;
+
+  /// if passed child, all text options ignore.
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -34,13 +38,14 @@ class CustomTextButton extends StatelessWidget {
         minimumSize: minimumSize,
       ),
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: textStyle ??
-            AppFontStyles.styleBold14(context).copyWith(
-              color: Colors.white,
-            ),
-      ),
+      child: child ??
+          Text(
+            text,
+            style: textStyle ??
+                AppFontStyles.styleBold14(context).copyWith(
+                  color: Colors.white,
+                ),
+          ),
     );
   }
 }
