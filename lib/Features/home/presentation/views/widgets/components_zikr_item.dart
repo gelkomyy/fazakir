@@ -108,7 +108,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                 },
                 child: SvgPicture.asset(
                   Assets.assetsImagesLayersShapeSvg,
-                  width: 20,
+                  width: 24,
+                  height: 24,
                 ),
               ),
               SizedBox(height: isShow ? 16 : 0),
@@ -117,7 +118,7 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                       children: [
                         Align(
                           alignment: AlignmentDirectional(
-                            t * -0.2,
+                            t * -0.23,
                             0.0,
                           ), // Use Alignment to position
                           child: FadeTransition(
@@ -138,7 +139,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                                       .toggleFavorite(widget.zikr),
                                   child: SvgPicture.asset(
                                     Assets.assetsImagesHeartBlackIconSvg,
-                                    width: 14,
+                                    width: 17,
+                                    height: 17,
                                     colorFilter: ColorFilter.mode(
                                       isFav ? AppColors.redColor : Colors.black,
                                       BlendMode.srcIn,
@@ -151,13 +153,12 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                         ),
                         Align(
                           alignment: AlignmentDirectional(
-                            t * 0.2,
+                            t * 0.23,
                             0.0,
                           ), // Use Alignment to position
                           child: FadeTransition(
                             opacity: _fadeAnimation,
                             child: Bounceable(
-                              scaleFactor: 0.5,
                               onTap: () {
                                 Clipboard.setData(
                                   ClipboardData(text: widget.zikr.text),
@@ -170,7 +171,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                               },
                               child: SvgPicture.asset(
                                 Assets.assetsImagesCopyIconSvg,
-                                width: 14,
+                                width: 18,
+                                height: 18,
                               ),
                             ),
                           ),
@@ -178,19 +180,22 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                       ],
                     )
                   : const SizedBox(),
+              SizedBox(
+                height: isShow ? 8 : 0,
+              ),
               isShow
                   ? Transform.translate(
                       offset: Offset(x3, y3),
                       child: FadeTransition(
                         opacity: _fadeAnimation,
                         child: Bounceable(
-                          scaleFactor: 0.5,
                           onTap: () {
                             Share.share(widget.zikr.text);
                           },
                           child: SvgPicture.asset(
                             Assets.assetsImagesShareIconSvg,
-                            width: 14,
+                            width: 18,
+                            height: 18,
                           ),
                         ),
                       ),
