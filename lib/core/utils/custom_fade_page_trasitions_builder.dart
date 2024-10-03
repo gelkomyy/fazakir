@@ -11,13 +11,9 @@ class CustomFadePageTransitionsBuilder extends PageTransitionsBuilder {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    if (animation.status == AnimationStatus.forward) {
-      return FadeTransition(
-        opacity: Tween<double>(begin: 0.0, end: 1.0).animate(animation),
-        child: child,
-      );
-    } else {
-      return child;
-    }
+    return FadeTransition(
+      opacity: Tween<double>(begin: 0.0, end: 1.0).animate(animation),
+      child: child,
+    );
   }
 }

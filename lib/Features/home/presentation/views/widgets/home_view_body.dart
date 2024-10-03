@@ -40,7 +40,7 @@ class HomeViewBody extends StatelessWidget {
                     const RemainTimeForNextPrayerText(),
                   ],
                 ),
-                const SizedBox(height: 42),
+                const SizedBox(height: 32),
                 RowLabelWithShowMore(
                   labelText: txt.shortcuts,
                   onTapShowMore: () {

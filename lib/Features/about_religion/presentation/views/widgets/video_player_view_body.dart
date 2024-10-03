@@ -127,7 +127,7 @@ class _VideoPlayerViewBodyState extends State<VideoPlayerViewBody> {
                     });
                     showCustomSnackBar(
                       context,
-                      'Error: ${error.description}',
+                      'هناك خطأ ما، الرجاء المحاولة مرة اخرى',
                     );
                   },
                 ),
