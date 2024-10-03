@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesAboutIconSvg
+  /// assets/images/about_icon_svg.svg
+  static const String assetsImagesAboutIconSvg = "assets/images/about_icon_svg.svg";
+
   /// Assets for assetsImagesAhadithShortcut
   /// assets/images/ahadith_shortcut.jpg
   static const String assetsImagesAhadithShortcut = "assets/images/ahadith_shortcut.jpg";
@@ -10,9 +14,17 @@ class Assets {
   /// assets/images/alarm_icon_svg.svg
   static const String assetsImagesAlarmIconSvg = "assets/images/alarm_icon_svg.svg";
 
+  /// Assets for assetsImagesAppIcon
+  /// assets/images/app_icon.png
+  static const String assetsImagesAppIcon = "assets/images/app_icon.png";
+
   /// Assets for assetsImagesAsrIconSvg
   /// assets/images/asr_icon_svg.svg
   static const String assetsImagesAsrIconSvg = "assets/images/asr_icon_svg.svg";
+
+  /// Assets for assetsImagesAtazkeerIconSvg
+  /// assets/images/atazkeer_icon_svg.svg
+  static const String assetsImagesAtazkeerIconSvg = "assets/images/atazkeer_icon_svg.svg";
 
   /// Assets for assetsImagesAzkarShortcut
   /// assets/images/azkar_shortcut.jpg
@@ -41,6 +53,10 @@ class Assets {
   /// Assets for assetsImagesFajrIconSvg
   /// assets/images/fajr_icon_svg.svg
   static const String assetsImagesFajrIconSvg = "assets/images/fajr_icon_svg.svg";
+
+  /// Assets for assetsImagesFlagIconSvg
+  /// assets/images/flag_icon_svg.svg
+  static const String assetsImagesFlagIconSvg = "assets/images/flag_icon_svg.svg";
 
   /// Assets for assetsImagesHeartBlackIconSvg
   /// assets/images/heart_black_icon_svg.svg
@@ -74,9 +90,17 @@ class Assets {
   /// assets/images/layers_shape_svg.svg
   static const String assetsImagesLayersShapeSvg = "assets/images/layers_shape_svg.svg";
 
+  /// Assets for assetsImagesLikeIconSvg
+  /// assets/images/like_icon_svg.svg
+  static const String assetsImagesLikeIconSvg = "assets/images/like_icon_svg.svg";
+
   /// Assets for assetsImagesMaghribIconSvg
   /// assets/images/maghrib_icon_svg.svg
   static const String assetsImagesMaghribIconSvg = "assets/images/maghrib_icon_svg.svg";
+
+  /// Assets for assetsImagesMoonIconSvg
+  /// assets/images/moon_icon_svg.svg
+  static const String assetsImagesMoonIconSvg = "assets/images/moon_icon_svg.svg";
 
   /// Assets for assetsImagesMoveForCompassGif
   /// assets/images/move_for_compass_gif.gif
@@ -153,6 +177,14 @@ class Assets {
   /// Assets for assetsImagesSibhaShortcut
   /// assets/images/sibha_shortcut.jpg
   static const String assetsImagesSibhaShortcut = "assets/images/sibha_shortcut.jpg";
+
+  /// Assets for assetsImagesStarIconSvg
+  /// assets/images/star_icon_svg.svg
+  static const String assetsImagesStarIconSvg = "assets/images/star_icon_svg.svg";
+
+  /// Assets for assetsImagesTazkeerIconSvg
+  /// assets/images/tazkeer_icon_svg.svg
+  static const String assetsImagesTazkeerIconSvg = "assets/images/tazkeer_icon_svg.svg";
 
   /// Assets for assetsImagesTestPreviewImage
   /// assets/images/test_preview_image.jpg
