@@ -13,6 +13,7 @@ class SettingsViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ...SettingsListModel.settingsList.map((e) => e.buildList(context)),
           const SizedBox(
@@ -35,7 +36,7 @@ class SettingsViewBody extends StatelessWidget {
             padding: const EdgeInsets.all(14),
             text: '',
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SvgPicture.asset(Assets.assetsImagesStarIconSvg),
                 Text(

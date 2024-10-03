@@ -13,23 +13,19 @@ class PrayerTimesViewBody extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.topEnd,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: SvgPicture.asset(
-            Assets.assetsImagesPrayerTimesBackgroundShapeSvg,
-          ),
+        SvgPicture.asset(
+          Assets.assetsImagesPrayerTimesBackgroundShapeSvg,
         ),
         const Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 24,
-            vertical: 6,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 32,
+                height: 24,
               ),
               PrayerTimesViewBodyHeader(),
               SizedBox(
