@@ -27,6 +27,9 @@ class SearchViewBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const CustomSelectionItems(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 32,
+                      ),
                       texts: [
                         'حديث',
                         'ذكر',
@@ -65,6 +68,9 @@ class SearchViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomSelectionItems(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 32,
+                  ),
                   texts: [
                     'حديث',
                     'ذكر',
@@ -74,9 +80,9 @@ class SearchViewBody extends StatelessWidget {
                   activeColor: AppColors.primaryColor,
                   activeTextColor: Colors.white,
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 const SearchViewBodyHeader(),
-                const SizedBox(height: 32),
+                const SizedBox(height: 26),
                 Text(
                   'نتائج البحث : ',
                   style: AppFontStyles.styleBold20(context),

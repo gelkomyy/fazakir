@@ -28,7 +28,7 @@ class SearchViewBodyHeader extends StatelessWidget {
           },
           child: Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: 12,
+              horizontal: 16,
               vertical: 6,
             ),
             decoration: BoxDecoration(
@@ -37,7 +37,7 @@ class SearchViewBodyHeader extends StatelessWidget {
             ),
             child: Text(
               'بحث',
-              style: AppFontStyles.styleBold14(context).copyWith(
+              style: AppFontStyles.styleBold16(context).copyWith(
                 color: Colors.white,
               ),
             ),

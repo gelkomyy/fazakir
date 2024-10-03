@@ -14,17 +14,19 @@ class CustomSelectionItems extends StatelessWidget {
     this.activeTextColor,
     this.textColor,
     this.backgroundColor = Colors.transparent,
+    this.margin,
     required this.filterKey,
   });
   final String filterKey;
   final List<String> texts;
-  final EdgeInsets padding;
+  final EdgeInsetsGeometry? padding;
   final Decoration? decoration;
   final BorderRadiusGeometry? activeBorderRadius;
   final Color activeColor;
   final Color backgroundColor;
 
   final Color? textColor, activeTextColor;
+  final EdgeInsetsGeometry? margin;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FilterSelectItemCubit, Map<String, String>>(
@@ -39,6 +41,7 @@ class CustomSelectionItems extends StatelessWidget {
 
         return Container(
           padding: padding,
+          margin: margin,
           decoration: decoration ??
               BoxDecoration(
                 color: backgroundColor,

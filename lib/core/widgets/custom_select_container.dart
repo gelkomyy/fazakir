@@ -11,6 +11,7 @@ class CustomSelectContainer extends StatelessWidget {
     this.textColor,
     this.activeTextColor,
     this.milliseconds = 200,
+    this.padding = const EdgeInsetsDirectional.all(8),
   });
 
   final bool active;
@@ -19,11 +20,12 @@ class CustomSelectContainer extends StatelessWidget {
   final Color activeColor;
   final Color? textColor, activeTextColor;
   final int milliseconds;
+  final EdgeInsetsGeometry? padding;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: milliseconds),
-      padding: const EdgeInsetsDirectional.all(12),
+      padding: padding,
       decoration: BoxDecoration(
           color: active ? activeColor : null,
           borderRadius:
