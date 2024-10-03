@@ -6,6 +6,7 @@ import 'package:fazakir/Features/home/presentation/views/home_view.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
 import 'package:fazakir/Features/prayer_times/presentation/views/prayer_times_view.dart';
 import 'package:fazakir/Features/sebha/presentation/views/saved_azkar_view.dart';
+import 'package:fazakir/Features/settings/presentation/views/settings_view.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -82,7 +83,7 @@ class NavigationPage extends StatelessWidget {
       case 3:
         return const FavoritesView();
       case 4:
-        return const HomeView();
+        return const SettingsView();
       default:
         return const HomeView();
     }
