@@ -16,24 +16,24 @@ part 'hadith_processing_state.dart';
 
 class HadithProcessingCubit extends Cubit<HadithProcessingState> {
   HadithProcessingCubit() : super(HadithProcessingInitial()) {
-    _loadHadithFromIsar();
-    // Load data from Isar on cubit creation
+    _loadHadithFromLocal();
+    // Load data from Local on cubit creation
   }
 
   List<HadithEntity> _allAhadith = [];
 
   List<HadithEntity> get allAhadith => _allAhadith;
 
-  // Load hadiths from Isar
-  Future<void> _loadHadithFromIsar() async {
+  // Load hadiths from Local
+  Future<void> _loadHadithFromLocal() async {
     emit(HadithProcessingLoading());
 
     try {
       _allAhadith =
-          await ObjectBoxManager.instance.getAllAsync(); // Load from Isar
+          await ObjectBoxManager.instance.getAllAsync(); // Load from Local
       if (_allAhadith.isNotEmpty) {
         emit(HadithProcessingLoaded(
-            _allAhadith)); // Emit loaded state with data from Isar
+            _allAhadith)); // Emit loaded state with data from Local
       } else {
         emit(HadithProcessingInitial()); // If no data found
       }
@@ -42,9 +42,9 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     }
   }
 
-  // Save the hadiths to Isar
-  Future<void> _saveHadithToIsar() async {
-    await ObjectBoxManager.instance.putManyAsync(_allAhadith); // Save to Isar
+  // Save the hadiths to Local
+  Future<void> _saveHadithToLocal() async {
+    await ObjectBoxManager.instance.putManyAsync(_allAhadith); // Save to Local
   }
 
   Future<void> processHadiths() async {
@@ -58,7 +58,7 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
     try {
       List<List<HadithEntity>> results = await processTheHadiths();
       _allAhadith = results.expand((list) => list).toList();
-      await _saveHadithToIsar();
+      await _saveHadithToLocal();
       emit(HadithProcessingLoaded(_allAhadith));
     } catch (e) {
       emit(HadithProcessingError('Failed to process hadiths.'));

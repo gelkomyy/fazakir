@@ -38,6 +38,7 @@ class Fazakir extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HadithProcessingCubit(),
+          lazy: false,
         ),
       ],
       child: MaterialApp(
