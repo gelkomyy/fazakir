@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/settings/data/model/settings_list_model.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,85 @@ class SettingsViewBody extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
             ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Assets.assetsImagesElkomyLogo,
+                      width: 42,
+                      height: 42,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    Text(
+                      'برمجة وتطوير',
+                      style: AppFontStyles.styleRegular14(context).copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      'م: جاسر الكومى',
+                      style: AppFontStyles.styleBold14(context),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SvgPicture.asset(
+                      Assets.assetsImagesLinkedinIconSvg,
+                      width: 18,
+                      height: 18,
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Assets.assetsImagesElkomyLogo,
+                      width: 42,
+                      height: 42,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    Text(
+                      'مصمم واجهات',
+                      style: AppFontStyles.styleRegular14(context).copyWith(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      'م: زياد محمد',
+                      style: AppFontStyles.styleBold14(context),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SvgPicture.asset(
+                      Assets.assetsImagesLinkedinIconSvg,
+                      width: 18,
+                      height: 18,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(
-            height: 24,
+            height: 32,
           ),
           CustomTextButton(
             onPressed: () {},

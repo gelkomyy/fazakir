@@ -50,6 +50,10 @@ class Assets {
   /// assets/images/edit_icon_svg.svg
   static const String assetsImagesEditIconSvg = "assets/images/edit_icon_svg.svg";
 
+  /// Assets for assetsImagesElkomyLogo
+  /// assets/images/elkomy-logo.png
+  static const String assetsImagesElkomyLogo = "assets/images/elkomy-logo.png";
+
   /// Assets for assetsImagesFajrIconSvg
   /// assets/images/fajr_icon_svg.svg
   static const String assetsImagesFajrIconSvg = "assets/images/fajr_icon_svg.svg";
@@ -93,6 +97,10 @@ class Assets {
   /// Assets for assetsImagesLikeIconSvg
   /// assets/images/like_icon_svg.svg
   static const String assetsImagesLikeIconSvg = "assets/images/like_icon_svg.svg";
+
+  /// Assets for assetsImagesLinkedinIconSvg
+  /// assets/images/linkedin_icon_svg.svg
+  static const String assetsImagesLinkedinIconSvg = "assets/images/linkedin_icon_svg.svg";
 
   /// Assets for assetsImagesMaghribIconSvg
   /// assets/images/maghrib_icon_svg.svg
