@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   adhan: ^2.0.0+1
+  android_alarm_manager_plus: ^4.0.4
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   flutter:
@@ -39,6 +40,7 @@ dependencies:
     git: https://github.com/helpisdev/flutter_compass.git
   flutter_inappwebview: ^6.0.0
   flutter_launcher_icons: ^0.14.1
+  flutter_local_notifications: ^17.2.3
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.1
@@ -57,6 +59,7 @@ dependencies:
   share_plus: ^10.0.2
   shared_preferences: ^2.3.1
   skeletonizer: ^1.4.2
+  timezone: ^0.9.4
   url_launcher: ^6.3.0
   vibration: ^2.0.0
 
