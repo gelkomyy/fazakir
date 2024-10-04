@@ -1,6 +1,4 @@
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
-import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
 import 'package:fazakir/Features/azkar/presentation/manager/cubits/manage_azkar_cubit/manage_azkar_cubit.dart';
 import 'package:fazakir/Features/favorites/presentation/views/favorites_view.dart';
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
@@ -10,40 +8,12 @@ import 'package:fazakir/Features/prayer_times/presentation/views/prayer_times_vi
 import 'package:fazakir/Features/sebha/presentation/views/saved_azkar_view.dart';
 import 'package:fazakir/Features/settings/presentation/views/settings_view.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
-import 'package:fazakir/core/utils/notifications_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NavigationPage extends StatefulWidget {
+class NavigationPage extends StatelessWidget {
   const NavigationPage({super.key});
   static const String routeName = 'navigationPage';
-
-  @override
-  State<NavigationPage> createState() => _NavigationPageState();
-}
-
-class _NavigationPageState extends State<NavigationPage> {
-  @override
-  void initState() {
-    super.initState();
-    _startHourlyAzkarNotifications();
-  }
-
-  void periodicAzkarFetch() async {
-    // Create your service
-    AzkarCategoryEntity azkar = await fetchRandomAzkarWithLimit();
-    NotificationService.showAzkarNotification(azkar); // Show the notification
-  }
-
-  Future<void> _startHourlyAzkarNotifications() async {
-    await AndroidAlarmManager.periodic(
-      const Duration(minutes: 2),
-      0, // Unique ID for the alarm
-      periodicAzkarFetch, // The callback function
-      wakeup: true, // Wake up the device if it is asleep
-      exact: true, // Ensure it runs exactly every hour
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -26,13 +26,10 @@ void main() async {
   await Future.wait([
     getItSetup(),
     ObjectBoxManager.initialize(),
-    // Initialize notifications
     NotificationService.initNotification(),
-
-    // Initialize Android Alarm Manager
     AndroidAlarmManager.initialize(),
   ]);
-
+  NotificationService.scheduleNotification();
   runApp(const Fazakir());
 }
 
