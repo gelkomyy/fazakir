@@ -56,8 +56,9 @@ class ContainerHadithItem extends StatelessWidget {
                 Text(
                   hadithEntity.hadith,
                   textAlign: TextAlign.center,
-                  style: AppFontStyles.styleRegular24(context).copyWith(
-                    fontFamily: 'Scheherazade',
+                  style: AppFontStyles.styleRegular20(context).copyWith(
+                    fontFamily: 'Amiri',
+                    height: 2,
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -68,17 +69,19 @@ class ContainerHadithItem extends StatelessWidget {
                       Text(
                         '${hadithEntity.bookName} - ${hadithEntity.sectionOfBookHadith} \n الصفحة أو الرقم : ${hadithEntity.hadithNumber}',
                         textAlign: TextAlign.center,
-                        style: AppFontStyles.styleRegular24(context).copyWith(
-                          fontFamily: 'Scheherazade',
+                        style: AppFontStyles.styleRegular20(context).copyWith(
+                          fontFamily: 'Amiri',
+                          height: 2,
                         ),
                       ),
                       if (hadithEntity.grades.isNotEmpty)
                         Text(
                           '${hadithEntity.grades.first['grade']} ${(hadithEntity.grades.first['graded_by'] != null && hadithEntity.grades.first['graded_by'] != '') ? '[${hadithEntity.grades.first['graded_by']}] ' : ''}',
                           textAlign: TextAlign.center,
-                          style: AppFontStyles.styleRegular24(context).copyWith(
-                            fontFamily: 'Scheherazade',
+                          style: AppFontStyles.styleRegular20(context).copyWith(
+                            fontFamily: 'Amiri',
                             color: AppColors.primaryColor,
+                            height: 2,
                           ),
                         ),
                     ],

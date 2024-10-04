@@ -86,8 +86,9 @@ class ContainerZikrItem extends StatelessWidget {
                 Text(
                   azkarItem.text,
                   textAlign: TextAlign.center,
-                  style: AppFontStyles.styleRegular24(context).copyWith(
-                    fontFamily: 'Scheherazade',
+                  style: AppFontStyles.styleRegular20(context).copyWith(
+                    fontFamily: 'Amiri',
+                    height: 2,
                   ),
                 ),
                 if (azkarItem.source != null &&
@@ -102,8 +103,9 @@ class ContainerZikrItem extends StatelessWidget {
                     child: Text(
                       azkarItem.source!,
                       textAlign: TextAlign.center,
-                      style: AppFontStyles.styleRegular24(context).copyWith(
-                        fontFamily: 'Scheherazade',
+                      style: AppFontStyles.styleRegular20(context).copyWith(
+                        fontFamily: 'Amiri',
+                        height: 2,
                       ),
                     ),
                   ),
