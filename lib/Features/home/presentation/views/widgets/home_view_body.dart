@@ -33,6 +33,8 @@ class HomeViewBody extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       Assets.assetsImagesTimeElapsedSvg,
+                      width: 18,
+                      height: 18,
                     ),
                     const SizedBox(
                       width: 6,

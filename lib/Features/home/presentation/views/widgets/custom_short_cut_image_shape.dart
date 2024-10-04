@@ -67,7 +67,7 @@ class CustomShortCutImageShape extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: Text(
                     title,
-                    style: AppFontStyles.styleBold10(context).copyWith(
+                    style: AppFontStyles.styleBold12(context).copyWith(
                       color: Colors.white,
                     ),
                   ),

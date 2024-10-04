@@ -77,7 +77,7 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
         }
         return Text(
           formattedTime,
-          style: AppFontStyles.styleRegular14(context),
+          style: AppFontStyles.styleRegular18(context),
         );
       },
     );
