@@ -1,3 +1,4 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:fazakir/Features/ahadith/presentation/manager/cubits/hadith_processing_cubit/hadith_processing_cubit.dart';
 import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/favorites_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
@@ -7,6 +8,7 @@ import 'package:fazakir/core/utils/custom_bloc_observer.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:fazakir/core/utils/func/on_generate_routes.dart';
+import 'package:fazakir/core/utils/notifications_service.dart';
 import 'package:fazakir/core/utils/object_box_manager.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +23,16 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Bloc.observer = CustomBlocObserver();
 
-  await getItSetup();
-  await ObjectBoxManager.initialize();
+  await Future.wait([
+    getItSetup(),
+    ObjectBoxManager.initialize(),
+    // Initialize notifications
+    NotificationService.initNotification(),
+
+    // Initialize Android Alarm Manager
+    AndroidAlarmManager.initialize(),
+  ]);
+
   runApp(const Fazakir());
 }
 

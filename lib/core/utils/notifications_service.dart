@@ -83,23 +83,23 @@ class NotificationService {
 
     // Fetch the azkar in the background using a callback
     Timer.periodic(const Duration(hours: 1), (Timer timer) async {
-      AzkarCategoryEntity randomAzkar = await _fetchRandomAzkarWithLimit();
+      AzkarCategoryEntity randomAzkar = await fetchRandomAzkarWithLimit();
       await showAzkarNotification(randomAzkar); // Show the notification
     });
   }
+}
 
-  static Future<AzkarCategoryEntity> _fetchRandomAzkarWithLimit() async {
-    AzkarCategoryEntity? azkarCategory;
-    bool validLength = false;
+Future<AzkarCategoryEntity> fetchRandomAzkarWithLimit() async {
+  AzkarCategoryEntity? azkarCategory;
+  bool validLength = false;
 
-    while (!validLength) {
-      azkarCategory = await getIt<AzkarRepoImpl>()
-          .getRandomAzkarCategory(); // Fetch random AzkarCategoryEntity
-      if (azkarCategory.azkar.first.text.length <= 410) {
-        validLength = true; // Found contentText with valid length
-      }
+  while (!validLength) {
+    azkarCategory = await getIt<AzkarRepoImpl>()
+        .getRandomAzkarCategory(); // Fetch random AzkarCategoryEntity
+    if (azkarCategory.azkar.first.text.length <= 410) {
+      validLength = true; // Found contentText with valid length
     }
-
-    return azkarCategory!;
   }
+
+  return azkarCategory!;
 }
