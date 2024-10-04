@@ -37,7 +37,7 @@ class _NavigationPageState extends State<NavigationPage> {
 
   Future<void> _startHourlyAzkarNotifications() async {
     await AndroidAlarmManager.periodic(
-      const Duration(hours: 1),
+      const Duration(minutes: 2),
       0, // Unique ID for the alarm
       periodicAzkarFetch, // The callback function
       wakeup: true, // Wake up the device if it is asleep

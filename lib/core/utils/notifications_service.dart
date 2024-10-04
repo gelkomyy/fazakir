@@ -64,7 +64,7 @@ class NotificationService {
       0,
       'Azkar Reminder',
       'Fetching Azkar...',
-      tz.TZDateTime.now(tz.local).add(const Duration(hours: 1)),
+      tz.TZDateTime.now(tz.local).add(const Duration(minutes: 2)),
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'azkar_channel',
@@ -82,7 +82,7 @@ class NotificationService {
     );
 
     // Fetch the azkar in the background using a callback
-    Timer.periodic(const Duration(hours: 1), (Timer timer) async {
+    Timer.periodic(const Duration(minutes: 2), (Timer timer) async {
       AzkarCategoryEntity randomAzkar = await fetchRandomAzkarWithLimit();
       await showAzkarNotification(randomAzkar); // Show the notification
     });
