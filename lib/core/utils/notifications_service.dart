@@ -16,7 +16,7 @@ class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   static bool sendNotify = true;
-  static Duration notificationDuration = const Duration(minutes: 1);
+  static Duration notificationDuration = const Duration(minutes: 5);
   static final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 

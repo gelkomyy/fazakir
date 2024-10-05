@@ -2,9 +2,9 @@ import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dar
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounceable/flutter_bounceable.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PrayerTimesViewBodyHeader extends StatelessWidget {
   const PrayerTimesViewBodyHeader({
@@ -44,13 +44,9 @@ class PrayerTimesViewBodyHeader extends StatelessWidget {
             const SizedBox(height: 8),
             Bounceable(
               scaleFactor: 0.6,
-              onTap: () async {
-                final Uri googleMapsUrl = Uri.parse(
+              onTap: () {
+                openLink(
                     'https://www.google.com/maps/search/?api=1&query=mosques+near+me');
-
-                if (await canLaunchUrl(googleMapsUrl)) {
-                  await launchUrl(googleMapsUrl);
-                } else {}
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(

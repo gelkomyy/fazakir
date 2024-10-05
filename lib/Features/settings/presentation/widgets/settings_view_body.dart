@@ -2,6 +2,7 @@ import 'package:fazakir/Features/settings/data/model/settings_list_model.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:fazakir/core/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,10 +61,15 @@ class SettingsViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    SvgPicture.asset(
-                      Assets.assetsImagesLinkedinIconSvg,
-                      width: 18,
-                      height: 18,
+                    GestureDetector(
+                      onTap: () {
+                        openLink('https://www.linkedin.com/in/gelkomy/');
+                      },
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesLinkedinIconSvg,
+                        width: 18,
+                        height: 18,
+                      ),
                     ),
                   ],
                 ),
@@ -95,10 +101,15 @@ class SettingsViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    SvgPicture.asset(
-                      Assets.assetsImagesLinkedinIconSvg,
-                      width: 18,
-                      height: 18,
+                    GestureDetector(
+                      onTap: () {
+                        openLink('https://www.linkedin.com/in/gelkomy/');
+                      },
+                      child: SvgPicture.asset(
+                        Assets.assetsImagesLinkedinIconSvg,
+                        width: 18,
+                        height: 18,
+                      ),
                     ),
                   ],
                 ),
