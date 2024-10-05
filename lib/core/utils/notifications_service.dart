@@ -48,7 +48,6 @@ class NotificationService {
         }
       }
     });
-    dev.log('notificationDuration: $notificationDuration');
     const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings('@mipmap/launcher_icon');
 
@@ -77,6 +76,12 @@ class NotificationService {
       channel.id,
       channel.name,
       channelDescription: 'Reminder for Azkar',
+      styleInformation: BigTextStyleInformation(
+        azkarCategory.azkar.first.text,
+        contentTitle: azkarCategory.category,
+        htmlFormatBigText: true,
+        htmlFormatContentTitle: true,
+      ),
       importance: Importance.max,
       priority: Priority.high,
     );
@@ -91,8 +96,9 @@ class NotificationService {
       android: androidDetails,
       iOS: iosDetails,
     );
+    final int notificationId = Random.secure().nextInt(100000);
     await _notificationsPlugin.show(
-      330, // Notification ID
+      notificationId, // Notification ID
       azkarCategory
           .azkar.first.text, // Content text (limited to 410 characters)
       azkarCategory.category, // Category as subtitle
@@ -122,8 +128,9 @@ class NotificationService {
       android: androidDetails,
       iOS: iosDetails,
     );
+    final int notificationId = Random.secure().nextInt(100000);
     await _notificationsPlugin.zonedSchedule(
-      330,
+      notificationId,
       'Azkar Reminder',
       'Fetching Azkar...',
       tz.TZDateTime.now(tz.local).add(notificationDuration),
@@ -144,18 +151,15 @@ class NotificationService {
   @pragma('vm:entry-point')
   static Future<void> scheduleNotification() async {
     await AndroidAlarmManager.cancel(330);
-
     await _notificationsPlugin.cancelAll();
     if (!sendNotify) return;
     var result = await AndroidAlarmManager.periodic(
       notificationDuration, 330, // Unique ID for the alarm
-      callbackShowAzkarNotification, // The callback function
-      wakeup: true, // Wake up the device if it is asleep
-      exact: true, // Ensure it runs exactly every hour
-      allowWhileIdle:
-          true, // Allow the alarm to run while the device is in idle mode
-      rescheduleOnReboot:
-          true, // Reschedule the alarm if the device is rebooted
+      callbackShowAzkarNotification,
+      wakeup: true,
+      exact: true,
+      allowWhileIdle: true,
+      rescheduleOnReboot: true,
     );
     if (!result) {
       dev.log('AndroidAlarmManager.periodic: false result');
