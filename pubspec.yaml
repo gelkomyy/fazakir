@@ -30,6 +30,7 @@ environment:
 dependencies:
   adhan: ^2.0.0+1
   android_alarm_manager_plus: ^4.0.4
+  android_intent_plus: ^5.1.0
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   flutter:
