@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/settings/presentation/widgets/notify_duration_dialog.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -57,46 +58,48 @@ class SettingsListModel {
       ),
     );
   }
-
-  static List<SettingsListModel> get settingsList => [
-        SettingsListModel(
-          title: 'مواعيد التذكيرات',
-          svgIconAsset: Assets.assetsImagesTazkeerIconSvg,
-          onTap: () {},
-        ),
-        SettingsListModel(
-          title: 'التذكيرات',
-          svgIconAsset: Assets.assetsImagesAtazkeerIconSvg,
-          traillingWidget: CustomSwitch(
-            isEnable: getIt<SharedPreferences>().getBool('send_notify') ?? true,
-            onChanged: (value) {
-              NotificationService.setSendNotify(value);
-              getIt<SharedPreferences>().setBool('send_notify', value);
-            },
-          ),
-        ),
-        const SettingsListModel(
-          title: 'الوضع الليلي',
-          svgIconAsset: Assets.assetsImagesMoonIconSvg,
-          traillingWidget: CustomSwitch(),
-        ),
-        SettingsListModel(
-          title: 'ما هو فذكر',
-          svgIconAsset: Assets.assetsImagesAboutIconSvg,
-          onTap: () {},
-        ),
-        SettingsListModel(
-          title: 'تقييمك لينا',
-          svgIconAsset: Assets.assetsImagesLikeIconSvg,
-          onTap: () {},
-        ),
-        const SettingsListModel(
-          title: 'صناع التطبيق',
-          svgIconAsset: Assets.assetsImagesFlagIconSvg,
-          traillingWidget: Icon(
-            Icons.arrow_downward_outlined,
-            color: AppColors.greyColor,
-          ),
-        ),
-      ];
 }
+
+List<SettingsListModel> getSettingsList(BuildContext context) => [
+      SettingsListModel(
+        title: 'مواعيد التذكيرات',
+        svgIconAsset: Assets.assetsImagesTazkeerIconSvg,
+        onTap: () {
+          showNotifyDurationDialog(context);
+        },
+      ),
+      SettingsListModel(
+        title: 'التذكيرات',
+        svgIconAsset: Assets.assetsImagesAtazkeerIconSvg,
+        traillingWidget: CustomSwitch(
+          isEnable: getIt<SharedPreferences>().getBool('send_notify') ?? true,
+          onChanged: (value) {
+            NotificationService.setSendNotify(value);
+            getIt<SharedPreferences>().setBool('send_notify', value);
+          },
+        ),
+      ),
+      const SettingsListModel(
+        title: 'الوضع الليلي',
+        svgIconAsset: Assets.assetsImagesMoonIconSvg,
+        traillingWidget: CustomSwitch(),
+      ),
+      SettingsListModel(
+        title: 'ما هو فذكر',
+        svgIconAsset: Assets.assetsImagesAboutIconSvg,
+        onTap: () {},
+      ),
+      SettingsListModel(
+        title: 'تقييمك لينا',
+        svgIconAsset: Assets.assetsImagesLikeIconSvg,
+        onTap: () {},
+      ),
+      const SettingsListModel(
+        title: 'صناع التطبيق',
+        svgIconAsset: Assets.assetsImagesFlagIconSvg,
+        traillingWidget: Icon(
+          Icons.arrow_downward_outlined,
+          color: AppColors.greyColor,
+        ),
+      ),
+    ];

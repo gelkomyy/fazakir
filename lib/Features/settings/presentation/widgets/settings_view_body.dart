@@ -16,7 +16,7 @@ class SettingsViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...SettingsListModel.settingsList.map((e) => e.buildList(context)),
+          ...getSettingsList(context).map((e) => e.buildList(context)),
           const SizedBox(
             height: 6,
           ),

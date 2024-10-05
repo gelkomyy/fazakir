@@ -37,7 +37,18 @@ class NotificationService {
     tz.initializeTimeZones();
     SharedPreferences.getInstance().then((prefs) {
       sendNotify = prefs.getBool('send_notify') ?? true;
+      final savedDuration = prefs.getInt('notify_saved_duration');
+      final savedIsMinutes = prefs.getBool('notify_is_minutes') ?? true;
+
+      if (savedDuration != null) {
+        if (savedIsMinutes) {
+          notificationDuration = Duration(minutes: savedDuration);
+        } else {
+          notificationDuration = Duration(hours: savedDuration);
+        }
+      }
     });
+    dev.log('notificationDuration: $notificationDuration');
     const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings('@mipmap/launcher_icon');
 

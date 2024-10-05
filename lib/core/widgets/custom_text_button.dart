@@ -16,10 +16,11 @@ class CustomTextButton extends StatelessWidget {
     this.minimumSize = const Size(double.infinity, 24),
     required this.onPressed,
     this.textStyle,
+    this.textColor = Colors.white,
     this.child,
   });
   final String text;
-  final Color backgroundColor;
+  final Color backgroundColor, textColor;
   final OutlinedBorder shape;
   final EdgeInsetsGeometry padding;
   final void Function() onPressed;
@@ -43,7 +44,7 @@ class CustomTextButton extends StatelessWidget {
             text,
             style: textStyle ??
                 AppFontStyles.styleBold14(context).copyWith(
-                  color: Colors.white,
+                  color: textColor,
                 ),
           ),
     );
