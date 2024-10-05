@@ -1,3 +1,4 @@
+import 'package:fazakir/Features/settings/presentation/widgets/about_app_dialog.dart';
 import 'package:fazakir/Features/settings/presentation/widgets/notify_duration_dialog.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -87,7 +88,9 @@ List<SettingsListModel> getSettingsList(BuildContext context) => [
       SettingsListModel(
         title: 'ما هو فذكر',
         svgIconAsset: Assets.assetsImagesAboutIconSvg,
-        onTap: () {},
+        onTap: () {
+          showAboutAppDialog(context);
+        },
       ),
       SettingsListModel(
         title: 'تقييمك لينا',
