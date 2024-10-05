@@ -2,6 +2,7 @@ import 'package:adhan/adhan.dart';
 import 'package:fazakir/Features/prayer_times/presentation/manager/cubits/prayer_times_cubit/prayer_times_cubit.dart';
 import 'package:fazakir/core/enums/prayer_enum.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -81,19 +82,5 @@ class RemainTimeForNextPrayerText extends StatelessWidget {
         );
       },
     );
-  }
-
-  String getArabicHourString(int hours) {
-    if (hours == 1) return 'ساعة';
-    if (hours == 2) return 'ساعتين';
-    if (hours >= 3 && hours <= 10) return '$hours ساعات';
-    return '$hours ساعة';
-  }
-
-  String getArabicMinuteString(int minutes) {
-    if (minutes == 1) return 'دقيقة';
-    if (minutes == 2) return 'دقيقتين';
-    if (minutes >= 3 && minutes <= 10) return '$minutes دقائق';
-    return '$minutes دقيقة';
   }
 }
