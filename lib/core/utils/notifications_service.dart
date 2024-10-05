@@ -7,6 +7,7 @@ import 'package:android_intent_plus/flag.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
@@ -34,6 +35,9 @@ class NotificationService {
 
   static Future<void> initNotification() async {
     tz.initializeTimeZones();
+    SharedPreferences.getInstance().then((prefs) {
+      sendNotify = prefs.getBool('send_notify') ?? true;
+    });
     const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings('@mipmap/launcher_icon');
 
@@ -64,7 +68,6 @@ class NotificationService {
       channelDescription: 'Reminder for Azkar',
       importance: Importance.max,
       priority: Priority.high,
-      ticker: 'ticker',
     );
 
     const DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
@@ -96,7 +99,6 @@ class NotificationService {
       channelDescription: 'Reminder for Azkar',
       importance: Importance.max,
       priority: Priority.high,
-      ticker: 'ticker',
     );
 
     const DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
@@ -130,11 +132,10 @@ class NotificationService {
 
   @pragma('vm:entry-point')
   static Future<void> scheduleNotification() async {
-    if (!sendNotify) return;
     await AndroidAlarmManager.cancel(330);
 
     await _notificationsPlugin.cancelAll();
-
+    if (!sendNotify) return;
     var result = await AndroidAlarmManager.periodic(
       notificationDuration, 330, // Unique ID for the alarm
       callbackShowAzkarNotification, // The callback function
@@ -160,17 +161,16 @@ class NotificationService {
 
   // Update the notification duration
   static void updateNotificationDuration(Duration newDuration) {
+    if (newDuration == notificationDuration) return;
     notificationDuration = newDuration;
-    // Reschedule the notification with the new duration
     scheduleNotification();
   }
 
 // Set the sendNotify flag
   static void setSendNotify(bool value) {
+    if (value == sendNotify) return;
     sendNotify = value;
-    if (sendNotify) {
-      scheduleNotification(); // Reschedule if notifications are enabled
-    }
+    scheduleNotification();
   }
 
   static Future<void> requestAutoStartPermission() async {

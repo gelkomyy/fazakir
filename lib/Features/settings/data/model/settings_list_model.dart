@@ -1,9 +1,12 @@
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/core/utils/func/get_it_setup.dart';
+import 'package:fazakir/core/utils/notifications_service.dart';
 import 'package:fazakir/core/widgets/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsListModel {
   final String title;
@@ -61,10 +64,16 @@ class SettingsListModel {
           svgIconAsset: Assets.assetsImagesTazkeerIconSvg,
           onTap: () {},
         ),
-        const SettingsListModel(
+        SettingsListModel(
           title: 'التذكيرات',
           svgIconAsset: Assets.assetsImagesAtazkeerIconSvg,
-          traillingWidget: CustomSwitch(),
+          traillingWidget: CustomSwitch(
+            isEnable: getIt<SharedPreferences>().getBool('send_notify') ?? true,
+            onChanged: (value) {
+              NotificationService.setSendNotify(value);
+              getIt<SharedPreferences>().setBool('send_notify', value);
+            },
+          ),
         ),
         const SettingsListModel(
           title: 'الوضع الليلي',

@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 
 class CustomSwitch extends StatefulWidget {
-  const CustomSwitch({super.key, this.onChanged});
+  const CustomSwitch({super.key, this.onChanged, this.isEnable = false});
   final void Function(bool)? onChanged;
+  final bool isEnable;
 
   @override
   State<CustomSwitch> createState() => _CustomSwitchState();
 }
 
 class _CustomSwitchState extends State<CustomSwitch> {
-  bool isEnable = false;
+  late bool isEnable;
+  @override
+  void initState() {
+    super.initState();
+    isEnable = widget.isEnable;
+  }
 
   void _toggleSwitch() {
     setState(() {
