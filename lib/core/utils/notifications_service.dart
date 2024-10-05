@@ -6,7 +6,6 @@ import 'package:android_intent_plus/android_intent.dart';
 import 'package:android_intent_plus/flag.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
-import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -188,7 +187,7 @@ Future<AzkarCategoryEntity> fetchRandomAzkarWithLimit() async {
   AzkarCategoryEntity? azkarCategory;
   bool validLength = false;
   while (!validLength) {
-    azkarCategory = await getIt<AzkarRepoImpl>()
+    azkarCategory = await AzkarRepoImpl()
         .getRandomAzkarCategory(); // Fetch random AzkarCategoryEntity
     if (azkarCategory.azkar.first.text.length <= 120) {
       validLength = true; // Found contentText with valid length
