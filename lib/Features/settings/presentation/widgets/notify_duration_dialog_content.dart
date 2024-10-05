@@ -148,6 +148,7 @@ class _NotifyDurationDialogContentState
             ),
           ],
         ),
+        const SizedBox(height: 12),
       ],
     );
   }
