@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "أنت الان تواجه القبلة الصحيحة!"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
         "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
-        "holy_quran": MessageLookupByLibrary.simpleMessage("القران الكريم"),
+        "holy_quran": MessageLookupByLibrary.simpleMessage("القرآن الكريم"),
         "light_journey_begins_here": MessageLookupByLibrary.simpleMessage(
             "رحلة النور تبدأ من هنا كن أول من يكتشف تطبيقنا الروحي الجديد"),
         "mention_of_the_day":
