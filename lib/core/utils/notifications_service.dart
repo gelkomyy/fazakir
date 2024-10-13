@@ -49,7 +49,7 @@ class NotificationService {
       }
     });
     const AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings('@mipmap/launcher_icon');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const DarwinInitializationSettings iosInitializationSettings =
         DarwinInitializationSettings();
