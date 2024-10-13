@@ -189,12 +189,23 @@ class NotificationService {
   }
 
   static Future<void> requestAutoStartPermission() async {
-    const intent = AndroidIntent(
-      action: 'android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS',
-      data: 'package:com.fazakir.elkomy',
-      flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
-    );
-    await intent.launch();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Check if permission has already been requested and granted
+    bool isPermissionRequested =
+        prefs.getBool('autoStartPermissionRequested') ?? false;
+
+    if (!isPermissionRequested) {
+      const intent = AndroidIntent(
+        action: 'android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS',
+        data: 'package:com.fazakir.elkomy',
+        flags: <int>[Flag.FLAG_ACTIVITY_NEW_TASK],
+      );
+      await intent.launch();
+
+      // Store the fact that permission was requested
+      prefs.setBool('autoStartPermissionRequested', true);
+    }
   }
 }
 
