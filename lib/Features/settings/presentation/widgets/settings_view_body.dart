@@ -24,7 +24,9 @@ class SettingsViewBody extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 145,
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+              ),
               decoration: ShapeDecoration(
                 color: const Color(0x51BBBBBB),
                 shape: RoundedRectangleBorder(
@@ -78,7 +80,7 @@ class SettingsViewBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        Assets.assetsImagesElkomyLogo,
+                        Assets.assetsImagesZiad,
                         width: 42,
                         height: 42,
                         fit: BoxFit.cover,
@@ -102,15 +104,50 @@ class SettingsViewBody extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          openLink('https://www.linkedin.com/in/gelkomy/');
-                        },
-                        child: SvgPicture.asset(
-                          Assets.assetsImagesLinkedinIconSvg,
-                          width: 18,
-                          height: 18,
-                        ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              openLink('https://www.facebook.com/el.zoz.7161/');
+                            },
+                            child: SvgPicture.asset(
+                              Assets.assetsImagesFacebookIconSvg,
+                              width: 18,
+                              height: 18,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              openLink(
+                                  'https://www.linkedin.com/in/ziad-mahmed-043a17322/');
+                            },
+                            child: SvgPicture.asset(
+                              Assets.assetsImagesLinkedinIconSvg,
+                              width: 18,
+                              height: 18,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              openLink('https://www.behance.net/ziadmahmed/');
+                            },
+                            child: SvgPicture.asset(
+                              Assets.assetsImagesBehanceIconSvg,
+                              width: 18,
+                              height: 18,
+                              colorFilter: const ColorFilter.mode(
+                                AppColors.greyColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -121,7 +158,10 @@ class SettingsViewBody extends StatelessWidget {
               height: 32,
             ),
             CustomTextButton(
-              onPressed: () {},
+              onPressed: () {
+                openLink(
+                    'https://play.google.com/store/apps/details?id=com.fazakir.elkomy');
+              },
               padding: const EdgeInsets.all(14),
               text: '',
               child: Row(

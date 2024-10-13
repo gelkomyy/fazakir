@@ -4,6 +4,7 @@ import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
+import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:fazakir/core/utils/notifications_service.dart';
 import 'package:fazakir/core/widgets/custom_switch.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,10 @@ List<SettingsListModel> getSettingsList(BuildContext context) => [
       SettingsListModel(
         title: 'تقييمك لينا',
         svgIconAsset: Assets.assetsImagesLikeIconSvg,
-        onTap: () {},
+        onTap: () {
+          openLink(
+              'https://play.google.com/store/apps/details?id=com.fazakir.elkomy');
+        },
       ),
       const SettingsListModel(
         title: 'صناع التطبيق',

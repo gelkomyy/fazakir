@@ -30,6 +30,10 @@ class Assets {
   /// assets/images/azkar_shortcut.jpg
   static const String assetsImagesAzkarShortcut = "assets/images/azkar_shortcut.jpg";
 
+  /// Assets for assetsImagesBehanceIconSvg
+  /// assets/images/behance_icon_svg.svg
+  static const String assetsImagesBehanceIconSvg = "assets/images/behance_icon_svg.svg";
+
   /// Assets for assetsImagesCompassShapeSvg
   /// assets/images/compass_shape_svg.svg
   static const String assetsImagesCompassShapeSvg = "assets/images/compass_shape_svg.svg";
@@ -53,6 +57,10 @@ class Assets {
   /// Assets for assetsImagesElkomyLogo
   /// assets/images/elkomy-logo.png
   static const String assetsImagesElkomyLogo = "assets/images/elkomy-logo.png";
+
+  /// Assets for assetsImagesFacebookIconSvg
+  /// assets/images/facebook_icon_svg.svg
+  static const String assetsImagesFacebookIconSvg = "assets/images/facebook_icon_svg.svg";
 
   /// Assets for assetsImagesFajrIconSvg
   /// assets/images/fajr_icon_svg.svg
@@ -194,10 +202,6 @@ class Assets {
   /// assets/images/tazkeer_icon_svg.svg
   static const String assetsImagesTazkeerIconSvg = "assets/images/tazkeer_icon_svg.svg";
 
-  /// Assets for assetsImagesTestPreviewImage
-  /// assets/images/test_preview_image.jpg
-  static const String assetsImagesTestPreviewImage = "assets/images/test_preview_image.jpg";
-
   /// Assets for assetsImagesTimeElapsedSvg
   /// assets/images/time_elapsed_svg.svg
   static const String assetsImagesTimeElapsedSvg = "assets/images/time_elapsed_svg.svg";
@@ -205,5 +209,9 @@ class Assets {
   /// Assets for assetsImagesWhiteHeart
   /// assets/images/white_heart.png
   static const String assetsImagesWhiteHeart = "assets/images/white_heart.png";
+
+  /// Assets for assetsImagesZiad
+  /// assets/images/ziad.png
+  static const String assetsImagesZiad = "assets/images/ziad.png";
 }
 
