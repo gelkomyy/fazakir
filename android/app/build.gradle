@@ -13,7 +13,7 @@ android {
     }
     namespace = "com.fazakir.elkomy"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "26.2.11394342"
 
     compileOptions {
         coreLibraryDesugaringEnabled true
