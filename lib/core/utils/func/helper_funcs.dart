@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String getArabicHourString(int hours) {
@@ -20,4 +22,18 @@ Future<void> openLink(String url) async {
   if (await canLaunchUrl(googleMapsUrl)) {
     await launchUrl(googleMapsUrl);
   }
+}
+
+void shareApp(BuildContext context) {
+  const String appLink =
+      'https://play.google.com/store/apps/details?id=com.fazakir.elkomy';
+  const String shareText =
+      'اكتشف تطبيق إسلامي شامل يقدّم مجموعة واسعة من الميزات الدينية والروحانية. سهل الاستخدام بتصميم جذاب يناسب جميع الأعمار والمستويات الدينية. جربه الآن!';
+  const String shareSubject = 'تطبيق إسلامي شامل لجميع المسلمين';
+  final RenderBox? box = context.findRenderObject() as RenderBox?;
+  Share.share(
+    '$shareText $appLink',
+    subject: shareSubject,
+    sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+  );
 }

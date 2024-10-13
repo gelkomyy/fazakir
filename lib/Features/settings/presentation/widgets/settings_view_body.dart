@@ -159,8 +159,7 @@ class SettingsViewBody extends StatelessWidget {
             ),
             CustomTextButton(
               onPressed: () {
-                openLink(
-                    'https://play.google.com/store/apps/details?id=com.fazakir.elkomy');
+                shareApp(context);
               },
               padding: const EdgeInsets.all(14),
               text: '',
