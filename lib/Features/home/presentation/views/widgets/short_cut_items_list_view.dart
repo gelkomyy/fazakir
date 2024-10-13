@@ -4,6 +4,7 @@ import 'package:fazakir/Features/azkar/presentation/views/azkar_view.dart';
 import 'package:fazakir/Features/azkar/presentation/views/ruqyah_view.dart';
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_short_cut_image_shape.dart';
+import 'package:fazakir/Features/quran/presentation/views/quran_view.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,8 +17,11 @@ class ShortCutItemsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> shortcuts = [
       {
-        "title": "القران الكريم",
+        "title": "القرآن الكريم",
         "AssetImage": Assets.assetsImagesQuranImage,
+        "onTap": () {
+          Navigator.pushNamed(context, QuranView.routeName);
+        },
       },
       {
         "title": "الادعية والاذكار",
