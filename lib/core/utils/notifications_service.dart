@@ -215,7 +215,7 @@ Future<AzkarCategoryEntity> fetchRandomAzkarWithLimit() async {
   while (!validLength) {
     azkarCategory = await AzkarRepoImpl()
         .getRandomAzkarCategory(); // Fetch random AzkarCategoryEntity
-    if (azkarCategory.azkar.first.text.length <= 120) {
+    if (azkarCategory.azkar.first.text.length <= 410) {
       validLength = true; // Found contentText with valid length
     }
   }
