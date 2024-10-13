@@ -108,8 +108,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                 },
                 child: SvgPicture.asset(
                   Assets.assetsImagesLayersShapeSvg,
-                  width: 24,
-                  height: 24,
+                  width: 22,
+                  height: 22,
                 ),
               ),
               SizedBox(height: isShow ? 16 : 0),
@@ -139,8 +139,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                                       .toggleFavorite(widget.zikr),
                                   child: SvgPicture.asset(
                                     Assets.assetsImagesHeartBlackIconSvg,
-                                    width: 17,
-                                    height: 17,
+                                    width: 15,
+                                    height: 15,
                                     colorFilter: ColorFilter.mode(
                                       isFav ? AppColors.redColor : Colors.black,
                                       BlendMode.srcIn,
@@ -171,8 +171,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                               },
                               child: SvgPicture.asset(
                                 Assets.assetsImagesCopyIconSvg,
-                                width: 18,
-                                height: 18,
+                                width: 16,
+                                height: 16,
                               ),
                             ),
                           ),
@@ -194,8 +194,8 @@ class _ComponentsZikrItemState extends State<ComponentsZikrItem>
                           },
                           child: SvgPicture.asset(
                             Assets.assetsImagesShareIconSvg,
-                            width: 18,
-                            height: 18,
+                            width: 16,
+                            height: 16,
                           ),
                         ),
                       ),

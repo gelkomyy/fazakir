@@ -24,7 +24,7 @@ class CustomShortCutImageShape extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                 color: Color(0xFF6F5B42),
-                blurRadius: 24,
+                blurRadius: 14,
                 offset: Offset(0, 4),
                 spreadRadius: 1,
               )

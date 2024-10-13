@@ -42,7 +42,7 @@ class HomeViewBody extends StatelessWidget {
                     const RemainTimeForNextPrayerText(),
                   ],
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
                 RowLabelWithShowMore(
                   labelText: txt.shortcuts,
                   onTapShowMore: () {
@@ -52,14 +52,16 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 24),
           SizedBox(
-            height: MediaQuery.sizeOf(context).height * 0.2,
+            height: MediaQuery.sizeOf(context).height * 0.015,
+          ),
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.215,
             child: const ShortCutItemsListView(),
           ),
-          const SizedBox(height: 35),
+          const SizedBox(height: 32),
           const RandomZikrBlocBuilder(),
-          const SizedBox(height: 35),
+          const SizedBox(height: 32),
           const AboutReligionColumn(),
           const SizedBox(height: 110),
         ],

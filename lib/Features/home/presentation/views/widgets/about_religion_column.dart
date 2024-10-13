@@ -25,8 +25,8 @@ class AboutReligionColumn extends StatelessWidget {
               Navigator.pushNamed(context, AboutReligionView.routeName);
             },
           ),
-          const SizedBox(
-            height: 12,
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.005,
           ),
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.17,
