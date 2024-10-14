@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_quran/flutter_quran.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -22,7 +23,7 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Bloc.observer = CustomBlocObserver();
-
+  FlutterQuran().init();
   await Future.wait([
     getItSetup(),
     ObjectBoxManager.initialize(),
