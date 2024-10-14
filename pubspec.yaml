@@ -43,6 +43,8 @@ dependencies:
   flutter_local_notifications: ^17.2.3
   flutter_localizations:
     sdk: flutter
+  quran: 
+    path: ./quran-1.2.2 
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
   geolocator: ^13.0.1
