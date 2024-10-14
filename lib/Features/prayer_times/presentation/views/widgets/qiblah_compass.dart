@@ -33,6 +33,13 @@ class QiblahCompass extends StatelessWidget {
             builder: (context, state) {
               if (state is QiblahCompassUpdated) {
                 double direction = state.heading;
+                if (direction.isNaN) {
+                  return Center(
+                      child: Text(
+                    txt.some_error_occurred,
+                    style: AppFontStyles.styleRegular16(context),
+                  ));
+                }
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -55,6 +62,7 @@ class QiblahCompass extends StatelessWidget {
                               child: SvgPicture.asset(
                                 Assets.assetsImagesCompassShapeWithKaabaSvg,
                                 fit: BoxFit.contain,
+                                width: MediaQuery.sizeOf(context).width * 0.9,
                                 alignment: Alignment.center,
                               ),
                             ),
@@ -62,7 +70,7 @@ class QiblahCompass extends StatelessWidget {
                           CircleAvatar(
                             backgroundColor: Colors.transparent,
                             foregroundColor: Colors.transparent,
-                            radius: 140,
+                            radius: MediaQuery.sizeOf(context).width * 0.51,
                             child: Transform.rotate(
                               angle:
                                   ((direction - qiblahDirection) * pi / 180) *
