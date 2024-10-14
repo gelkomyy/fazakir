@@ -22,4 +22,5 @@ abstract class AppColors {
   static const Color heartRedColor = Color(0xFFC22525);
   static const Color redColor = Color(0xFFB90000);
   static const Color greyColor = Color(0xFFBBBBBB);
+  static const Color quranPagesColor = Color(0xffF1EEE5);
 }
