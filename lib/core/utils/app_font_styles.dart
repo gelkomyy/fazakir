@@ -92,6 +92,13 @@ abstract class AppFontStyles {
     );
   }
 
+  static TextStyle styleRegular28(BuildContext context) {
+    return TextStyle(
+      fontWeight: FontWeight.normal, // Regular
+      fontSize: getResponsiveFontSize(context, fontSize: 28),
+    );
+  }
+
   static TextStyle styleExtraBold13(BuildContext context) {
     return TextStyle(
       fontWeight: FontWeight.w800, // ExtraBold
