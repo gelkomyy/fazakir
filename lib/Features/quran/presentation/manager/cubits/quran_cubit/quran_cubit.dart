@@ -4,6 +4,7 @@ import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/quran/data/repos/quran_repo_impl.dart';
 import 'package:fazakir/Features/quran/domain/entities/surah_entity.dart';
+import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,6 +47,7 @@ class QuranCubit extends Cubit<QuranState> {
       filteredSurahs = surahs;
     } else {
       filteredSurahs = surahs.where((surah) {
+        query = query.toEnglishDigits();
         if (isInt(query) && toInt(query) < 605 && toInt(query) > 0) {
           return surah.number == toInt(query);
         }
