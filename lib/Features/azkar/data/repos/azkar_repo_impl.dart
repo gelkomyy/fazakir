@@ -159,7 +159,7 @@ bool hasPartialMatch(String term, String content) {
 
 String normalizeArabicText(String input) {
   return input
-      .replaceAll(RegExp(r'[أإآ]', caseSensitive: false),
+      .replaceAll(RegExp(r'[ٱأإآ]', caseSensitive: false),
           'ا') // Normalize Alef variants
       .replaceAll(RegExp(r'ء'), '') // Optional: remove Hamza
       .replaceAll(RegExp(r'ة'), 'ه') // Normalize Ta Marbuta (ة to ه)

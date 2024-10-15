@@ -7,6 +7,7 @@ import 'package:fazakir/Features/quran/domain/entities/surah_entity.dart';
 import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:string_validator/string_validator.dart';
 
 part 'quran_state.dart';
 
@@ -44,11 +45,17 @@ class QuranCubit extends Cubit<QuranState> {
     if (query.isEmpty) {
       filteredSurahs = surahs;
     } else {
-      filteredSurahs = surahs.where((video) {
+      filteredSurahs = surahs.where((surah) {
+        if (isInt(query) && toInt(query) < 605 && toInt(query) > 0) {
+          return surah.number == toInt(query);
+        }
+
+        query = query.replaceAll('سورة', '').trim();
+        query = query.replaceAll('سوره', '').trim();
         final normalizedQuery =
             normalizeArabicText(removeDiacritics(query.toLowerCase()));
         final normalizedTitle =
-            normalizeArabicText(removeDiacritics(video.name.toLowerCase()));
+            normalizeArabicText(removeDiacritics(surah.name.toLowerCase()));
         return normalizedTitle.contains(normalizedQuery);
       }).toList();
     }
