@@ -287,7 +287,7 @@ packages:
     source: hosted
     version: "2.3.7"
   dartarabic:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dartarabic
       sha256: "203da945e11da7a51f5d65bd67dd098c06ba0ffeb8c95360bf5e1e2ae335579f"

@@ -1,4 +1,6 @@
+import 'package:dartarabic/dartarabic.dart';
 import 'package:flutter/material.dart';
+import 'package:quran/quran.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -36,4 +38,20 @@ void shareApp(BuildContext context) {
     subject: shareSubject,
     sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
   );
+}
+
+String removeTashkeels(String input) {
+  return DartArabic.stripTatweel(
+    DartArabic.stripHarakat(
+      removeDiacritics2(
+        normalizeArabicText(
+          normalise(
+            removeDiacritics(
+              input.toString().toLowerCase(),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ).toString().toLowerCase();
 }

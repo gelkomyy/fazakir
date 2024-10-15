@@ -1,13 +1,15 @@
 import 'dart:async';
+import 'dart:developer';
 
-import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
-import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/quran/data/repos/quran_repo_impl.dart';
 import 'package:fazakir/Features/quran/domain/entities/surah_entity.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
+import 'package:fazakir/core/utils/func/helper_funcs.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran/quran.dart' as quran;
 import 'package:string_validator/string_validator.dart';
 
 part 'quran_state.dart';
@@ -18,6 +20,7 @@ class QuranCubit extends Cubit<QuranState> {
   List<SurahEntity> surahs = [];
   List<SurahEntity> filteredSurahs = [];
   Timer? _debounce;
+  Timer? _isolateDebounce;
   Future<void> fetchSurahs() async {
     try {
       safeEmit(SurahsLoading());
@@ -29,6 +32,16 @@ class QuranCubit extends Cubit<QuranState> {
         const SurahsFailure(errMessage: 'Failed to load surahs'),
       );
     }
+  }
+
+  void searchInQuranWithIsolateDebounce(String query) {
+    // Cancel any active debounced call
+    if (_isolateDebounce?.isActive ?? false) _isolateDebounce!.cancel();
+
+    // Set a delay of 300ms before triggering the filtering function
+    _isolateDebounce = Timer(const Duration(milliseconds: 300), () {
+      _searchInQuran(query);
+    });
   }
 
   void filterSurahsWithDebounce(String query) {
@@ -52,12 +65,12 @@ class QuranCubit extends Cubit<QuranState> {
           return surah.number == toInt(query);
         }
 
-        query = query.replaceAll('سورة', '').trim();
-        query = query.replaceAll('سوره', '').trim();
-        final normalizedQuery =
-            normalizeArabicText(removeDiacritics(query.toLowerCase()));
-        final normalizedTitle =
-            normalizeArabicText(removeDiacritics(surah.name.toLowerCase()));
+        /* query = query.replaceAll('سورة ', '');
+        query = query.replaceAll('سورة', '');
+        query = query.replaceAll('سوره ', '');
+        query = query.replaceAll('سوره', ''); */
+        final normalizedQuery = removeTashkeels(query);
+        final normalizedTitle = removeTashkeels(surah.name);
         return normalizedTitle.contains(normalizedQuery);
       }).toList();
     }
@@ -66,10 +79,28 @@ class QuranCubit extends Cubit<QuranState> {
     safeEmit(SurahsLoaded(surahs: filteredSurahs));
   }
 
+  void _searchInQuran(String query) {
+    final ayatFiltered = quran.searchWords(query);
+    if ((ayatFiltered["result"])?.isEmpty ?? true) {
+      log('No ayat found');
+    } else {
+      final verseNumber = ayatFiltered["result"][0]["verse"];
+      final surahNumber = ayatFiltered["result"][0]["surah"];
+
+      final verse =
+          quran.getVerse(surahNumber, verseNumber, verseEndSymbol: true);
+
+      final surahName = quran.getSurahNameArabic(surahNumber);
+      log("$surahName : ${(verseNumber as num).toArabicDigits()}  \n - $verse");
+      //log('\n ${ayatFiltered["result"]} ');
+    }
+  }
+
   @override
   Future<void> close() {
     // Cancel the debounce timer when the cubit is closed
     _debounce?.cancel();
+    _isolateDebounce?.cancel();
     return super.close();
   }
 }

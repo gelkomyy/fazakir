@@ -1,5 +1,6 @@
 library quran;
 
+import 'package:dartarabic/dartarabic.dart';
 import 'package:quran/reciters.dart';
 // import 'package:quran/tafseers/jalalayn.dart';
 // import 'package:quran/tafseers/muyassar.dart';
@@ -508,15 +509,16 @@ String getVerseTranslation(int surahNumber, int verseNumber,
 ///```
 Map searchWords(String words) {
   List<Map> result = [];
+  words = removeTashkeels(words);
 // print(words);
-  for (var i in quranTextNormal) {
+  for (var i in quranText) {
     // bool exist = false;
 
     // bool exist = false;
     //  print(DartArabic.stripTashkeel( DartArabic.stripDiacritics(i['content'].toString()
     //         )));
 
-    if (i['content'].toString().toLowerCase().contains(words.toLowerCase())) {
+    if (removeTashkeels(i['content']).contains(words)) {
       result.add({"surah": i["surah_number"], "verse": i["verse_number"]});
 
       // print(i['content']);
@@ -525,8 +527,8 @@ Map searchWords(String words) {
     // result.add({"surah": i["surah_number"], "verse": i["verse_number"]});
   }
   if (result.isEmpty) {
-    for (var i in quranText) {
-      if (i['content'].toString().toLowerCase().contains(words.toLowerCase())) {
+    for (var i in quranTextNormal) {
+      if (removeTashkeels(i['content']).contains(words)) {
         result.add({"surah": i["surah_number"], "verse": i["verse_number"]});
 
         // print(i['content']);
@@ -672,4 +674,36 @@ String removeDiacritics(String input) {
   String textWithoutDiacritics = input.replaceAll(exp, '');
 
   return textWithoutDiacritics;
+}
+
+String normalizeArabicText(String input) {
+  return input
+      .replaceAll(RegExp(r'[ٱأإآ]', caseSensitive: false),
+          'ا') // Normalize Alef variants
+      .replaceAll(RegExp(r'ء'), '') // Optional: remove Hamza
+      .replaceAll(RegExp(r'ة'), 'ه') // Normalize Ta Marbuta (ة to ه)
+      .replaceAll(RegExp(r'ئ'), 'ي') // Normalize Ya with Hamza to regular Ya
+      .replaceAll(RegExp(r'ى'), 'ي'); // Normalize Alef Maqsura to Ya
+}
+
+String removeDiacritics2(String input) {
+  final RegExp diacriticRegExp = RegExp(
+      r'[\u0610-\u061A\u064B-\u065F\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]');
+  return input.replaceAll(diacriticRegExp, '');
+}
+
+String removeTashkeels(String input) {
+  return DartArabic.stripHarakat(
+    DartArabic.stripHarakat(
+      removeDiacritics2(
+        normalizeArabicText(
+          normalise(
+            removeDiacritics(
+              input.toString().toLowerCase(),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ).toString().toLowerCase();
 }
