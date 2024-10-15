@@ -98,6 +98,18 @@ class Assets {
   /// assets/images/kaaba.png
   static const String assetsImagesKaaba = "assets/images/kaaba.png";
 
+  /// Assets for assetsImagesLauncherForeground
+  /// assets/images/launcher/foreground.png
+  static const String assetsImagesLauncherForeground = "assets/images/launcher/foreground.png";
+
+  /// Assets for assetsImagesLauncherForeground0
+  /// assets/images/launcher/foreground0.png
+  static const String assetsImagesLauncherForeground0 = "assets/images/launcher/foreground0.png";
+
+  /// Assets for assetsImagesLauncherIcon
+  /// assets/images/launcher/icon.png
+  static const String assetsImagesLauncherIcon = "assets/images/launcher/icon.png";
+
   /// Assets for assetsImagesLayersShapeSvg
   /// assets/images/layers_shape_svg.svg
   static const String assetsImagesLayersShapeSvg = "assets/images/layers_shape_svg.svg";
@@ -197,6 +209,10 @@ class Assets {
   /// Assets for assetsImagesStarIconSvg
   /// assets/images/star_icon_svg.svg
   static const String assetsImagesStarIconSvg = "assets/images/star_icon_svg.svg";
+
+  /// Assets for assetsImagesSurahFrame
+  /// assets/images/surah_frame.png
+  static const String assetsImagesSurahFrame = "assets/images/surah_frame.png";
 
   /// Assets for assetsImagesTazkeerIconSvg
   /// assets/images/tazkeer_icon_svg.svg
