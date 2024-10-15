@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fazakir/Features/about_religion/domain/data/models/video_youtube_model.dart';
+import 'package:fazakir/Features/about_religion/data/models/video_youtube_model.dart';
 import 'package:fazakir/Features/about_religion/domain/entities/video_youtube_entity.dart';
 import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
 import 'package:fazakir/Features/azkar/data/models/azkar_item_model.dart';

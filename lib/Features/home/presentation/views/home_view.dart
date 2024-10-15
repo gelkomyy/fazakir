@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/about_religion/domain/data/repos/video_youtube_repo_impl.dart';
+import 'package:fazakir/Features/about_religion/data/repos/video_youtube_repo_impl.dart';
 import 'package:fazakir/Features/about_religion/presentation/manager/cubits/manage_about_religion_cubit/manage_about_religion_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:fazakir/Features/prayer_times/presentation/manager/cubits/prayer_times_cubit/prayer_times_cubit.dart';

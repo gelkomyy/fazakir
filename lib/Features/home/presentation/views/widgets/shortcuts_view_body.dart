@@ -48,7 +48,7 @@ class ShortCutsViewBody extends StatelessWidget {
         }
       },
       {
-        "title": "عن الدين",
+        "title": "بودكاست",
         "AssetImage": Assets.assetsImagesReligionShortcut,
         "onTap": () {
           Navigator.pushNamed(context, AboutReligionView.routeName);

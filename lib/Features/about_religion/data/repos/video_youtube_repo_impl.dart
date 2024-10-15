@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fazakir/Features/about_religion/domain/data/models/video_youtube_model.dart';
+import 'package:fazakir/Features/about_religion/data/models/video_youtube_model.dart';
 import 'package:flutter/services.dart';
 import 'package:fazakir/Features/about_religion/domain/entities/video_youtube_entity.dart';
 

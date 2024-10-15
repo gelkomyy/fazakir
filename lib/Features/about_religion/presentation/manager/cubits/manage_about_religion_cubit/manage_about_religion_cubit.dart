@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fazakir/Features/about_religion/domain/data/repos/video_youtube_repo_impl.dart';
+import 'package:fazakir/Features/about_religion/data/repos/video_youtube_repo_impl.dart';
 import 'package:fazakir/Features/about_religion/domain/entities/video_youtube_entity.dart';
 import 'package:fazakir/Features/ahadith/domain/entities/hadith_entity.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';

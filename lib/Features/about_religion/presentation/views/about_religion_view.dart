@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/about_religion/domain/data/repos/video_youtube_repo_impl.dart';
+import 'package:fazakir/Features/about_religion/data/repos/video_youtube_repo_impl.dart';
 import 'package:fazakir/Features/about_religion/presentation/manager/cubits/manage_about_religion_cubit/manage_about_religion_cubit.dart';
 import 'package:fazakir/Features/about_religion/presentation/views/widgets/about_religion_view_body.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
