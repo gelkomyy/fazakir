@@ -26,6 +26,10 @@ class Assets {
   /// assets/images/atazkeer_icon_svg.svg
   static const String assetsImagesAtazkeerIconSvg = "assets/images/atazkeer_icon_svg.svg";
 
+  /// Assets for assetsImagesAyahEndSymbol
+  /// assets/images/ayah_end_symbol.png
+  static const String assetsImagesAyahEndSymbol = "assets/images/ayah_end_symbol.png";
+
   /// Assets for assetsImagesAzkarShortcut
   /// assets/images/azkar_shortcut.jpg
   static const String assetsImagesAzkarShortcut = "assets/images/azkar_shortcut.jpg";
