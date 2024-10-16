@@ -30,6 +30,10 @@ class Assets {
   /// assets/images/azkar_shortcut.jpg
   static const String assetsImagesAzkarShortcut = "assets/images/azkar_shortcut.jpg";
 
+  /// Assets for assetsImagesBasmala
+  /// assets/images/basmala.png
+  static const String assetsImagesBasmala = "assets/images/basmala.png";
+
   /// Assets for assetsImagesBehanceIconSvg
   /// assets/images/behance_icon_svg.svg
   static const String assetsImagesBehanceIconSvg = "assets/images/behance_icon_svg.svg";

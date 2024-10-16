@@ -22,5 +22,7 @@ abstract class AppColors {
   static const Color heartRedColor = Color(0xFFC22525);
   static const Color redColor = Color(0xFFB90000);
   static const Color greyColor = Color(0xFFBBBBBB);
-  static const Color quranPagesColor = Color(0xffF1EEE5);
+  static const Color quranPagesColor = Color(0xffFFF9F1);
+  static const Color quranPagesColor2 = Color(0xffF1EEE5);
+  static const Color surahHeaderFrameColor = Color(0xffF8E5D6);
 }

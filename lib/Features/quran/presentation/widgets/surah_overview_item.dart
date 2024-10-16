@@ -1,4 +1,5 @@
 import 'package:fazakir/Features/quran/domain/entities/surah_entity.dart';
+import 'package:fazakir/Features/quran/presentation/views/quran_pages_view.dart';
 import 'package:fazakir/core/enums/revelation_type_enum.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -75,7 +76,12 @@ class SurahOverviewItem extends StatelessWidget {
         Icons.arrow_forward_outlined,
         color: AppColors.greyColor,
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          QuranPagesView.routeName,
+        );
+      },
     );
   }
 }
