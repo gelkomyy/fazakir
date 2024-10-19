@@ -7,11 +7,13 @@ class AyahEntity {
   late String surahName;
   late int pageNumber;
   final String query;
+  num? queryNum;
 
   AyahEntity({
     required this.ayahNumber,
     required this.surahNumber,
     required this.query,
+    this.queryNum,
   }) {
     surahName = getSurahNameArabic(surahNumber);
     pageNumber = getPageNumber(surahNumber, ayahNumber);

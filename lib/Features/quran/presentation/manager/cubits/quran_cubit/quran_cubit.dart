@@ -82,8 +82,22 @@ class QuranCubit extends Cubit<QuranState> {
   }
 
   void _searchInQuran(String query) {
+    ayat = [];
     if (query.isEmpty) {
       ayat = [];
+      safeEmit(SearchInQuranLoaded(ayat: ayat));
+      return;
+    }
+    query = query.toEnglishDigits();
+    if (isInt(query) && toInt(query) < 605 && toInt(query) > 0) {
+      ayat.add(
+        AyahEntity(
+          ayahNumber: 1,
+          surahNumber: 1,
+          query: '',
+          queryNum: toInt(query),
+        ),
+      );
       safeEmit(SearchInQuranLoaded(ayat: ayat));
       return;
     }
@@ -100,16 +114,6 @@ class QuranCubit extends Cubit<QuranState> {
               ayahNumber: ayahNumber, surahNumber: surahNumber, query: query),
         );
       }
-
-      /*  final verseNumber = ayatFiltered["result"][0]["verse"];
-      final surahNumber = ayatFiltered["result"][0]["surah"];
-
-      final verse =
-          quran.getVerse(surahNumber, verseNumber, verseEndSymbol: true);
-
-      final surahName = quran.getSurahNameArabic(surahNumber);
-      log("$surahName : ${(verseNumber as num).toArabicDigits()}  \n - $verse"); */
-      //log('\n ${ayatFiltered["result"]} ');
     }
     safeEmit(SearchInQuranLoaded(ayat: ayat));
   }
