@@ -144,3 +144,11 @@ double getScaleFactor(BuildContext context) {
     return width / 1450; // Scaling factor for extra-large screens
   }
 }
+
+double getTheFontSize(BuildContext context, {required double fontSize}) {
+  const double baseUiWidth = 392.72727272727275;
+  double screenWidth = MediaQuery.sizeOf(context).width;
+  double scaleFactor = screenWidth / baseUiWidth;
+  double responsiveFontSize = fontSize * scaleFactor;
+  return responsiveFontSize;
+}

@@ -85,7 +85,10 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case QuranView.routeName:
       return MaterialPageRoute(builder: (context) => const QuranView());
     case QuranPagesView.routeName:
-      return MaterialPageRoute(builder: (context) => const QuranPagesView());
+      return MaterialPageRoute(
+          builder: (context) => QuranPagesView(
+                pageNumber: settings.arguments as int,
+              ));
     default:
       return MaterialPageRoute(builder: (context) => const NavigationPage());
   }
