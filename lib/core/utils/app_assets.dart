@@ -38,6 +38,10 @@ class Assets {
   /// assets/images/basmala.png
   static const String assetsImagesBasmala = "assets/images/basmala.png";
 
+  /// Assets for assetsImagesBasmala0
+  /// assets/images/basmala0.png
+  static const String assetsImagesBasmala0 = "assets/images/basmala0.png";
+
   /// Assets for assetsImagesBehanceIconSvg
   /// assets/images/behance_icon_svg.svg
   static const String assetsImagesBehanceIconSvg = "assets/images/behance_icon_svg.svg";
@@ -165,6 +169,10 @@ class Assets {
   /// Assets for assetsImagesPrayerTimesBackgroundShapeSvg
   /// assets/images/prayer_times_background_shape_svg.svg
   static const String assetsImagesPrayerTimesBackgroundShapeSvg = "assets/images/prayer_times_background_shape_svg.svg";
+
+  /// Assets for assetsImagesQuran
+  /// assets/images/quran.jpg
+  static const String assetsImagesQuran = "assets/images/quran.jpg";
 
   /// Assets for assetsImagesQuranImage
   /// assets/images/quran_image.jpg

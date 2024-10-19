@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:fazakir/Features/quran/presentation/widgets/basmala.dart';
 import 'package:fazakir/Features/quran/presentation/widgets/surah_header_frame.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
+import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/gestures.dart';
@@ -108,11 +109,13 @@ class _QuranPagesViewState extends State<QuranPagesView> {
 
             if (index == 0) {
               return Container(
-                color: const Color(0xffFFFCE7),
-                child: const Basmala(),
+                color: AppColors.primaryColor,
+                child: Image.asset(
+                  Assets.assetsImagesQuran,
+                  fit: BoxFit.fill,
+                ),
               );
             }
-
             return Padding(
               padding: const EdgeInsets.only(right: 12.0, left: 12),
               child: SingleChildScrollView(
