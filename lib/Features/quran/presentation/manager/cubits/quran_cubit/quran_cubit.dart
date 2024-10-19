@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:fazakir/Features/quran/data/repos/quran_repo_impl.dart';
+import 'package:fazakir/Features/quran/domain/entities/ayah_entity.dart';
 import 'package:fazakir/Features/quran/domain/entities/surah_entity.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
@@ -19,6 +20,7 @@ class QuranCubit extends Cubit<QuranState> {
   final QuranRepoImpl quranRepoImpl;
   List<SurahEntity> surahs = [];
   List<SurahEntity> filteredSurahs = [];
+  List<AyahEntity> ayat = [];
   Timer? _debounce;
   Timer? _isolateDebounce;
   Future<void> fetchSurahs() async {
@@ -29,7 +31,7 @@ class QuranCubit extends Cubit<QuranState> {
       safeEmit(SurahsLoaded(surahs: filteredSurahs));
     } catch (e) {
       safeEmit(
-        const SurahsFailure(errMessage: 'Failed to load surahs'),
+        const SurahsFailure('Failed to load surahs'),
       );
     }
   }
@@ -80,20 +82,36 @@ class QuranCubit extends Cubit<QuranState> {
   }
 
   void _searchInQuran(String query) {
+    if (query.isEmpty) {
+      ayat = [];
+      safeEmit(SearchInQuranLoaded(ayat: ayat));
+      return;
+    }
     final ayatFiltered = quran.searchWords(query);
     if ((ayatFiltered["result"])?.isEmpty ?? true) {
       log('No ayat found');
+      ayat = [];
     } else {
-      final verseNumber = ayatFiltered["result"][0]["verse"];
+      for (var element in (ayatFiltered["result"] as List)) {
+        final ayahNumber = element["verse"];
+        final surahNumber = element["surah"];
+        ayat.add(
+          AyahEntity(
+              ayahNumber: ayahNumber, surahNumber: surahNumber, query: query),
+        );
+      }
+
+      /*  final verseNumber = ayatFiltered["result"][0]["verse"];
       final surahNumber = ayatFiltered["result"][0]["surah"];
 
       final verse =
           quran.getVerse(surahNumber, verseNumber, verseEndSymbol: true);
 
       final surahName = quran.getSurahNameArabic(surahNumber);
-      log("$surahName : ${(verseNumber as num).toArabicDigits()}  \n - $verse");
+      log("$surahName : ${(verseNumber as num).toArabicDigits()}  \n - $verse"); */
       //log('\n ${ayatFiltered["result"]} ');
     }
+    safeEmit(SearchInQuranLoaded(ayat: ayat));
   }
 
   @override

@@ -7,6 +7,7 @@ import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/core/utils/g_snack_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,9 +15,15 @@ import 'package:quran/quran.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 class QuranPagesView extends StatefulWidget {
-  const QuranPagesView({super.key, required this.pageNumber});
+  const QuranPagesView(
+      {super.key,
+      required this.pageNumber,
+      this.shouldHighlightText = false,
+      this.highlightVerse = ''});
   static const String routeName = 'quranPagesView';
   final int pageNumber;
+  final bool shouldHighlightText;
+  final String highlightVerse;
   @override
   State<QuranPagesView> createState() => _QuranPagesViewState();
 }
@@ -35,19 +42,19 @@ class _QuranPagesViewState extends State<QuranPagesView> {
 
   highlightVerseFunction() {
     if (shouldHighlightText) {
-      Timer.periodic(const Duration(milliseconds: 400), (timer) {
+      Timer.periodic(const Duration(seconds: 3), (timer) {
         if (mounted) {
           setState(() {
             shouldHighlightText = false;
           });
         }
-        Timer(const Duration(milliseconds: 200), () {
+        Timer(const Duration(milliseconds: 500), () {
           if (mounted) {
             setState(() {
               shouldHighlightText = true;
             });
           }
-          if (timer.tick == 4) {
+          if (timer.tick == 1) {
             if (mounted) {
               setState(() {
                 highlightVerse = "";
@@ -65,6 +72,8 @@ class _QuranPagesViewState extends State<QuranPagesView> {
   @override
   void initState() {
     pageNumber = widget.pageNumber;
+    shouldHighlightText = widget.shouldHighlightText;
+    highlightVerse = widget.highlightVerse;
     _pageController = PageController(initialPage: pageNumber);
     highlightVerseFunction();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -219,6 +228,20 @@ class _QuranPagesViewState extends State<QuranPagesView> {
                                             //     e["surah"],
                                             //     i);
                                             log("longPressed Hereeeee..");
+                                            Clipboard.setData(
+                                              ClipboardData(
+                                                  text:
+                                                      '${getVerse(e["surah"], i, verseEndSymbol: true)} \n [${getSurahNameArabic(e["surah"])} : ${i.toArabicDigits()}]'),
+                                            ).then(
+                                              (_) {
+                                                if (!context.mounted) return;
+                                                showCustomSnackBar(
+                                                    context, 'تم النسخ');
+                                                setState(() {
+                                                  selectedSpan = "";
+                                                });
+                                              },
+                                            );
                                           }
                                           ..onLongPressDown = (details) {
                                             setState(() {
@@ -279,7 +302,23 @@ class _QuranPagesViewState extends State<QuranPagesView> {
                                                           fontSize: 22.4)
                                                   : getTheFontSize(context,
                                                       fontSize: 22.6),
-                                          backgroundColor: Colors.transparent,
+                                          backgroundColor: shouldHighlightText
+                                              ? getVerse(e["surah"], i,
+                                                          verseEndSymbol:
+                                                              true) ==
+                                                      widget.highlightVerse
+                                                  ? AppColors
+                                                      .surahHeaderFrameColor
+                                                  : selectedSpan ==
+                                                          " ${e["surah"]}$i"
+                                                      ? AppColors
+                                                          .surahHeaderFrameColor
+                                                      : Colors.transparent
+                                              : selectedSpan ==
+                                                      " ${e["surah"]}$i"
+                                                  ? AppColors
+                                                      .surahHeaderFrameColor
+                                                  : Colors.transparent,
                                         ),
                                         children: const [
                                           /*  WidgetSpan(

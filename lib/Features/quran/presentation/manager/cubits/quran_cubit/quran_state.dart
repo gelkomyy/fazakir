@@ -17,5 +17,17 @@ final class SurahsLoading extends QuranState {}
 
 final class SurahsFailure extends QuranState {
   final String errMessage;
-  const SurahsFailure({required this.errMessage});
+  const SurahsFailure(this.errMessage);
+}
+
+final class SearchInQuranFailure extends QuranState {
+  final String errMessage;
+  const SearchInQuranFailure(this.errMessage);
+}
+
+final class SearchInQuranLoading extends QuranState {}
+
+final class SearchInQuranLoaded extends QuranState {
+  final List<AyahEntity> ayat;
+  const SearchInQuranLoaded({required this.ayat});
 }

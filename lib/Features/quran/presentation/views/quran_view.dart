@@ -67,6 +67,9 @@ class _QuranViewState extends State<QuranView> {
                       onChanged: (query) {
                         context
                             .read<QuranCubit>()
+                            .searchInQuranWithIsolateDebounce(query);
+                        context
+                            .read<QuranCubit>()
                             .filterSurahsWithDebounce(query);
                       },
                       hintText:
