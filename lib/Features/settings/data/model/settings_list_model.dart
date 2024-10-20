@@ -87,6 +87,7 @@ List<SettingsListModel> getSettingsList(BuildContext context) => [
         title: 'الوضع الليلي',
         svgIconAsset: Assets.assetsImagesMoonIconSvg,
         traillingWidget: CustomSwitch(
+          isEnable: getIt<SharedPreferences>().getBool('isDarkMode') ?? false,
           onChanged: (value) {
             context.read<ThemeCubit>().toggleTheme();
             getIt<SharedPreferences>().setBool('isDarkMode', value);
