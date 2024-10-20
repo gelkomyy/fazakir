@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/quran/domain/entities/ayah_entity.dart';
 import 'package:fazakir/Features/quran/presentation/views/quran_pages_view.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/quran_text_highlighter.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -38,13 +39,23 @@ class AyahOverviewItem extends StatelessWidget {
           fontFamily: 'Scheherazade',
         ),
       ),
-      subtitle: Text(
+      subtitle: QuranTextHighlighter(
+        query: ayahEntity.query,
+        ayah: ayahEntity.ayah,
+        mainStyle: AppFontStyles.styleRegular18(context).copyWith(
+          color: AppColors.primaryColor,
+          fontFamily: 'Scheherazade',
+        ),
+        highlightColor: Colors.red, // Highlight color of your choice
+      ),
+
+      /*  Text(
         ayahEntity.ayah,
         style: AppFontStyles.styleRegular18(context).copyWith(
           color: AppColors.primaryColor,
           fontFamily: 'Scheherazade',
         ),
-      ),
+      ) ,*/
       trailing: Bounceable(
         onTap: () {
           Clipboard.setData(
