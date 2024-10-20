@@ -30,6 +30,7 @@ class SettingsListModel {
   });
 
   Widget buildList(BuildContext context) {
+    ThemeState themeState = context.watch<ThemeCubit>().state;
     return Padding(
       padding: EdgeInsetsDirectional.only(
         bottom: svgIconAsset.contains('flag') ? 0 : 32,
@@ -56,6 +57,12 @@ class SettingsListModel {
           svgIconAsset,
           width: 18,
           height: 18,
+          colorFilter: ColorFilter.mode(
+            themeState.isDark
+                ? AppColors.secondaryColor
+                : AppColors.textBlackColor,
+            BlendMode.srcIn,
+          ),
         ),
         trailing: traillingWidget,
         onTap: onTap,

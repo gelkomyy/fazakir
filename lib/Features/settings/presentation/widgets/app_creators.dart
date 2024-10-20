@@ -1,8 +1,10 @@
+import 'package:fazakir/core/cubits/theme_cubit/theme_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppCreators extends StatelessWidget {
@@ -12,6 +14,7 @@ class AppCreators extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeState themeState = context.watch<ThemeCubit>().state;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(
@@ -40,7 +43,9 @@ class AppCreators extends StatelessWidget {
               Text(
                 'برمجة وتطوير',
                 style: AppFontStyles.styleRegular14(context).copyWith(
-                  color: AppColors.primaryColor,
+                  color: themeState == ThemeState.light
+                      ? AppColors.primaryColor
+                      : AppColors.primarySwatch.shade200,
                 ),
               ),
               const SizedBox(
@@ -80,7 +85,9 @@ class AppCreators extends StatelessWidget {
               Text(
                 'مصمم واجهات',
                 style: AppFontStyles.styleRegular14(context).copyWith(
-                  color: AppColors.primaryColor,
+                  color: themeState == ThemeState.light
+                      ? AppColors.primaryColor
+                      : AppColors.primarySwatch.shade200,
                 ),
               ),
               const SizedBox(

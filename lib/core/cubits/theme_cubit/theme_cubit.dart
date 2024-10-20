@@ -5,6 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Define the theme state
 enum ThemeState { light, dark }
 
+extension ThemeStateX on ThemeState {
+  bool get isDark => this == ThemeState.dark;
+}
+
 // Create the ThemeCubit
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit() : super(ThemeState.light) {
