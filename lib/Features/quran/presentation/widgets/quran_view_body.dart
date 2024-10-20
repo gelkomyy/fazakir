@@ -1,6 +1,8 @@
 import 'package:fazakir/Features/quran/domain/entities/surah_entity.dart';
 import 'package:fazakir/Features/quran/presentation/manager/cubits/quran_cubit/quran_cubit.dart';
 import 'package:fazakir/Features/quran/presentation/widgets/ayah_overview_item.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/page_number_quran_overview_item.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/quran_juz_overview_item.dart';
 import 'package:fazakir/Features/quran/presentation/widgets/surah_overview_item.dart';
 import 'package:fazakir/core/enums/revelation_type_enum.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -64,40 +66,91 @@ class QuranViewBody extends StatelessWidget {
                     );
                   },
                 ),
-                SliverList.builder(
-                  itemCount: quranCubit.ayat.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: SizedBox(
-                        width: MediaQuery.sizeOf(context).width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (index == 0) ...[
-                              Text(
-                                'الآيات'
-                                ' (${quranCubit.ayat.length})',
-                                style: AppFontStyles.styleBold16(context),
+                if (quranCubit.ayat.isNotEmpty &&
+                    quranCubit.ayat.first.queryNum != null)
+                  SliverList.builder(
+                    itemCount: quranCubit.ayat.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: SizedBox(
+                          width: MediaQuery.sizeOf(context).width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (index == 0) ...[
+                                Text(
+                                  'الصفحات'
+                                  ' (${quranCubit.ayat.length})',
+                                  style: AppFontStyles.styleBold16(context),
+                                ),
+                                const SizedBox(height: 12),
+                              ],
+                              Padding(
+                                padding: const EdgeInsetsDirectional.only(
+                                  bottom: 16,
+                                ),
+                                child: PageNumberQuranOverviewItem(
+                                    queryNum: quranCubit.ayat.first.queryNum!),
                               ),
-                              const SizedBox(height: 12),
+                              if (quranCubit.ayat.first.queryNum! <= 30) ...[
+                                Text(
+                                  'الأجزاء'
+                                  ' (${quranCubit.ayat.length})',
+                                  style: AppFontStyles.styleBold16(context),
+                                ),
+                                const SizedBox(height: 12),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.only(
+                                    bottom: 16,
+                                  ),
+                                  child: QuranJuzOverviewItem(
+                                      juzNumber:
+                                          quranCubit.ayat.first.queryNum!),
+                                ),
+                              ]
                             ],
-                            Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                bottom: index + 1 ==
-                                        quranCubit.filteredSurahs.length
-                                    ? 0
-                                    : 16,
-                              ),
-                              child: AyahOverviewItem(
-                                  ayahEntity: quranCubit.ayat[index]),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ),
+                      );
+                    },
+                  ),
+                if (quranCubit.ayat.isNotEmpty &&
+                    quranCubit.ayat.first.queryNum == null)
+                  SliverList.builder(
+                    itemCount: quranCubit.ayat.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: SizedBox(
+                          width: MediaQuery.sizeOf(context).width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (index == 0) ...[
+                                Text(
+                                  'الآيات'
+                                  ' (${quranCubit.ayat.length})',
+                                  style: AppFontStyles.styleBold16(context),
+                                ),
+                                const SizedBox(height: 12),
+                              ],
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                  bottom: index + 1 ==
+                                          quranCubit.filteredSurahs.length
+                                      ? 0
+                                      : 16,
+                                ),
+                                child: AyahOverviewItem(
+                                    ayahEntity: quranCubit.ayat[index]),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
               ],
             );
           } else if (state is SurahsFailure || state is SearchInQuranFailure) {
