@@ -44,7 +44,8 @@ class AyahOverviewItem extends StatelessWidget {
         ayah: ayahEntity.ayah,
         mainStyle: AppFontStyles.styleRegular18(context).copyWith(
           color: AppColors.primaryColor,
-          fontFamily: 'Scheherazade',
+          fontFamily: 'Amiri',
+          height: 2.2,
         ),
         highlightColor: Colors.red, // Highlight color of your choice
       ),
