@@ -18,7 +18,7 @@ class PrayerDetailsBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: ShapeDecoration(
-        color: isNextPrayer ? AppColors.primaryColor : const Color(0x51BBBBBB),
+        color: isNextPrayer ? AppColors.primaryColor : AppColors.greyColor2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       child: Row(

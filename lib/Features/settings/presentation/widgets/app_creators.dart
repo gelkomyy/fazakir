@@ -18,7 +18,7 @@ class AppCreators extends StatelessWidget {
         vertical: 16,
       ),
       decoration: ShapeDecoration(
-        color: const Color(0x51BBBBBB),
+        color: AppColors.greyColor2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
       child: Row(

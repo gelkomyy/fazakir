@@ -29,7 +29,7 @@ class AyahOverviewItem extends StatelessWidget {
         horizontal: -4,
         vertical: -4,
       ),
-      tileColor: const Color(0x51BBBBBB),
+      tileColor: AppColors.greyColor2,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(6)),
       ),
