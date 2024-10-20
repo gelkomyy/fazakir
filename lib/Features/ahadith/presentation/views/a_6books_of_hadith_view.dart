@@ -34,7 +34,7 @@ class A6BooksOfHadithView extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: const SafeArea(
         child: A6BooksOfHadithViewBody(),

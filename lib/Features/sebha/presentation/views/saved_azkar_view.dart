@@ -68,7 +68,7 @@ class SavedAzkarView extends StatelessWidget {
                     }
                   },
                 ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: const SafeArea(
           child: SavedAzkarViewBody(),

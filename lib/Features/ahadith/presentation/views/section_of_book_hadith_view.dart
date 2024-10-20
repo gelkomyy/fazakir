@@ -35,7 +35,7 @@ class SectionOfBookHadithView extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: SafeArea(
         child: SectionOfBookHadithViewBody(

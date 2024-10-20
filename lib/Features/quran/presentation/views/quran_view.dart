@@ -119,7 +119,7 @@ class _QuranViewState extends State<QuranView> {
               Navigator.pop(context);
             },
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: const SafeArea(
           child: QuranViewBody(),

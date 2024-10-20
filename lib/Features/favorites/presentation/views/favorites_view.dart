@@ -14,7 +14,7 @@ class FavoritesView extends StatelessWidget {
           style: AppFontStyles.styleBold20(context),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: const SafeArea(
         child: FavoritesViewBody(),

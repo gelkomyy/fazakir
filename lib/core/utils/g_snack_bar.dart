@@ -5,7 +5,7 @@ void showCustomSnackBar(BuildContext context, String text) {
     elevation: 5,
     behavior: SnackBarBehavior.floating,
     showCloseIcon: true,
-    backgroundColor: Colors.white,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     closeIconColor: Colors.red.shade900,
     // margin: const EdgeInsetsDirectional.symmetric(horizontal: 50, vertical: 20),
     /* shape: const RoundedRectangleBorder(
@@ -17,7 +17,7 @@ void showCustomSnackBar(BuildContext context, String text) {
     content: Text(
       text,
       //textAlign: TextAlign.center,
-      style: const TextStyle(color: Colors.black),
+      style: Theme.of(context).textTheme.bodyMedium!,
     ),
   ));
 }

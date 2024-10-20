@@ -68,7 +68,7 @@ class AzkarView extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         body: const SafeArea(
           child: AzkarViewBody(),
