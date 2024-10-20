@@ -90,7 +90,7 @@ List<SettingsListModel> getSettingsList(BuildContext context) => [
           },
         ),
       ),
-      SettingsListModel(
+      /*  SettingsListModel(
         title: 'الوضع الليلي',
         svgIconAsset: Assets.assetsImagesMoonIconSvg,
         traillingWidget: CustomSwitch(
@@ -100,7 +100,7 @@ List<SettingsListModel> getSettingsList(BuildContext context) => [
             getIt<SharedPreferences>().setBool('isDarkMode', value);
           },
         ),
-      ),
+      ), */
       SettingsListModel(
         title: 'ما هو فذكر',
         svgIconAsset: Assets.assetsImagesAboutIconSvg,
