@@ -6,6 +6,7 @@ import 'package:fazakir/Features/ahadith/presentation/views/widgets/ahadith_view
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/search/presentation/manager/cubits/cubit/search_cubit.dart';
 import 'package:fazakir/core/extensions/manage_hadiths_extensions.dart';
+import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:fazakir/core/utils/object_box_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,19 +27,19 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
 
   // Load hadiths from Local
   Future<void> _loadHadithFromLocal() async {
-    emit(HadithProcessingLoading());
+    safeEmit(HadithProcessingLoading());
 
     try {
       _allAhadith =
           await ObjectBoxManager.instance.getAllAsync(); // Load from Local
       if (_allAhadith.isNotEmpty) {
-        emit(HadithProcessingLoaded(
+        safeEmit(HadithProcessingLoaded(
             _allAhadith)); // Emit loaded state with data from Local
       } else {
-        emit(HadithProcessingInitial()); // If no data found
+        safeEmit(HadithProcessingInitial()); // If no data found
       }
     } catch (e) {
-      emit(HadithProcessingError('Failed to load hadiths: $e'));
+      safeEmit(HadithProcessingError('Failed to load hadiths: $e'));
     }
   }
 
@@ -48,20 +49,20 @@ class HadithProcessingCubit extends Cubit<HadithProcessingState> {
   }
 
   Future<void> processHadiths() async {
-    emit(HadithProcessingLoading());
+    safeEmit(HadithProcessingLoading());
 
     if (_allAhadith.isNotEmpty) {
       //  no need to process
-      emit(HadithProcessingLoaded(_allAhadith));
+      safeEmit(HadithProcessingLoaded(_allAhadith));
       return;
     }
     try {
       List<List<HadithEntity>> results = await processTheHadiths();
       _allAhadith = results.expand((list) => list).toList();
       await _saveHadithToLocal();
-      emit(HadithProcessingLoaded(_allAhadith));
+      safeEmit(HadithProcessingLoaded(_allAhadith));
     } catch (e) {
-      emit(HadithProcessingError('Failed to process hadiths.'));
+      safeEmit(HadithProcessingError('Failed to process hadiths.'));
     }
   }
 

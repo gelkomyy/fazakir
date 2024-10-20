@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/sebha/data/models/sebha_zikr_model.dart';
 import 'package:fazakir/Features/sebha/data/repos/sebha_zikr_repo.dart';
+import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,13 +16,13 @@ class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
   int? editZikrCount;
 
   void getSebhaZikr() {
-    emit(ManageSebhaZikrLoading());
+    safeEmit(ManageSebhaZikrLoading());
     final List<SebhaZikrModel> data = SebhaZikrRepo.getZikrs();
-    emit(GetAzkarSuccess(azkar: data));
+    safeEmit(GetAzkarSuccess(azkar: data));
   }
 
   Future<void> addSebhaZikr(SebhaZikrModel zikrModel) async {
-    emit(ManageSebhaZikrLoading());
+    safeEmit(ManageSebhaZikrLoading());
     await SebhaZikrRepo.addZikr(zikrModel);
     getSebhaZikr();
   }
@@ -49,7 +50,7 @@ class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
         count: 33,
       ),
     ];
-    emit(ManageSebhaZikrLoading());
+    safeEmit(ManageSebhaZikrLoading());
     for (var zikr in defaultZikrs) {
       await SebhaZikrRepo.addZikr(zikr);
     }
@@ -57,13 +58,13 @@ class ManageSebhaZikrCubit extends Cubit<ManageSebhaZikrState> {
   }
 
   Future<void> updateSebhaZikr(int id, SebhaZikrModel zikrModel) async {
-    emit(ManageSebhaZikrLoading());
+    safeEmit(ManageSebhaZikrLoading());
     await SebhaZikrRepo.updateZikr(id, zikrModel);
     getSebhaZikr();
   }
 
   Future<void> deleteSebhaZikr(int id) async {
-    emit(ManageSebhaZikrLoading());
+    safeEmit(ManageSebhaZikrLoading());
     await SebhaZikrRepo.deleteZikr(id);
     getSebhaZikr();
   }

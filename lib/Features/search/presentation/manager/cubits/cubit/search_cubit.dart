@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/ahadith/presentation/manager/cubits/hadith_processing_cubit/hadith_processing_cubit.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
+import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +38,7 @@ class SearchCubit extends Cubit<SearchState> {
     }
 
     final String searchQuery = searchController.text;
-    emit(SearchLoading());
+    safeEmit(SearchLoading());
     addSearchHistory(searchQuery);
     try {
       if (hadithOrZikr == 'ذكر') {
@@ -45,16 +46,16 @@ class SearchCubit extends Cubit<SearchState> {
         final SearchResult zikrResults =
             await getIt<AzkarRepoImpl>().filterAzkarItems(searchQuery);
 
-        emit(SearchLoaded(zikrResults));
+        safeEmit(SearchLoaded(zikrResults));
       } else {
         // Search Hadith
         final SearchResult hadithResults = await context
             .read<HadithProcessingCubit>()
             .filterHadiths(searchQuery);
-        emit(SearchLoaded(hadithResults));
+        safeEmit(SearchLoaded(hadithResults));
       }
     } catch (e) {
-      emit(SearchError('Failed to load search results'));
+      safeEmit(SearchError('Failed to load search results'));
     }
   }
 

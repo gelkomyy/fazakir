@@ -1,4 +1,5 @@
 import 'package:fazakir/Features/favorites/data/repos/favorite_repository.dart';
+import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fazakir/Features/favorites/domain/entities/favorite_entity.dart';
@@ -12,22 +13,22 @@ class FavoritesCubit extends Cubit<FavoritesState> {
   List<FavoriteEntity> favorites = [];
 
   Future<void> toggleFavorite(FavoriteEntity entity) async {
-    emit(FavoritesLoading());
+    safeEmit(FavoritesLoading());
     await _favoriteRepository
         .toggleFavorite(entity)
         .onError((error, stackTrace) {
-      emit(FavoritesFailure(message: 'Failed to toggle favorite'));
+      safeEmit(FavoritesFailure(message: 'Failed to toggle favorite'));
       return;
     });
 
-    emit(ToggleFavorite());
+    safeEmit(ToggleFavorite());
     getFavorites();
   }
 
   void getFavorites() {
-    emit(FavoritesLoading());
+    safeEmit(FavoritesLoading());
     final List<FavoriteEntity> result = _favoriteRepository.getFavorites();
     favorites = result;
-    emit(FavoritesSuccess(favorites: result));
+    safeEmit(FavoritesSuccess(favorites: result));
   }
 }
