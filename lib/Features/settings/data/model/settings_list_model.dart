@@ -1,5 +1,6 @@
 import 'package:fazakir/Features/settings/presentation/widgets/about_app_dialog.dart';
 import 'package:fazakir/Features/settings/presentation/widgets/notify_duration_dialog.dart';
+import 'package:fazakir/core/cubits/theme_cubit/theme_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -8,6 +9,7 @@ import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:fazakir/core/utils/notifications_service.dart';
 import 'package:fazakir/core/widgets/custom_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -81,10 +83,15 @@ List<SettingsListModel> getSettingsList(BuildContext context) => [
           },
         ),
       ),
-      const SettingsListModel(
+      SettingsListModel(
         title: 'الوضع الليلي',
         svgIconAsset: Assets.assetsImagesMoonIconSvg,
-        traillingWidget: CustomSwitch(),
+        traillingWidget: CustomSwitch(
+          onChanged: (value) {
+            context.read<ThemeCubit>().toggleTheme();
+            getIt<SharedPreferences>().setBool('isDarkMode', value);
+          },
+        ),
       ),
       SettingsListModel(
         title: 'ما هو فذكر',

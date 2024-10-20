@@ -3,6 +3,7 @@ import 'package:fazakir/Features/ahadith/presentation/manager/cubits/hadith_proc
 import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/favorites_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
+import 'package:fazakir/core/cubits/theme_cubit/theme_cubit.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/custom_bloc_observer.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
@@ -29,7 +30,10 @@ void main() async {
     AndroidAlarmManager.initialize(),
   ]);
   NotificationService.scheduleNotification();
-  runApp(const Fazakir());
+  runApp(BlocProvider(
+    create: (context) => ThemeCubit(),
+    child: const Fazakir(),
+  ));
 }
 
 class Fazakir extends StatelessWidget {
@@ -47,42 +51,69 @@ class Fazakir extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: MaterialApp(
-        onGenerateRoute: onGenerateRoutes,
-        initialRoute: getIt<SharedPreferences>().getBool('seen_intro') == true
-            ? NavigationPage.routeName
-            : IntroView.routeName,
-        locale: const Locale('ar'),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        title: 'فذكر',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          pageTransitionsTheme: const PageTransitionsTheme(
-            builders: {
-              TargetPlatform.android: CustomFadePageTransitionsBuilder(),
-              TargetPlatform.iOS: CustomFadePageTransitionsBuilder(),
-            },
-          ),
-          primarySwatch: AppColors.primarySwatch,
-          primaryColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: AppColors.secondaryColor,
-          fontFamily: 'Almarai',
-          textTheme: Theme.of(context).textTheme.apply(
-                bodyColor: AppColors.textBlackColor,
-                displayColor: AppColors.textBlackColor,
-                fontFamily: 'Almarai',
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, themeState) {
+          return MaterialApp(
+            onGenerateRoute: onGenerateRoutes,
+            initialRoute:
+                getIt<SharedPreferences>().getBool('seen_intro') == true
+                    ? NavigationPage.routeName
+                    : IntroView.routeName,
+            locale: const Locale('ar'),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            title: 'فذكر',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              pageTransitionsTheme: const PageTransitionsTheme(
+                builders: {
+                  TargetPlatform.android: CustomFadePageTransitionsBuilder(),
+                  TargetPlatform.iOS: CustomFadePageTransitionsBuilder(),
+                },
               ),
-          buttonTheme: const ButtonThemeData(
-            buttonColor: AppColors.primaryColor,
-            textTheme: ButtonTextTheme.primary,
-          ),
-        ),
+              primarySwatch: AppColors.primarySwatch,
+              primaryColor: AppColors.primaryColor,
+              scaffoldBackgroundColor: AppColors.secondaryColor,
+              fontFamily: 'Almarai',
+              textTheme: Theme.of(context).textTheme.apply(
+                    bodyColor: AppColors.textBlackColor,
+                    displayColor: AppColors.textBlackColor,
+                    fontFamily: 'Almarai',
+                  ),
+              buttonTheme: const ButtonThemeData(
+                buttonColor: AppColors.primaryColor,
+                textTheme: ButtonTextTheme.primary,
+              ),
+            ),
+            darkTheme: ThemeData.dark().copyWith(
+              pageTransitionsTheme: const PageTransitionsTheme(
+                builders: {
+                  TargetPlatform.android: CustomFadePageTransitionsBuilder(),
+                  TargetPlatform.iOS: CustomFadePageTransitionsBuilder(),
+                },
+              ),
+              primaryColor: AppColors.primaryColor,
+              scaffoldBackgroundColor: AppColors.textBlackColor,
+              textTheme: Theme.of(context).textTheme.apply(
+                    bodyColor: AppColors.secondaryColor,
+                    displayColor: AppColors.secondaryColor,
+                    fontFamily: 'Almarai',
+                  ),
+              buttonTheme: const ButtonThemeData(
+                buttonColor: AppColors.primaryColor,
+                textTheme: ButtonTextTheme.primary,
+              ),
+            ),
+            themeMode: themeState == ThemeState.light
+                ? ThemeMode.light
+                : ThemeMode.dark,
+          );
+        },
       ),
     );
   }
