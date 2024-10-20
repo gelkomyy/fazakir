@@ -1,6 +1,7 @@
 import 'package:fazakir/Features/home/presentation/manager/cubits/navigation_cubit/navigation_cubit.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_bottom_nav_bar_models.dart';
 import 'package:fazakir/Features/home/presentation/views/widgets/custom_nav_bar.dart';
+import 'package:fazakir/core/cubits/theme_cubit/theme_cubit.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/generated/l10n.dart';
@@ -19,7 +20,9 @@ class CustomBottomNavBar extends StatelessWidget {
         navBarHeight: null /* getResponsiveFontSize(context, fontSize: 80) */,
         items: buildNavBarItems,
         selectedIndex: selectedIndex,
-        backgroundColor: Colors.white,
+        backgroundColor: context.watch<ThemeCubit>().state.isDark
+            ? AppColors.textBlackColor
+            : Colors.white,
         itemAnimationProperties: const ItemAnimationSettings(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
