@@ -30,7 +30,7 @@ class QuranViewBody extends StatelessWidget {
             log(quranCubit.state.toString());
             if (quranCubit.filteredSurahs.isEmpty &&
                 quranCubit.ayat.isEmpty &&
-                state is SearchInQuranLoaded) {
+                state is! SearchInQuranLoading) {
               return Center(
                 child: Text(
                   'لا توجد نتائج',
@@ -123,7 +123,7 @@ class QuranViewBody extends StatelessWidget {
                       );
                     },
                   ),
-                if (state is! SearchInQuranLoaded)
+                if (state is SearchInQuranLoading)
                   SliverList.builder(
                     itemCount: 10,
                     itemBuilder: (BuildContext context, int index) {
