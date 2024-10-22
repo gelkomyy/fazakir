@@ -527,7 +527,7 @@ const List surah = [
     "aya": 24,
     "english": "The Mustering",
     "turkish": "Haşr",
-    "place": "Manidah",
+    "place": "Madinah",
     "arabic": "الحشر"
   },
   {
@@ -644,7 +644,7 @@ const List surah = [
     "aya": 28,
     "english": "The Jinn",
     "turkish": "Cin",
-    "place": "makkah",
+    "place": "Makkah",
     "arabic": "الجن"
   },
   {
