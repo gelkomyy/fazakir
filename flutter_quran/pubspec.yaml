@@ -1,0 +1,59 @@
+name: flutter_quran
+description: "A Quran Package you can put in your app and it will work without the need for any other resources."
+version: 0.0.1+1
+homepage: https://github.com/heshamerfan97/flutter_quran
+
+environment:
+  sdk: '>=2.17.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # state management
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.6
+
+
+  # local storage
+  shared_preferences: ^2.3.2
+
+  #UI
+  fluttertoast: ^8.2.8
+
+  #Tools
+  intl: ^0.19.0
+
+# This package supports all platforms listed below.
+# But note that it works and fits on mobile size devices
+# Additional Screen Sizes will be supported later
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+
+flutter:
+  assets:
+    - lib/assets/
+    - lib/assets/fonts/
+    - lib/assets/fonts/hafs.ttf
+    - lib/assets/jsons/
+    - lib/assets/images/
+    - lib/assets/images/surah_header.png
+
+  fonts:
+    - family: hafs
+      fonts:
+        - asset: packages/flutter_quran/assets/fonts/hafs.ttf
+
