@@ -278,9 +278,9 @@ class _QuranPagesViewState extends State<QuranPagesView> {
                                         style: TextStyle(
                                           color: Colors.black,
                                           height: getTheFontSize(context,
-                                              fontSize: 2.15),
+                                              fontSize: 2.13),
                                           letterSpacing: getTheFontSize(context,
-                                              fontSize: 0.5),
+                                              fontSize: 0.4),
                                           wordSpacing: 0,
                                           fontFamily:
                                               "QCF_P${index.toString().padLeft(3, "0")}",
@@ -301,7 +301,7 @@ class _QuranPagesViewState extends State<QuranPagesView> {
                                                       : getTheFontSize(context,
                                                           fontSize: 22.4)
                                                   : getTheFontSize(context,
-                                                      fontSize: 22.6),
+                                                      fontSize: 22.65),
                                           backgroundColor: shouldHighlightText
                                               ? getVerse(e["surah"], i,
                                                           verseEndSymbol:
@@ -321,18 +321,18 @@ class _QuranPagesViewState extends State<QuranPagesView> {
                                                   : Colors.transparent,
                                         ),
                                         children: const [
-                                          /*  WidgetSpan(
+                                          /* WidgetSpan(
                                             alignment:
                                                 PlaceholderAlignment.middle,
                                             child: SizedBox(
-                                              width: 22,
-                                              height: 22,
+                                              width: 24,
+                                              height: 24,
                                               child: Stack(
                                                 children: [
                                                   Center(
                                                     child: Container(
-                                                      width: 16,
-                                                      height: 16,
+                                                      width: 17,
+                                                      height: 17,
                                                       decoration:
                                                           const BoxDecoration(
                                                         color: AppColors
@@ -344,8 +344,8 @@ class _QuranPagesViewState extends State<QuranPagesView> {
                                                     child: Image.asset(
                                                       Assets
                                                           .assetsImagesAyahEndSymbol,
-                                                      width: 22,
-                                                      height: 22,
+                                                      width: 24,
+                                                      height: 24,
                                                     ),
                                                   ),
                                                   Padding(

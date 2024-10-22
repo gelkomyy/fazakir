@@ -8,7 +8,6 @@ import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/extensions/cubit_safe_emit.dart';
 import 'package:fazakir/core/utils/func/helper_funcs.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran/quran.dart' as quran;
 import 'package:string_validator/string_validator.dart';
