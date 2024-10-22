@@ -23,6 +23,7 @@ class QuranCubit extends Cubit<QuranState> {
   List<AyahEntity> ayat = [];
   Timer? _debounce;
   Timer? _isolateDebounce;
+  String? _lastQuery;
   Future<void> fetchSurahs() async {
     try {
       safeEmit(SurahsLoading());
@@ -34,16 +35,6 @@ class QuranCubit extends Cubit<QuranState> {
         const SurahsFailure('Failed to load surahs'),
       );
     }
-  }
-
-  void searchInQuranWithIsolateDebounce(String query) {
-    // Cancel any active debounced call
-    if (_isolateDebounce?.isActive ?? false) _isolateDebounce!.cancel();
-
-    // Set a delay of 300ms before triggering the filtering function
-    _isolateDebounce = Timer(const Duration(milliseconds: 300), () {
-      _searchInQuran(query);
-    });
   }
 
   void filterSurahsWithDebounce(String query) {
@@ -81,14 +72,33 @@ class QuranCubit extends Cubit<QuranState> {
     safeEmit(SurahsLoaded(surahs: filteredSurahs));
   }
 
-  void _searchInQuran(String query) {
+  /// Debounced search in Quran using compute
+  void searchInQuranWithIsolateDebounce(String query) {
+    // Cancel any active debounced call
+    if (_isolateDebounce?.isActive ?? false) {
+      _isolateDebounce!.cancel();
+    }
+
+    // Set a delay of 300ms before triggering the filtering function
+    _isolateDebounce = Timer(const Duration(milliseconds: 300), () {
+      // Assign the current query as the last query
+      _lastQuery = query;
+      // Perform the search only after debouncing
+      _searchInQuranWithCompute(query);
+    });
+  }
+
+  /// Start searching in a separate thread using compute
+  void _searchInQuranWithCompute(String query) async {
+    // Before starting a new search, clear the previous results
     ayat = [];
     if (query.isEmpty) {
-      ayat = [];
       safeEmit(SearchInQuranLoaded(ayat: ayat));
       return;
     }
+    safeEmit(SearchInQuranLoading());
     query = query.toEnglishDigits();
+
     if (isInt(query) && toInt(query) < 605 && toInt(query) > 0) {
       ayat.add(
         AyahEntity(
@@ -98,13 +108,33 @@ class QuranCubit extends Cubit<QuranState> {
           queryNum: toInt(query),
         ),
       );
+
       safeEmit(SearchInQuranLoaded(ayat: ayat));
       return;
     }
+    // Execute the search function in a separate thread using `compute`
+    final List<AyahEntity> result = await compute(_searchInQuran, query);
+
+    // Check if the query has changed during the debounce. If yes, discard this result.
+    if (query != _lastQuery) {
+      log('Query changed; discarding result for: $query');
+      return;
+    }
+
+    // If the result is for the latest query, use it
+    ayat = result;
+    safeEmit(SearchInQuranLoaded(ayat: ayat));
+  }
+
+  /// Heavy search logic to be performed in the background
+  static List<AyahEntity> _searchInQuran(String query) {
+    List<AyahEntity> ayat = [];
+
+    // Simulate heavy search task (quran.searchWords)
     final ayatFiltered = quran.searchWords(query);
+
     if ((ayatFiltered["result"])?.isEmpty ?? true) {
       log('No ayat found');
-      ayat = [];
     } else {
       for (var element in (ayatFiltered["result"] as List)) {
         final ayahNumber = element["verse"];
@@ -115,7 +145,7 @@ class QuranCubit extends Cubit<QuranState> {
         );
       }
     }
-    safeEmit(SearchInQuranLoaded(ayat: ayat));
+    return ayat;
   }
 
   @override

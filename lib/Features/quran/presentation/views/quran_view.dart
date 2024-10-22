@@ -67,10 +67,10 @@ class _QuranViewState extends State<QuranView> {
                       onChanged: (query) {
                         context
                             .read<QuranCubit>()
-                            .searchInQuranWithIsolateDebounce(query);
+                            .filterSurahsWithDebounce(query);
                         context
                             .read<QuranCubit>()
-                            .filterSurahsWithDebounce(query);
+                            .searchInQuranWithIsolateDebounce(query);
                       },
                       hintText:
                           'ابحث برقم او بكلمة (سور, آيات, صفحات)' ' ..... ',
