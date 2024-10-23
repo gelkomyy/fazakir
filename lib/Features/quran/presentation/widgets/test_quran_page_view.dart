@@ -359,14 +359,22 @@ class _QuranPageViewState extends State<QuranPageView> {
 
  */
 
+import 'dart:developer';
+
+import 'package:fazakir/core/flutter_quran/lib/src/flutter_quran_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quran/flutter_quran.dart';
 
 class QuranPageView extends StatelessWidget {
-  const QuranPageView({super.key});
+  const QuranPageView({super.key, required this.pageNumber});
   static const String routeName = "quranPageView";
+  final int pageNumber;
   @override
   Widget build(BuildContext context) {
-    return const FlutterQuranScreen();
+    return FlutterQuranScreen(
+      pageNumber: pageNumber,
+      onPageChanged: (page) {
+        log(page.toString());
+      },
+    );
   }
 }

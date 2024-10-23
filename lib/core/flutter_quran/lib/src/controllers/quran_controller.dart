@@ -1,12 +1,14 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/ayah.dart';
 import '../models/quran_page.dart';
 import '../repository/quran_repository.dart';
 
 class QuranCubit extends Cubit<List<QuranPage>> {
-  QuranCubit({QuranRepository? quranRepository}) : _quranRepository = quranRepository ?? QuranRepository(), super([]);
+  QuranCubit({QuranRepository? quranRepository})
+      : _quranRepository = quranRepository ?? QuranRepository(),
+        super([]);
 
   final QuranRepository _quranRepository;
 
@@ -17,19 +19,18 @@ class QuranCubit extends Cubit<List<QuranPage>> {
   final List<Ayah> ayahs = [];
   int lastPage = 1;
 
-
-
   PageController _pageController = PageController();
 
   Future<void> loadQuran({quranPages = QuranRepository.hafsPagesNumber}) async {
     lastPage = _quranRepository.getLastPage() ?? 1;
-    if(lastPage != 0){
-      _pageController = PageController(initialPage: lastPage-1);
+    if (lastPage != 0) {
+      _pageController = PageController(initialPage: lastPage - 1);
     }
     if (staticPages.isEmpty || quranPages != staticPages.length) {
-      staticPages = List.generate(quranPages, (index) => QuranPage(pageNumber: index + 1, ayahs: [], lines: []));
+      staticPages = List.generate(quranPages,
+          (index) => QuranPage(pageNumber: index + 1, ayahs: [], lines: []));
       final quranJson = await _quranRepository.getQuran();
-      int hizb= 1;
+      int hizb = 1;
       for (int i = 0; i < quranJson.length; i++) {
         final ayah = Ayah.fromJson(quranJson[i]);
         ayahs.add(ayah);
@@ -61,7 +62,11 @@ class QuranCubit extends Cubit<List<QuranPage>> {
               if ((aya.centered && i == lines.length - 2)) {
                 centered = true;
               }
-              final a = Ayah.fromAya(ayah: aya, aya: lines[i], ayaText: lines[i], centered: centered);
+              final a = Ayah.fromAya(
+                  ayah: aya,
+                  aya: lines[i],
+                  ayaText: lines[i],
+                  centered: centered);
               ayas.add(a);
               if (i < lines.length - 1) {
                 staticPage.lines.add(Line([...ayas]));
@@ -78,12 +83,13 @@ class QuranCubit extends Cubit<List<QuranPage>> {
     }
   }
 
-
   List<Ayah> search(String searchText) {
     if (searchText.isEmpty) {
       return [];
     } else {
-      final filteredAyahs = ayahs.where((aya) => aya.ayahText.contains(searchText.trim())).toList();
+      final filteredAyahs = ayahs
+          .where((aya) => aya.ayahText.contains(searchText.trim()))
+          .toList();
       return filteredAyahs;
     }
   }
@@ -93,7 +99,8 @@ class QuranCubit extends Cubit<List<QuranPage>> {
     _quranRepository.saveLastPage(lastPage);
   }
 
-  animateToPage(int page) => _pageController.animateToPage(page, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+  animateToPage(int page) => _pageController.animateToPage(page,
+      duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
 
   get pageController => _pageController;
 }

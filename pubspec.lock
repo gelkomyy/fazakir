@@ -513,13 +513,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.2"
-  flutter_quran:
-    dependency: "direct main"
-    description:
-      path: flutter_quran
-      relative: true
-    source: path
-    version: "0.0.1+1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -539,7 +532,7 @@ packages:
     source: sdk
     version: "0.0.0"
   fluttertoast:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: fluttertoast
       sha256: "95f349437aeebe524ef7d6c9bde3e6b4772717cf46a0eb6a3ceaddc740b297cc"

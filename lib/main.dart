@@ -4,6 +4,7 @@ import 'package:fazakir/Features/favorites/presentation/manager/cubits/cubit/fav
 import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
 import 'package:fazakir/core/cubits/theme_cubit/theme_cubit.dart';
+import 'package:fazakir/core/flutter_quran/lib/src/utils/flutter_quran_utils.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/custom_bloc_observer.dart';
 import 'package:fazakir/core/utils/custom_fade_page_trasitions_builder.dart';
@@ -16,7 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_quran/flutter_quran.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {

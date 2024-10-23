@@ -6,6 +6,7 @@ import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:quran/quran.dart';
 //import 'package:quran/quran.dart';
 
 class SurahOverviewItem extends StatelessWidget {
@@ -88,6 +89,7 @@ class SurahOverviewItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           QuranPageView.routeName,
+          arguments: getPageNumber(surahEntity.number, 1),
         );
       },
     );

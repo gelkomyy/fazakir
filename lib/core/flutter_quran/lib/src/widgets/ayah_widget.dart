@@ -1,5 +1,6 @@
+import 'package:fazakir/core/flutter_quran/lib/src/models/ayah.dart';
+import 'package:fazakir/core/flutter_quran/lib/src/utils/flutter_quran_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quran/flutter_quran.dart';
 
 class AyahWidget extends StatelessWidget {
   const AyahWidget(this.ayah, {super.key});
