@@ -1,4 +1,4 @@
-import 'dart:developer';
+/* import 'dart:developer';
 
 import 'package:fazakir/Features/quran/data/models/ayah_model.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
@@ -357,3 +357,16 @@ class _QuranPageViewState extends State<QuranPageView> {
 
 
 
+ */
+
+import 'package:flutter/material.dart';
+import 'package:flutter_quran/flutter_quran.dart';
+
+class QuranPageView extends StatelessWidget {
+  const QuranPageView({super.key});
+  static const String routeName = "quranPageView";
+  @override
+  Widget build(BuildContext context) {
+    return const FlutterQuranScreen();
+  }
+}
