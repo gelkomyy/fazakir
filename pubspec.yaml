@@ -55,7 +55,7 @@ dependencies:
   path_provider: ^2.1.4
   quran:
     path: ./quran-1.2.2
-  rename: ^3.0.2
+  
   searchfield: ^1.1.7
   share_plus: ^10.1.0
   shared_preferences: ^2.3.2
@@ -70,6 +70,7 @@ dev_dependencies:
   flutter_launcher_icons: 0.14.1
   flutter_lints: ^5.0.0
   flutter_native_splash: 2.4.2
+  rename: ^3.0.2
   flutter_test:
     sdk: flutter
   objectbox_generator: any
