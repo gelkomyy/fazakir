@@ -1,4 +1,4 @@
-part of '../flutter_quran_screen.dart';
+/* part of '../flutter_quran_screen.dart';
 
 class QuranPageBottomInfoWidget extends StatefulWidget {
   const QuranPageBottomInfoWidget(
@@ -83,3 +83,4 @@ class _QuranPageBottomInfoWidgetState extends State<QuranPageBottomInfoWidget> {
     }
   }
 }
+ */

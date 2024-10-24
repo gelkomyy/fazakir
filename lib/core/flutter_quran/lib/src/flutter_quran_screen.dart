@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:fazakir/Features/quran/presentation/widgets/surah_header_frame.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/flutter_quran/lib/src/models/ayah.dart';
 import 'package:fazakir/core/flutter_quran/lib/src/models/bookmark.dart';
 import 'package:fazakir/core/flutter_quran/lib/src/utils/flutter_quran_utils.dart';
-import 'package:fazakir/core/flutter_quran/lib/src/utils/string_extensions.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
+import 'package:fazakir/core/utils/g_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,14 +19,11 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'app_bloc.dart';
 import 'controllers/bookmarks_controller.dart';
 import 'controllers/quran_controller.dart';
-import 'models/quran_constants.dart';
 import 'models/quran_page.dart';
 part 'utils/images.dart';
 part 'utils/toast_utils.dart';
 part 'widgets/bsmallah_widget.dart';
 part 'widgets/quran_line.dart';
-part 'widgets/quran_page_bottom_info.dart';
-part 'widgets/surah_header_widget.dart';
 part 'widgets/default_drawer.dart';
 part 'widgets/ayah_long_click_dialog.dart';
 
@@ -33,12 +32,17 @@ class FlutterQuranScreen extends StatefulWidget {
     super.key,
     this.onPageChanged,
     required this.pageNumber,
+    required this.shouldHighlightText,
+    required this.highlightVerse,
   });
 
   final int pageNumber;
 
   ///[onPageChanged] if provided it will be called when a quran page changed
   final Function(int)? onPageChanged;
+
+  final bool shouldHighlightText;
+  final String highlightVerse;
 
   @override
   State<FlutterQuranScreen> createState() => _FlutterQuranScreenState();
@@ -66,8 +70,8 @@ class _FlutterQuranScreenState extends State<FlutterQuranScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final deviceSize = MediaQuery.of(context).size;
-    Orientation currentOrientation = MediaQuery.of(context).orientation;
+    final deviceSize = MediaQuery.sizeOf(context);
+    final Orientation currentOrientation = MediaQuery.orientationOf(context);
     return MultiBlocProvider(
       providers: AppBloc.providers,
       child: Directionality(
@@ -107,6 +111,9 @@ class _FlutterQuranScreenState extends State<FlutterQuranScreen> {
                                   pageNumber: pages[index].pageNumber,
                                 ),
                                 QuranScreenBody(
+                                  shouldHighlightText:
+                                      widget.shouldHighlightText,
+                                  highlightVerse: widget.highlightVerse,
                                   pages: pages,
                                   deviceSize: deviceSize,
                                   currentOrientation: currentOrientation,
@@ -138,6 +145,8 @@ class QuranScreenBody extends StatelessWidget {
     required this.newSurahs,
     required this.index,
     required this.pages,
+    required this.shouldHighlightText,
+    required this.highlightVerse,
   });
 
   final Size deviceSize;
@@ -145,6 +154,9 @@ class QuranScreenBody extends StatelessWidget {
   final List<String> newSurahs;
   final int index;
   final List<QuranPage> pages;
+  final bool shouldHighlightText;
+  final String highlightVerse;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -171,6 +183,8 @@ class QuranScreenBody extends StatelessWidget {
                               SizedBox(
                                   width: deviceSize.width - 32,
                                   child: QuranLine(
+                                    shouldHighlightText: shouldHighlightText,
+                                    highlightVerse: highlightVerse,
                                     line,
                                     bookmarksAyahs,
                                     bookmarks,
@@ -226,9 +240,11 @@ class QuranScreenBody extends StatelessWidget {
                                               (line.ayahs[0].surahNumber != 9
                                                   ? 135
                                                   : 80))) *
-                                      0.95 /
+                                      0.97 /
                                       pages[index].lines.length,
                                   child: QuranLine(
+                                    shouldHighlightText: shouldHighlightText,
+                                    highlightVerse: highlightVerse,
                                     line,
                                     bookmarksAyahs,
                                     bookmarks,
@@ -261,9 +277,6 @@ class PageNumberOfQuranWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 62,
-      margin: const EdgeInsets.only(
-        top: 12,
-      ),
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         color: AppColors.surahHeaderFrameColor,
@@ -278,8 +291,8 @@ class PageNumberOfQuranWidget extends StatelessWidget {
         child: Text(
           pageNumber.toArabicDigits(),
           style: const TextStyle(
-            fontFamily: 'Scheherazade',
-            fontSize: 14,
+            fontFamily: "Scheherazade",
+            fontSize: 15,
           ),
         ),
       ),

@@ -13,38 +13,41 @@ class SurahHeaderFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: Stack(
-        children: [
-          Center(
-            child: Container(
-              width: MediaQuery.sizeOf(context).width,
-              height: 40,
-              decoration: const BoxDecoration(
-                color: AppColors.surahHeaderFrameColor,
-              ),
-            ),
-          ),
-          Center(
-            child: Image.asset(
-              Assets.assetsImagesSurahFrame,
-              width: MediaQuery.sizeOf(context).width,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-            child: Center(
-              child: RichText(
-                text: TextSpan(
-                  text: surahNumber.toString(),
-                  style: AppFontStyles.styleRegular28(context)
-                      .copyWith(fontFamily: "arsura", color: Colors.black),
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: SizedBox(
+        height: 50,
+        child: Stack(
+          children: [
+            Center(
+              child: Container(
+                width: MediaQuery.sizeOf(context).width,
+                height: 40,
+                decoration: const BoxDecoration(
+                  color: AppColors.surahHeaderFrameColor,
                 ),
               ),
             ),
-          ),
-        ],
+            Center(
+              child: Image.asset(
+                Assets.assetsImagesSurahFrame,
+                width: MediaQuery.sizeOf(context).width,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              child: Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: surahNumber.toString(),
+                    style: AppFontStyles.styleRegular28(context)
+                        .copyWith(fontFamily: "arsura", color: Colors.black),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

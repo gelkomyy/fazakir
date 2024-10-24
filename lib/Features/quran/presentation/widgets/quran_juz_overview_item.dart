@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/quran/presentation/views/quran_pages_view.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/test_quran_page_view.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -15,6 +15,7 @@ class QuranJuzOverviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final surahAndVersesFromJuz = getSurahAndVersesFromJuz(juzNumber.toInt());
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -34,7 +35,8 @@ class QuranJuzOverviewItem extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        getVerse(getSurahAndVersesFromJuz(juzNumber.toInt()).keys.first, 1,
+        getVerse(surahAndVersesFromJuz.keys.first,
+            surahAndVersesFromJuz.values.first.first,
             verseEndSymbol: true),
         style: AppFontStyles.styleRegular18(context).copyWith(
           color: AppColors.primaryColor,
@@ -44,8 +46,7 @@ class QuranJuzOverviewItem extends StatelessWidget {
       ),
       trailing: RichText(
         text: TextSpan(
-          text:
-              getSurahAndVersesFromJuz(juzNumber.toInt()).keys.first.toString(),
+          text: surahAndVersesFromJuz.keys.first.toString(),
           style: AppFontStyles.styleRegular28(context)
               .copyWith(fontFamily: "arsura", color: AppColors.primaryColor),
         ),
@@ -53,12 +54,14 @@ class QuranJuzOverviewItem extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          QuranPagesView.routeName,
+          QuranPageView.routeName,
           arguments: {
-            'highlightVerse': '',
-            'shouldHighlightText': false,
-            'pageNumber': getPageNumber(
-                getSurahAndVersesFromJuz(juzNumber.toInt()).keys.first, 1),
+            'highlightVerse': getVerse(surahAndVersesFromJuz.keys.first,
+                surahAndVersesFromJuz.values.first.first,
+                verseEndSymbol: true),
+            'shouldHighlightText': true,
+            'pageNumber': getPageNumber(surahAndVersesFromJuz.keys.first,
+                surahAndVersesFromJuz.values.first.first),
           },
         );
       },

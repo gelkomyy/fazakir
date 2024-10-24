@@ -104,7 +104,7 @@ class FlutterQuran {
       AppBloc.bookmarksCubit.removeBookmark(bookmarkId);
 
   /// [hafsStyle] is the default style for Quran so all special characters will be rendered correctly
-  final hafsStyle = const TextStyle(
+  final hafsStyles = const TextStyle(
     color: Colors.black,
     fontSize: 23.55,
     fontFamily: "uthmanic_hafs",

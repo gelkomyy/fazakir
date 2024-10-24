@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/quran/presentation/views/quran_pages_view.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/test_quran_page_view.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
@@ -23,7 +23,7 @@ class PageNumberQuranOverviewItem extends StatelessWidget {
         horizontal: -4,
         vertical: -4,
       ),
-      tileColor:  AppColors.greyColor2,
+      tileColor: AppColors.greyColor2,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(6)),
       ),
@@ -55,7 +55,7 @@ class PageNumberQuranOverviewItem extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          QuranPagesView.routeName,
+          QuranPageView.routeName,
           arguments: {
             'highlightVerse': '',
             'shouldHighlightText': false,

@@ -1,4 +1,4 @@
-part of '../flutter_quran_screen.dart';
+/* part of '../flutter_quran_screen.dart';
 
 class SurahHeaderWidget extends StatelessWidget {
   const SurahHeaderWidget(this.surahName, {super.key});
@@ -26,3 +26,4 @@ class SurahHeaderWidget extends StatelessWidget {
     );
   }
 }
+ */

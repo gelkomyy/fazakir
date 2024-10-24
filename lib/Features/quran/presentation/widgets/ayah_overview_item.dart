@@ -1,6 +1,6 @@
 import 'package:fazakir/Features/quran/domain/entities/ayah_entity.dart';
-import 'package:fazakir/Features/quran/presentation/views/quran_pages_view.dart';
 import 'package:fazakir/Features/quran/presentation/widgets/quran_text_highlighter.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/test_quran_page_view.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
@@ -87,7 +87,7 @@ class AyahOverviewItem extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          QuranPagesView.routeName,
+          QuranPageView.routeName,
           arguments: {
             'highlightVerse': ayahEntity.ayah,
             'shouldHighlightText': true,

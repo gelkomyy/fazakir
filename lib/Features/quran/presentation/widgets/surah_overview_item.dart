@@ -89,7 +89,12 @@ class SurahOverviewItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           QuranPageView.routeName,
-          arguments: getPageNumber(surahEntity.number, 1),
+          arguments: {
+            'highlightVerse':
+                getVerse(surahEntity.number, 1, verseEndSymbol: true),
+            'shouldHighlightText': true,
+            'pageNumber': getPageNumber(surahEntity.number, 1),
+          },
         );
       },
     );
