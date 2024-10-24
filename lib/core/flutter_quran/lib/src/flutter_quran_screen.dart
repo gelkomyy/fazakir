@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/flutter_quran/lib/src/flutter_quran_screen_bloc_builder_body.dart';
-import 'package:fazakir/core/flutter_quran/lib/src/models/ayah.dart';
 import 'package:fazakir/core/flutter_quran/lib/src/models/bookmark.dart';
 import 'package:fazakir/core/flutter_quran/lib/src/utils/flutter_quran_utils.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
@@ -12,18 +11,15 @@ import 'package:fazakir/core/utils/g_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quran/quran.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'app_bloc.dart';
 import 'models/quran_page.dart';
 part 'utils/images.dart';
-part 'utils/toast_utils.dart';
 part 'widgets/bsmallah_widget.dart';
 part 'widgets/quran_line.dart';
 part 'widgets/default_drawer.dart';
-part 'widgets/ayah_long_click_dialog.dart';
 
 class FlutterQuranScreen extends StatefulWidget {
   const FlutterQuranScreen({

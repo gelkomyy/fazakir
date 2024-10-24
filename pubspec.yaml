@@ -34,7 +34,6 @@ dependencies:
   cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   dartarabic: ^0.3.1
-  easy_container: 1.0.5
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -46,8 +45,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.10+1
-  fluttertoast: ^8.2.8
-  font_awesome_flutter: ^10.7.0
   geolocator: ^13.0.1
   get_it: ^8.0.1
   hadith: ^1.0.0
@@ -113,14 +110,6 @@ flutter:
     - family: uthmanic_hafs
       fonts:
         - asset: assets/fonts/uthmanic_hafs_v20.ttf
-
-    - family: arabic_symbols
-      fonts:
-        - asset: assets/fonts/kfgqpc_arabic_symbols.otf
-
-    - family: hafs
-      fonts:
-        - asset: assets/fonts/hafs.ttf
 
     - family: Almarai
       fonts:
