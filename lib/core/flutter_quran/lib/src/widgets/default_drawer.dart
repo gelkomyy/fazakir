@@ -16,8 +16,8 @@ class DefaultDrawer extends StatelessWidget {
             title: const Text('بحث'),
             onTap: () async {
               Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => const _FlutterQuranSearchScreen()));
+              /*    Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => const _FlutterQuranSearchScreen())); */
             },
           ),
           ExpansionTile(
