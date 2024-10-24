@@ -1,4 +1,4 @@
-import 'dart:async';
+/* import 'dart:async';
 import 'dart:developer';
 
 import 'package:fazakir/Features/quran/presentation/widgets/basmala.dart';
@@ -430,3 +430,4 @@ class _QuranPagesViewState extends State<QuranPagesView> {
     );
   }
 }
+ */

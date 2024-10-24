@@ -11,9 +11,8 @@ import 'package:fazakir/Features/home/presentation/views/navigation_page.dart';
 import 'package:fazakir/Features/home/presentation/views/shortcuts_view.dart';
 import 'package:fazakir/Features/intro/presentation/views/intro_view.dart';
 import 'package:fazakir/Features/prayer_times/presentation/views/qiblah_view.dart';
-import 'package:fazakir/Features/quran/presentation/views/quran_pages_view.dart';
+import 'package:fazakir/Features/quran/presentation/views/quran_page_view.dart';
 import 'package:fazakir/Features/quran/presentation/views/quran_view.dart';
-import 'package:fazakir/Features/quran/presentation/widgets/test_quran_page_view.dart';
 import 'package:fazakir/Features/search/presentation/views/search_view.dart';
 import 'package:fazakir/Features/sebha/data/models/sebha_zikr_model.dart';
 import 'package:fazakir/Features/sebha/presentation/views/saved_azkar_view.dart';
@@ -85,7 +84,7 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       );
     case QuranView.routeName:
       return MaterialPageRoute(builder: (context) => const QuranView());
-    case QuranPagesView.routeName:
+    /*  case QuranPagesView.routeName:
       dynamic args = settings.arguments;
 
       int pageNumber = 1;
@@ -106,7 +105,7 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
                 pageNumber: pageNumber,
                 shouldHighlightText: shouldHighlightText,
                 highlightVerse: highlightVerse,
-              ));
+              )); */
     case QuranPageView.routeName:
       final args = settings.arguments as Map<String, dynamic>;
       final pageNumber = args['pageNumber'] as int;

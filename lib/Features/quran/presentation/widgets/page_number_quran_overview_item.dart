@@ -1,4 +1,4 @@
-import 'package:fazakir/Features/quran/presentation/widgets/test_quran_page_view.dart';
+import 'package:fazakir/Features/quran/presentation/views/quran_page_view.dart';
 import 'package:fazakir/core/extensions/number_converter.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
