@@ -11,12 +11,19 @@ class CustomSearchTextField extends StatelessWidget {
       this.controller,
       this.enabled,
       this.focusNode,
+      this.prefixIconConstraints = const BoxConstraints(
+        maxHeight: 32,
+        maxWidth: 32,
+      ),
+      this.prefixIcon,
       this.onChanged});
   final String hintText;
   final bool? enabled;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final void Function(String)? onChanged;
+  final Widget? prefixIcon;
+  final BoxConstraints? prefixIconConstraints;
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -37,6 +44,8 @@ class CustomSearchTextField extends StatelessWidget {
         ),
         filled: true,
         fillColor: Colors.white,
+        prefixIcon: prefixIcon,
+        prefixIconConstraints: prefixIconConstraints,
         suffixIcon: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 10,

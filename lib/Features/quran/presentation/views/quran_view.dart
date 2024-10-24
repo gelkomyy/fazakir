@@ -1,11 +1,11 @@
 import 'package:fazakir/Features/quran/data/repos/quran_repo_impl.dart';
 import 'package:fazakir/Features/quran/presentation/manager/cubits/quran_cubit/quran_cubit.dart';
 import 'package:fazakir/Features/quran/presentation/widgets/quran_view_body.dart';
+import 'package:fazakir/Features/quran/presentation/widgets/quran_view_search_text_field.dart';
 import 'package:fazakir/core/utils/app_assets.dart';
 import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:fazakir/core/utils/app_font_styles.dart';
 import 'package:fazakir/core/utils/func/get_it_setup.dart';
-import 'package:fazakir/core/widgets/custom_search_text_field.dart';
 import 'package:fazakir/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,22 +60,9 @@ class _QuranViewState extends State<QuranView> {
                       )
                     ],
                   ),
-                  child: Builder(builder: (context) {
-                    return CustomSearchTextField(
-                      controller: _searchController,
-                      focusNode: _focusNode,
-                      onChanged: (query) {
-                        context
-                            .read<QuranCubit>()
-                            .filterSurahsWithDebounce(query);
-                        context
-                            .read<QuranCubit>()
-                            .searchInQuranWithIsolateDebounce(query);
-                      },
-                      hintText:
-                          'ابحث برقم او بكلمة (سور, آيات, صفحات)' ' ..... ',
-                    );
-                  }),
+                  child: QuranViewSearchTextField(
+                      searchController: _searchController,
+                      focusNode: _focusNode),
                 )
               : Text(
                   S.of(context).holy_quran,
