@@ -6,6 +6,7 @@ import 'package:android_intent_plus/android_intent.dart';
 import 'package:android_intent_plus/flag.dart';
 import 'package:fazakir/Features/azkar/data/repos/azkar_repo_impl.dart';
 import 'package:fazakir/Features/azkar/domain/entities/azkar_category_entity.dart';
+import 'package:fazakir/core/utils/app_colors.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -76,6 +77,8 @@ class NotificationService {
       channel.id,
       channel.name,
       channelDescription: 'Reminder for Azkar',
+      color: AppColors.primaryColor, // Set the desired background color
+      colorized: true, // Enable colorization for Android 12+
       styleInformation: BigTextStyleInformation(
         azkarCategory.azkar.first.text,
         contentTitle: azkarCategory.category,
@@ -114,6 +117,8 @@ class NotificationService {
       channel.id,
       channel.name,
       channelDescription: 'Reminder for Azkar',
+      color: AppColors.primaryColor, // Set the desired background color
+      colorized: true, // Enable colorization for Android 12+
       importance: Importance.max,
       priority: Priority.high,
     );
