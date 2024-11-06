@@ -1,6 +1,6 @@
 # Fazakir App - Comprehensive Islamic App
 
-![Fazakir](./fazakir_app.png)
+![Fazakir](./assets/images/fazakir_app.png)
 
 ## Description
 
